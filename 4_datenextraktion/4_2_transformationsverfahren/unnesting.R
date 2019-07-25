@@ -1,7 +1,7 @@
 # Libraries
 library(tidyverse)
 
-# Read data and rename columns
+# Read data
 tweets <- read_csv2("example-twitter.csv")
 print(tweets)
 
