@@ -1,2 +1,2 @@
 # Computational Methods für die Sozial- und Geisteswissenschaften
-Begleitmaterial
+Begleitmaterial zu den einzelnen Kapiteln befindet sich in den entsprechenden Unterordnern.
