@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:dv="http://data-vocabulary.org/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <dv:Movie rdf:nodeID="N85d4001474694047bf8345cf37fcc78d">
+    <dv:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-12-18T17:00:00+01:00</dv:startDate>
+    <dv:name>Star Wars: Der Aufstieg Skywalkers</dv:name>
+  </dv:Movie>
+</rdf:RDF>

@@ -1,0 +1,3 @@
+_:Nd3fdb7269cf042688394c6816c9d4716 <http://data-vocabulary.org/startDate> "2019-12-18T17:00:00+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+_:Nd3fdb7269cf042688394c6816c9d4716 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data-vocabulary.org/Movie> .
+_:Nd3fdb7269cf042688394c6816c9d4716 <http://data-vocabulary.org/name> "Star Wars: Der Aufstieg Skywalkers" .

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "dv": "http://data-vocabulary.org/",
+     "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "_:N8749ef75133a4b628614efc1a6929013",
+  "@type": "dv:Movie",
+  "dv:name": "Star Wars: Der Aufstieg Skywalkers",
+  "dv:startDate": {
+    "@type": "xsd:dateTime",
+    "@value": "2019-12-18T17:00:00+01:00"
+  }
+}

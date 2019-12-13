@@ -1,0 +1,6 @@
+@prefix dv: <http://data-vocabulary.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a dv:Movie ;
+    dv:name "Star Wars: Der Aufstieg Skywalkers" ;
+    dv:startDate "2019-12-18T17:00:00+01:00"^^xsd:dateTime .
