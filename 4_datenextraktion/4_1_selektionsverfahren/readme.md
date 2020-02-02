@@ -2,7 +2,7 @@
 
 - Installieren Sie Facepager: [https://github.com/strohne/Facepager](https://github.com/strohne/Facepager). Eine Einführung und Getting started-Tutorials finden Sie im [Wiki](https://github.com/strohne/Facepager/wiki).
 - Legen Sie mit Facepager eine neue Datenbank an (Menüpunkt `New Database`).
-- Fügen Sie die Adresse einer Webseite als Startknoten ein (Menüpunkt `Add Nodes`), zum Beispiel 'https://www.fernsehserien.de/serien-a-z/n'
+- Fügen Sie die Adresse einer Webseite als Startknoten ein (Menüpunkt `Add Nodes`), zum Beispiel 'https://www.fernsehserien.de/serien-a-z/n' oder die Beispieldatei 'https://github.com/strohne/cm/raw/master/4_datenextraktion/4_1_selektionsverfahren/example_li.html'.
 - Wechseln Sie unten links in das Generic-Modul und leeren Sie dort soweit möglich alle Einstellungen. Setzen Sie dann das Feld Base path auf `<Object ID>` und das Response-Format auf `text`. 
 - Setzen Sie das Feld Key to extract auf `text|css:li`. Damit werden aus dem Quelltext der Seite (der bei Facepager im text-Schlüssel landet) im nächsten Schritt alle li-Elemente extrahiert. 
 - Mit der Schaltfläche `Fetch Data` wird die Seite heruntergeladen. Das Ergebnis landet in neuen Unterknoten. Klappen Sie den Startknoten auf und  wählen Sie einen neuen Unterknoten aus. Im rechten Bereich sehen Sie die Daten, der Inhalt des Knotens (in diesem Fall das li-Element) ist im Schlüssel `text` zu finden. Verweilen Sie mkurz mit der MAus über dem text-Eintrag oder kopieren Sie ihn in einen Texteditor, um sich das Ergebnis anzusehen.
