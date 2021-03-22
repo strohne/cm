@@ -8,14 +8,16 @@ library(tidyverse)
 # Suche nach einem Stichwort
 bob.search <- find_item("Bob Ross")
 
+# Suchergebnisse rausziehen
+# Variante 1
 df_search <- tibble(
-  id = map(bob.search,"id"),
-  label = map(bob.search,"label"),
-  url = map(bob.search,"url") 
+  id = map_chr(bob.search,"id"),
+  label = map_chr(bob.search,"label"),
+  url = map_chr(bob.search,"url") 
 )
 
-bob.item <- get_item(id="Q455511")
-df_items <- get_item(id=df_search$id)
+# Variante 2 
+df_search <- map_df(bob.search,~.[c("id","label","url")])
 
 
 # Suche nach Liste von Stichwörtern
@@ -29,10 +31,17 @@ artists <- c("Andy Warhol",
              "Jackson Pollock",
              "Claude Monet",
              "Salvador Dali")
-artists.search <- find_item(search_term=artists)
 
 artists.search <- map(artists,find_item)
 
+# Suchergebnisse rausziehen
+df_search <- tibble(res = artists.search)
+#...und dann weiß ich noch nicht weiter
+
+
+
+bob.item <- get_item(id="Q455511")
+df_items <- get_item(id=df_search$id)
 
 
 # Daten von einem Wikidata-Item bekommen
