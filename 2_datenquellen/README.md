@@ -21,3 +21,9 @@ Hängen Sie an die URL https://www.instagram.com/ipk.unigreifswald/ den Paramete
 
 **Aufgabe 5**
 Suchen Sie einen im Internet zum Download angebotenen Datensatz und schätzen Sie die Qualität der Daten ein, zum Beispiel unter https://www.figure-eight.com/data-for-everyone/ !
+
+## APIs
+**Aufgabe 6**
+Schauen Sie sich die Dokumentation des Endpunkts „users“ der Twitter-API an. Suchen Sie dort die Bestandteile der verwendeten URL heraus: wie lauten Domain, Pfad und Parameter? DIe Dokumentation finden Sie unter https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show.
+
+
