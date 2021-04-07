@@ -16,3 +16,8 @@ https://www.zeit.de/suche/index?q=kommunikationswissenschaft
 
 **Aufgabe 4:**
 Hängen Sie an die URL https://www.instagram.com/ipk.unigreifswald/ den Parameter `?__a=1` an, was bewirkt dieser Parameter?
+
+## Übung: Datenqualität
+
+**Aufgabe 5**
+Suchen Sie einen im Internet zum Download angebotenen Datensatz und schätzen Sie die Qualität der Daten ein, zum Beispiel unter https://www.figure-eight.com/data-for-everyone/ !
