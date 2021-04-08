@@ -20,7 +20,7 @@ Hängen Sie an die URL https://www.instagram.com/ipk.unigreifswald/ den Paramete
 ## Datenqualität
 
 **Aufgabe 5**  
-Suchen Sie einen im Internet zum Download angebotenen Datensatz und schätzen Sie die Qualität der Daten ein, zum Beispiel unter https://www.figure-eight.com/data-for-everyone/ !
+Suchen Sie einen im Internet zum Download angebotenen Datensatz und schätzen Sie die Qualität der Daten ein, zum Beispiel unter https://archive.ics.uci.edu/ml/datasets.php
 
 ## APIs  
 **Aufgabe 6**  
