@@ -85,6 +85,7 @@ id,favorites,replies,retweets,hashtags
 
 
 **JSON**  
+```
 [   
     {    
       "id": 1,   
@@ -108,4 +109,4 @@ id,favorites,replies,retweets,hashtags
 	  "hashtags": "Nachhaltigkeit,Thema,Ideen"  
     }  
 ]  
-
+```
