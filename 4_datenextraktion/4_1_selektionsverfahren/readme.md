@@ -1,4 +1,5 @@
-Sie finden hier Beispiele, um SQL, CSS und XPath auszuprobieren:
+Sie finden hier Beispiele, um Reguläre Ausdrücke, SQL, CSS und XPath auszuprobieren:
+- regulaere_ausdruecke.txt enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um darin Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen.
 - example_table.html enthält eine Tabelle mit den längsten Fernsehserien (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020)  
 - example_li.html enthält eine Liste von Serien mit dem Anfangsbuchstaben N (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
 - example_imdb.db enthält einen Auszug aus der IMDb mit in Deutschland nach dem Jahr 2000 erschienenen Titeln (Quelle: https://datasets.imdbws.com/; 8.2.2020; nur für den persönlichen akademischen Gebrauch; siehe http://www.imdb.com/interfaces/)  
@@ -13,7 +14,7 @@ Sie finden hier Beispiele, um SQL, CSS und XPath auszuprobieren:
 - Mit der Schaltfläche `Fetch Data` wird die Seite heruntergeladen. Das Ergebnis landet in neuen Unterknoten. Klappen Sie den Startknoten auf und  wählen Sie einen neuen Unterknoten aus. Im rechten Bereich sehen Sie die Daten, der Inhalt des Knotens (in diesem Fall das li-Element) ist im Schlüssel `text` zu finden. Verweilen Sie kurz mit der MAus über dem text-Eintrag oder kopieren Sie ihn in einen Texteditor, um sich das Ergebnis anzusehen.
 - Um Daten aus dem Quelltext der Seite zu extrahieren, passen Sie die Spalten der Datentabelle an. Geben Sie die gewünschten Ausdrücke in das Feld Custom Table Columns ein und klicken Sie `Apply Column Setup`.
 - Wenn Sie das Präfix `text|css:` verwenden, können Sie dahinter *CSS-Ausdrücke* angeben, zum Beispiel `text|css:span.bold` um im Beispiel die Titel der Serien auszulesen. 
-- Mit *XPath-Ausdrücken* können Sie außerdem, bestimmen, dass nur der Text oder nur ein Attributwert angezeigt werden soll. Setzen Sie den XPath-Ausdruck hinter das Präfix `text|xpath:`. Zum Beispiel erhalten Sie mit dem Ausdruck `text|xpath://a/@href` die Links, genauer das href-Attribut aller a-Elemente. Der Ausdruck `text|xpath://a/text()` gibt den Linktext im a-Element zurück. Wenn weitere Elemente in das a-Element verschachtelt sind, hilft der Ausdruck `text|xpath:string(//a)` weiter.
+- Mit *XPath-Ausdrücken* können Sie außerdem bestimmen, dass nur der Text oder nur ein Attributwert angezeigt werden soll. Setzen Sie den XPath-Ausdruck hinter das Präfix `text|xpath:`. Zum Beispiel erhalten Sie mit dem Ausdruck `text|xpath://a/@href` die Links, genauer das href-Attribut aller a-Elemente. Der Ausdruck `text|xpath://a/text()` gibt den Linktext im a-Element zurück. Wenn weitere Elemente in das a-Element verschachtelt sind, hilft der Ausdruck `text|xpath:string(//a)` weiter.
 - Um die richtigen Ausdrücke zu finden, können Sie sich die ursprüngliche Seite im Browser ansehen und mit der Entwicklerkonsole (F12) einzelne Elemente des Quelltextes untersuchen.
 
 # SQL  mit DB Browser for SQLite üben
