@@ -1,4 +1,7 @@
 # Computational Methods für die Sozial- und Geisteswissenschaften
+
+**work in progress**
+
 Begleitmaterial zu den einzelnen Kapiteln befindet sich in den entsprechenden Unterordnern.
 
 - Kapitel 1: Verwendung von Git
