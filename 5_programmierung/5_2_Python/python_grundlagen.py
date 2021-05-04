@@ -85,7 +85,7 @@ ich = {'name': meinname, 'eigenschaft': 'verwirrt'}
 print(ich['name'] + " ist " + ich['eigenschaft'])
 
 # Klassen
-class Jedi(Object):
+class Jedi(object):
     name = None
     staerke = 0
 
