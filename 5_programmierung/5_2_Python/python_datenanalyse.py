@@ -31,7 +31,7 @@ df_new = df_new.append(data, sort=False, ignore_index=True)
 del df_new
 
 
-# Funktionen zum Auswählen von Zeilen, Spalten und Fällen 
+# Funktionen zum Auswählen von Spalten
 
 # Auswählen der Spalte "replies" aus "df"
 df.loc[:,'replies']
@@ -44,6 +44,24 @@ df.loc[:,['replies','favorites']]
 # Auswahl von Spalten nach Bereich
 df.loc[:,'replies':'retweets']
 
+# Überprüfen des Typs, der von loc zurückgegeben wird (Series oder DataFrame?)
+x = df.loc[:,'replies']
+type(x)
+
+x = df.loc[:,['replies']]
+type(x)
+
+x = df['favorites']
+type(x)
+
+x = df[['favorites']]
+type(x)
+
+x = df.favorites
+type(x)
+
+
+# Funktionen zum Auswählen von Zeilen
 
 # Zeilenindex setzen (statt Zeilennummern)
 # Zurücksetzen von Zeilenindizes über df = df.reset_index() möglich.
