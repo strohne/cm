@@ -39,7 +39,8 @@ for li in soup_li:
     # Name der Serie aus span-Tag auslesen
     # Das dict zur Liste hinzufügen
     item = {}
-    item ['name'] = li.find('span').text 
+    item['name'] = li.find('span').previousSibling
+    #item ['name'] = re.sub('\s+\(.*', '', li.find('div').text)
     results.append(item)
   
 

@@ -28,11 +28,12 @@ browser.implicitly_wait(10)
 
 # Suchschlitz finden
 suchschlitz = browser.find_element_by_name("q")
+
 # In den Suchschlitz schreiben
 suchschlitz.send_keys("Wie macht ein ")
+
 # Abschicken
 suchschlitz.submit()
-
 
 
 #
@@ -41,13 +42,15 @@ suchschlitz.submit()
 
 
 # Anzahl der Ergebnisse auslesen
-ergebnisse = browser.find_element_by_id('resultStats')
+ergebnisse = browser.find_element_by_id('result-stats')
 print(ergebnisse.text)
 
 # Zahl mit regulärem Ausdruck extrahieren
-anzahl = re.search('([0-9\.]+) Ergebnisse',↩ ergebnisse.text).group(1)
+anzahl = re.search('([0-9\.]+) Ergebnisse', ergebnisse.text).group(1)
+
 # Punkt aus Zeichenkette entfernen 
 anzahl = anzahl.replace('.','')
+
 # In eine Ganzzahl (int) umwandeln
 anzahl = int(anzahl)
 print(anzahl)
@@ -57,12 +60,20 @@ print(anzahl)
 # 5. Mehrere Suchabfragen durchführen 
 #
 
+# Neues Browser-Fenster öffnen
+browser = webdriver.Firefox()
+browser.implicitly_wait(10)
 
+# URL und Liste von Suchbegriffen festlege
 url = "https://www.google.de/"
 keywords = ["Computational","Statistical","Interpretive"]
 
+# Leere Liste für Suchergebnisse erstellen
 results = []
 
+# Für jedes Keyword die Google-Suche durchführen, 
+# Anzahl der Ergebnisse auslesen und als Eintrag 
+# in die results-Liste schreiben.
 for keyword in keywords:
     print(keyword)    
     browser.get(url)
@@ -71,11 +82,15 @@ for keyword in keywords:
     suchschlitz.send_keys(keyword)
     suchschlitz.submit()    
     
-    anzahl = browser.find_element_by_id('resultStats').text
+    anzahl = browser.find_element_by_id('result-stats').text
     results.append({'keyword':keyword, 'count':anzahl })
 
 results
 
+
+#
+# 6. Abspeichern der Ergebnisse als CSV-Datei
+#
 
 # Liste mit Dictionaries in DataFrame umwandeln
 results = pd.DataFrame(results)
@@ -83,6 +98,10 @@ results = pd.DataFrame(results)
 # DataFrame als CSV-Datei abpseichern
 results.to_csv('results.csv',sep=";",index=False)
 
+
+#
+# 7. Crawlen und Abspeichern von Quelltext
+#
 
 # Variante 1: Kompletten Seitenquelltext auslesen
 html = browser.page_source
@@ -95,9 +114,8 @@ html= str(body.get_attribute('innerHTML' ))
 
 # Text in Datei abspeichern
 with open("meineseite.html","w",encoding="utf-8") as file:
-    file.write(html))
-
-
+    file.write(html)
+    
 # Screenshot speichern 
 browser.save_screenshot('meineseite.png')
 

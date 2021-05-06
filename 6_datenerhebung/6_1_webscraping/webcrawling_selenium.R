@@ -38,7 +38,7 @@ suchschlitz$submitElement()
 
 
 # Anzahl der Suchergebnisse aus HTML-Element auslesen
-ergebnisse <-  browser$findElement(using='id','resultStats')
+ergebnisse <-  browser$findElement(using='id','result-stats')
 ergebnisse <- ergebnisse$getElementText()
 
 # Zahl mit regulären Ausdrücken extrahieren
