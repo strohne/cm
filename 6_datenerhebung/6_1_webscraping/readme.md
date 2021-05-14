@@ -13,3 +13,16 @@ Wenn Sie Python über Jupyter Notebooks bedienen, können Sie für eine schrittw
 
 *Hinweis:* Betreiber von Webseiten verändern diese von Zeit zu Zeit. Deswegen kann es sein, dass die Beispiele in den Skripten 
 nicht mehr genauso funktionieren und es zu Fehlermeldungen kommt, wenn beispielsweise Elemente nicht gefunden werden können. In dem Kapitel wird je durch die Befehle durchgeführt. Sollten Sie deswegen irgendwo hängen, versuchen Sie diesen Schritt nachzuvollziehen und selbst anzupassen. 
+
+# Nützliche Techniken zum Boilerplate Removal
+
+https://medium.com/@mbatchkarov/a-benchmark-comparison-of-extraction-from-html-pages-98d7c1229f51
+
+https://ujeebu.com/blog/how-to-extract-clean-text-from-html/
+
+https://trafilatura.readthedocs.io/en/latest/ https://github.com/adbar/trafilatura
+
+https://github.com/misja/python-boilerpipe
+
+https://ws-dl.blogspot.com/2017/03/2017-03-20-survey-of-5-boilerplate.html
+
