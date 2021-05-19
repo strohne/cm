@@ -145,7 +145,7 @@ bigrams <- bigrams %>%
 
 
 
-# SKip-Gramme
+# Skip-Gramme ----
 
 # Tokenisieren
 # (Wörter mit einem Abstand zwischen 2 und 5 Wörtern)
