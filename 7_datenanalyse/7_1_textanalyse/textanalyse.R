@@ -15,13 +15,14 @@ library(tidytext)
 library(stopwords)
 library(SnowballC)
 library(widyr)
+library(ggwordcloud)
 
 #
 # Texte einlesen ----
 #
 
 # Dateien aus dem Ordner korpus laden
-texte <- readtext("korpus",encoding="UTF-8")
+texte <- readtext("korpus",encoding="UTF-8") 
 
 
 #
@@ -59,11 +60,32 @@ woerter %>%
   count(wort, sort = T)
 
 
+# Abspeichern der 50 häufigsten Wörter in einem neuen Tibble
+topterms <- woerter %>% 
+  count(wort, sort = T) %>% 
+  slice_head(n = 50)
+
+
+# Topterms in einer Wordcloud visualiseren
+topterms %>% 
+  
+  # Erstellen der Wordcloud 
+  ggplot(aes(label = wort, size=n, color=n)) +
+  geom_text_wordcloud() +
+  
+  # Formatieren der Wordcloud
+  theme_bw(base_size = 10) +
+  scale_size_area(max_size = 15) 
+
+# Abspeichern der Wordcloud
+ggsave("wordcloud.png",units="cm",width=20,height=10,dpi = 300)
+
+
 # Kookkurrenz im gleichen Text auszählen (package widyr)
 kookkurrenz <- woerter %>% 
   pairwise_count(wort,doc_id) 
 
-
+  
 #
 # Tf-idf berechnen ----
 #
@@ -77,13 +99,12 @@ kookkurrenz <- woerter %>%
 
 tfidf <- woerter %>% 
   count(wort,doc_id) %>%
-  bind_tf_idf(wort,doc_id,n)
+  bind_tf_idf(wort,doc_id,n) 
 
 
 #
 # Positive Pointwise Mutial Information berechnen (PPMI) ----
 #
-
 
 pmi <- woerter %>% 
   pairwise_count(wort,doc_id) %>% 
@@ -102,7 +123,6 @@ pmi <- woerter %>%
   
   mutate(pmi = log(p / (p1 * p2)),
          ppmi = pmax(pmi,0))
-
 
 
 #
@@ -140,9 +160,7 @@ bigrams <- bigrams %>%
   
   # Berechnung von pmi
   mutate(pmi = log(p / (p1 * p2)),
-         ppmi = pmax(pmi,0))
-
-
+         ppmi = pmax(pmi,0)) 
 
 
 # Skip-Gramme ----

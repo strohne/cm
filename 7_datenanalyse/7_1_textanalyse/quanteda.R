@@ -19,12 +19,15 @@ library(readtext)
 # Dateien aus dem Ordner korpus laden
 texte <- readtext("korpus",encoding="UTF-8")
 
-# In quanteda-Token umwandeln
-texte <- tokens(texte)
+# In quanteda-Corpus umwandeln
+texte <- corpus(texte)
 
 # Überblick über das Korpus
 summary(texte)
 
-# Keywords in Context zum Wort "daten"
-kwic_daten <- kwic(texte,"daten")
+# In quanteda-Token unterteilen
+token <- tokens(texte)
+
+# Keywords-in-Context zum Wort "daten"
+kwic_daten <- kwic(token,"daten")
 
