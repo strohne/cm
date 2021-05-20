@@ -37,6 +37,12 @@ woerter <- woerter %>%
   mutate(wort =  str_to_lower(wort,locale = "de"))
 
 
+# Nur Wörter ohne Sonderzeichen behalten
+# (=nur die erlaubten Zeichen sind erlaubt)
+woerter <- woerter %>% 
+  filter(str_detect(wort, "^[a-zäüöß]+$"))
+
+
 # Stoppwörter im Package stopwords anzeigen
 # und in einem Tibble ablegen
 stopwords("de")
@@ -57,7 +63,8 @@ woerter <- woerter %>%
 
 # Anzahl der Wörter auszählen
 woerter %>% 
-  count(wort, sort = T)
+  count(wort, sort = T) %>% 
+  head(10)
 
 
 # Abspeichern der 50 häufigsten Wörter in einem neuen Tibble
