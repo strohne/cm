@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+*-checkpoint.py
+*-checkpoint.ipynb
