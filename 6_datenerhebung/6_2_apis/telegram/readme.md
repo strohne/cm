@@ -256,7 +256,7 @@ except Exception as e:
   print(e)
 ```
 
-Achten Sie darauf, nicht endlos Fehler zu produzieren. Denn Sie riskieren  eine Sperrung durch Telegram, wenn Sie zu schnell zu viele Abfragen senden, dazu zählen auch fehlerhafte Abfragen. Sie können auch gezielt bestimmte Typen von Fehlern abfangen, die verschiedenen dazu finden Sie in der Dokumentation
+Achten Sie darauf, nicht endlos Fehler zu produzieren. Denn Sie riskieren  eine Sperrung durch Telegram, wenn Sie zu schnell zu viele Abfragen senden, dazu zählen auch fehlerhafte Abfragen. Sie können gezielt bestimmte Typen von Fehlern abfangen, die verschiedenen Fehlerarten finden Sie in der Pyrogram- Dokumentation.
 
 ## Hilfe und Unterstützung im Lehrbuch
 Das beschriebene Tutorial bietet einen Schnelleinstieg in die Datenerhebung über die Telegram-API. An der einen oder anderen Stelle kann es hilfreich sein, sich mit einigen Grundlagen zu beschäftigen. Dabei könnten Ihnen folgende Kapitel im Lehrbuch behilflich sein:
