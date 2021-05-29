@@ -116,6 +116,9 @@ texte_sentiment %>%
 
 ggsave("sentimentanalyse.png",width=11.5,height=10,units = "cm")
 
+# Mittelwerte
+mean(texte_sentiment$p_sent_neg)
+mean(texte_sentiment$p_sent_pos)
 
 #
 # Zurordnung der Inhalte zu den positiv bis negativ verorteten Texten ----
