@@ -2,24 +2,21 @@
 
 *Erhebung von Accountbeschreibungen und Nachrichten aus öffentlichen Gruppen und Kanälen auf Telegram*
 
-Die Telegram-API bietet eine Vielzahl an Möglichkeiten, um mit den Inhalten des Messengers Telegrams zu interagieren (https://core.telegram.org/).
-So könnten Sie einen eigenen Chat-Bot zum Managen von Gruppen entwerfen oder über eine eigens geschriebene Anwendungen Mitteilungen verschicken.
-Ebenso können darüber Daten erhoben werden, wie beispielsweise die Beschreibungen und Nachrichten von öffentlichen Telegram-Gruppen und -Kanälen.
+Die Telegram-API bietet eine Vielzahl an Möglichkeiten, um mit den Inhalten des Messengers Telegrams zu interagieren (https://core.telegram.org/). So könnten Sie einen eigenen Chat-Bot zum Managen von Gruppen entwerfen oder über eine eigens geschriebene Anwendungen Mitteilungen verschicken. Ebenso können darüber Daten erhoben werden, wie beispielsweise die Beschreibungen und Nachrichten von öffentlichen Telegram-Gruppen und -Kanälen.
 
-Nachfolgend finden Sie einen kurzen Einstieg in die Datenerhebung mit der Telegram-API. Am Beispiel des offiziellen Corona-Infokanal des Bundesministeriums für Gesundheit
-ist beschrieben, wie Sie die Kanalbeschreibung sowie die letzten 100 Mitteilungen samt Medien erheben können.
+Nachfolgend finden Sie einen kurzen Einstieg in die Datenerhebung mit der Telegram-API. Am Beispiel des offiziellen Corona-Infokanal des Bundesministeriums für Gesundheit ist beschrieben, wie Sie die Kanalbeschreibung sowie die letzten 100 Mitteilungen samt Medien erheben können.
 
 Um direkt mit der Erhebung loslegen zu können, benötigen Sie:
 - Ein Smartphone mit einer Sim-Karte sowie die Telegram-App,  
 - eine Jupyter Lab-Installation, da die Datenerhebung nachfolgend mit Python über Jupyter Notebooks geschieht.
 - Hilfreich sind erste Kenntnisse in Python.
 
-Beachten Sie außerdem ganz grundsätzlich bei der Datenerhebung über APIS: APIs werden von den Betreibern der Plattformen bereitsgestellt.
-Das bedeutet zum einen, dass die Plattformen festlegen, wie viele und welche Daten abgefragt werden können und wie diese sortiert werden.
-Berücksichtigen Sie demnach bei der Erhebung mögliche Ratenbegrenzungen und bei der Interpretation Ihrer wissenschaftlichen Fragestellungen die Datenqualität.
-Zum anderen kann es sein, dass sich die Zugänge über die Zeit verändern und die nachfolgend beschriebene Vorgehensweise nicht mehr aktuell ist, sobald Sie das lesen.
+Beachten Sie außerdem ganz grundsätzlich bei der Datenerhebung über APIS: APIs werden von den Betreibern der Plattformen bereitgestellt.
+Das bedeutet zum einen, dass die Plattformen festlegen, wie viele und welche Daten abgefragt werden können und wie diese sortiert werden. Berücksichtigen Sie demnach bei der Erhebung mögliche Ratenbegrenzungen und bei der Interpretation Ihrer wissenschaftlichen Fragestellungen die Datenqualität. Zum anderen kann es sein, dass sich die Zugänge über die Zeit verändern und die nachfolgend beschriebene Vorgehensweise nicht mehr aktuell ist, sobald Sie das lesen.
 
 In beiden Fällen lohnt es sich, in der offiziellen Dokumentation der API nachzusehen. Diese wird im Normalfall aktuell gehalten und liefert detaillierte Hinweise zu den Rahmenbedingungen, den verfügbaren Abfragen und Daten.
+
+ Auch die Python-Packages entwickeln sich weiter, etwa das unten verwendete Pyrogram. Hier lohnt sich ebenfalls ein Blick in die Dokumentation.
 
 
 ## Schritt 1: Registrierung bei Telegram.
@@ -30,20 +27,22 @@ Dies sind Ihre persönliche ID sowie Ihr Passwort zur Interaktion mit der Telegr
 
 
 ## Schritt 2: Einrichten von Pyrogram
-Einen vereinfachten Zugriff auf die Telegram-API bietet das Framework Pyrogram. Pyrogram stellt Python-Funktionen bereit,
-über die automatisch Abfragen der Telegram-API zusammengebaut werden - ohne dass Sie sich im Detail mit der Telegram-API auseinandersetzen müssen. Stattdessen sollten Sie sich aber mit der Pyrogram-Dokumentation vertraut machen: https://docs.pyrogram.org/. Schlagen Sie die folgenden Befehle nach, um diese besser zu verstehen.
+Einen vereinfachten Zugriff auf die Telegram-API bietet das Framework Pyrogram. Pyrogram stellt Python-Funktionen bereit, über die automatisch Abfragen der Telegram-API zusammengebaut werden - ohne dass Sie sich im Detail mit der Telegram-API auseinandersetzen müssen. Stattdessen sollten Sie sich aber mit der Pyrogram-Dokumentation vertraut machen: https://docs.pyrogram.org/. Schlagen Sie die folgenden Befehle nach, um diese besser zu verstehen.
 
-Starten Sie nun Jupyter-Lab. Für die Installation von Pyrogram führen Sie einmalig im Terminal oder in der Kommandozeile folgenden Befehl aus:
+Starten Sie nun Jupyter-Lab. Für die Installation von Pyrogram führen Sie einmalig im Terminal oder in der Kommandozeile folgenden Befehl aus (je nach Python-Installation geht auch pip statt pip3):
 
 ```
 pip3 install pyrogram
 ```
 
-Anschließend können Sie ein neues Jupyter Notebook erstellen. Zu Beginn des Skriptes importieren Sie die Pyrogram-Bibliothek und Pandas, beides wird im Verlauf der Datenerhebung benötigt:
+Aktuell ist die Version 1.2.9, aber vermutlich hat sich das bereits weiterentwickelt, wenn Sie diesen Text lesen. Um eine bestimmte Version zu installieren, können Sie folgendes Muster verwenden: `pip3 install pyrogram==1.2`.
+
+Anschließend können Sie ein neues Jupyter Notebook erstellen. Zu Beginn des Skriptes importieren Sie die Pyrogram-Bibliothek und Pandas, beides wird im Verlauf der Datenerhebung benötigt. Die Bibliothek os wird später zum Feststellen des Arbeitsverzeichnisses verwendet.
 
 ```
 from pyrogram import Client
 import pandas as pd
+import os
 ```
 
 
@@ -68,48 +67,30 @@ Beachten Sie dabei, dass Sie Ihre `api_id` ohne Anführungszeichen und Ihren `ap
 app = Client("mysession", api_id=api_id, api_hash=api_hash)
 ```
 
-
-Richten Sie Pyrogram zum ersten Mal ein, führen Sie
-
-```
-app.run()
-```
-
- aus. Dieser Befehl startet eine Session und leitet die Authentifizierung ein.
-
- Beim Ausführen dieses Befehls öffnet sich ein Dialogfenster und Sie müssen Ihre Telefonnummer eingeben und bestätigen. Anschließend bekommen Sie in Ihrer App einen Authentifizierungs-Code zugeschickt, den Sie nun wiederum im Dialog-Fenster eingeben.  Hat die Authentifizierung geklappt, startet nun die Session und alles ist  fertig für die Datenerhebung eingerichtet.
-
- Allerdings blockiert `app.run()` die weitere Ausführung von Befehlen, so dass Sie nun in Jupyter Lab im Menü den Python-Kernel stoppen müssen. Damit Sie anschließend weitermachen können, führen Sie die bisherigen Befehle zum Laden der Bibliotheken und zum Erstellen des Client erneut aus.
-
-Hat die Ersteinrichtung geklappt, starten Sie wie folgt eine Session, die nicht blockiert:
+Nun können Sie Anfragen an die API schicken. Führen Sie die folgenden Befehle aus, um Ihre eigenen Profilinformationen abzufragen:
 
 ```
-app.start()
+await app.start()
+
+me = await app.get_me()
+print(me)
 ```
 
+Richten Sie Pyrogram zum ersten Mal ein, öffnet sich ein Dialogfenster und Sie müssen Ihre Telefonnummer eingeben und bestätigen. Anschließend bekommen Sie auf Ihr Smartphone einen Authentifizierungs-Code zugeschickt, den Sie nun wiederum im Dialog-Fenster eingeben.  Hat die Authentifizierung geklappt, startet nun die Session und alles ist  fertig für die Datenerhebung eingerichtet.
 
-Am Ende jeder Session, also bevor Sie Jupyter Lab wieder verlassen, beenden Sie diese mit:
-
+Der Befehl `await app.start()` startet eine neue Session. Am Ende jeder Session, also bevor Sie Jupyter Lab wieder verlassen, beenden Sie diese mit:
+ 
 ```
-app.stop()
+await app.stop()
 ```
 
+Alle Befehle werden hier mit dem Schlüsselwort `await` ergänzt, da Pyrogram asynchron arbeitet. Das bedeutet, im Hintergrund läuft eine Schleife, die auf Befehle wartet. So wird im Beispiel der Befehl `app.get_me()` verwendet, um die eigenen Accountinformationen abzurufen. Dieser Befehl wird aber nicht sofort ausgeführt, sondern erst wenn man Ergebnis anfordert - und dazu dient `await`. Weitere Erläuterungen zum Umgang mit asynchronen Funktionen finden Sie in der [Python-Dokumentation](https://docs.python.org/3/library/asyncio-task.html).   
 
 ## Schritt 4: Testabfragen der Telegram-API
-Sobald Ihre Session gestartet ist, können Sie mit der Telegram-API interagieren.
-Testen Sie folgende Abfragen:
-
-- Um Ihre Account-Informationen anzeigen zu lassen, verwenden Sie die Funktion `get_me()`:     
+Sobald Ihre Session gestartet ist, können Sie mit der Telegram-API interagieren. Sie können zum Beispiel über die Funktion ```send_message()``` auch Nachrichten senden. Dafür geben Sie als ersten Parameter den Kontakt aus Ihrem Adressbuch ein, an den Sie eine Nachricht schicken wollen (verwenden Sie "me" für Ihren eigenen Account). Als zweiten Parameter können Sie eine Nachricht verfassen. Der fertig formulierte Befehl könnte demnach lauten:
   ```
-  print(app.get_me())
+  await app.send_message("me", "Hello from **Pyrogram**!")
   ```
-
-- Sie können über die Funktion ```send_message()``` auch Nachrichten senden. Dafür geben Sie als ersten Parameter den Kontakt aus Ihrem Adressbuch ein, an den Sie eine Nachricht schicken wollen (verwenden Sie "me" für Ihren
-eigenen Account). Als zweiten Parameter können Sie eine Nachricht verfassen. Der fertig formulierte Befehl könnte demnach lauten:
-  ```
-  app.send_message("me", "Hello from **Pyrogram**!")
-  ```
-
 
 Öffnen Sie anschließend die Telegram-App und schauen Sie nach, ob Ihre Nachricht angekommen ist.
 
@@ -126,7 +107,7 @@ Handle des Chats. Das Handle für den offiziellen Corona-Infokanal des Bundesmin
 Führen Sie die Funktion aus und speichern Sie das Ergebnis im Objekt "chat" ab:
 
 ```
-chat = app.get_chat("corona_infokanal_bmg")
+chat = await app.get_chat("corona_infokanal_bmg")
 ```
 
 Über die Funktion `print()` können Sie sich den Inhalt von Objekten anzeigen lassen:
@@ -168,13 +149,13 @@ Eintrag und der Dataframe nur eine Zeile. Wenn Sie mehrere Chats in dem gleichen
 Die Nachrichten in einem Angebot können über die Funktion `get.history()` abgefragt werden. Voreingestellt werden dabei die letzten 100 Mitteilungen in dem Chat zurückgegeben:
 
 ```
-messages = app.get_history("corona_infokanal_bmg")
+messages = await app.get_history("corona_infokanal_bmg")
 ```
 
-Das Ergebnis dieser Abfrage ist eine Liste mit Message-Objekten. Über den folgenden Codeblock werden für jedes Objekt in dieser Liste die Mitteilungs-Id, das Datum der Mitteilung, sowie der Inhalt der Mitteilung ausgelesen.
+Das Ergebnis dieser Abfrage ist eine Liste mit Message-Objekten. Über den folgenden Codeblock werden für jedes Objekt in dieser Liste die Mitteilungs-Id, das Datum der Mitteilung, sowie der Inhalt der Mitteilung ausgelesen. Sie können das Ergebnis mit dem `print`-Befehl ansehen.
 
 Die Funktion `get_history` liefert dabei standardmäßig nur den Text der Mitteilungen. Häufig werden jedoch eine Vielzahl diverser Mediendateien über Messenger versendet werden.
-Um demnach auch Bilder auslesen zu können, wird im Codeblock ebenfalls überprüft, ob die Eigenschaft `photo` vorhanden ist. Falls ja, werden ebenfalls die Bildunterschrift sowie die File-Id und File-Ref ausgelesen. Die letzten beiden Angaben werden benötigt, um in einem weiteren Erhebungsschritt die Mediendateien herunterzuladen (siehe Schritt 7).
+Um Bilder auslesen zu können, wird im Codeblock überprüft, ob die Eigenschaft `photo` vorhanden ist. Falls ja, werden ebenfalls die Bildunterschrift sowie die File-Id ausgelesen. Die File-Id wird benötigt, um in einem weiteren Erhebungsschritt die Mediendateien herunterzuladen (siehe Schritt 7).
 
 Die ausgelesenen Inhalte werden anschließend in einen Dataframe umgewandelt und abgespeichert:
 
@@ -187,6 +168,7 @@ for item in messages:
 
     message_dict = {}
 
+    message_dict['chat_id'] = item['chat']['id']
     message_dict['message_id'] = item['message_id']
     message_dict['date'] = item['date']
     message_dict['text'] = item['text']
@@ -194,12 +176,10 @@ for item in messages:
     if item['photo'] is not None:
         message_dict['caption'] = item['caption']
         message_dict['file_id'] = item['photo']['file_id']
-        message_dict['file_ref']= item['photo']['file_ref']
 
     else:
         message_dict['caption'] = None
         message_dict['file_id'] = None
-        message_dict['file_ref'] = None
 
     messages_list.append(message_dict)
 
@@ -213,32 +193,32 @@ messages_results.to_csv('messages_results.csv', sep=";", index=False)
 
 ## Schritt 7: Abfragen von Mediendateien
 
-Um abschließend die Bilder aus Ihren erhobenen Nachrichten herunterzuladen, müssen Sie zunächst ein Verzeichnis für den Download festlegen.
-Erstellen Sie dafür am besten einen Unterordner in Ihrem Arbeitsverzeichnis, in dem die Dateien landen können. Geben Sie nun entweder den gesamten Pfad (wie im Explorer bzw. Finder) oder den relativen Pfad (der sich auf Ihr Jupyter-Notebook-Arbeitsverzeichnis bezieht) in einem Objekt  ```media_folder``` an.
+Um abschließend die Bilder aus Ihren erhobenen Nachrichten herunterzuladen, müssen Sie zunächst ein Verzeichnis für den Download festlegen. Erstellen Sie dafür am besten einen Unterordner in Ihrem Arbeitsverzeichnis, in dem die Dateien landen können. Geben Sie nun den gesamten Pfad (wie im Explorer bzw. Finder) in einem Objekt  ```media_folder``` an. Im folgenden Befehl wird über `os.getcwd()` der Pfad des aktuellen Arbeitsverzeichnissen mit dem Unterordner kombiniert:  
 
 ```
-media_folder = "IHRARBEITSVERZEICHNIS/download/"
+media_folder = os.getcwd() + "/downloads/"
 ```
 
 Achten Sie dabei darauf, die Trennstriche als Vorwärtsslashes ```/``` zu schreiben, da anderenfalls Kodierungsprobleme auftreten können (der Backslash wir in Strings zu Maskierung verwendet).
 
-Über die Funktion ```download_media()``` können Sie nun für jede Mitteilung mit vorhandener Fotodatei das entsprechende Bild herunterladen.
-Dafür werden die `file_id` sowie `file_ref ` benötigt (siehe Schritt 6).
-Beachten Sie dabei, dass diese Angaben nach einiger Zeit ablaufen. Ist dies der
-Fall, müssen Sie die Mitteilungen  im Zweifelsfall erneut herunterladen und erhalten eine neue, zeitlich begrenzt gültige File-Id sowie File-Ref.
-Optional kann der Downloadfunktion ein selbst gewählter Dateiname mitgegeben werden, unter dem die Datei abgespeichert wird. Im nachfolgenden Codeblock wurde je Mitteilung ein eigener Dateiname erstellt, der die ID der Mitteilung enthält.
+Über die Funktion ```download_media()``` können Sie nun für jede Mitteilung mit vorhandener Fotodatei das entsprechende Bild herunterladen. Dafür wird die `file_id` benötigt (siehe Schritt 6). Beachten Sie dabei, dass diese Angabe nach einiger Zeit ablaufen kann. Ist dies der Fall, müssen Sie die Mitteilungen im Zweifelsfall erneut herunterladen und erhalten eine neue, zeitlich begrenzt gültige File-Id.
+
+Optional kann der Downloadfunktion ein selbst gewählter Dateiname mitgegeben werden, unter dem die Datei abgespeichert wird. Im nachfolgenden Codeblock wurde je Mitteilung ein eigener Dateiname erstellt, der die ID des Kanals und der Mitteilung enthält.
 Dadurch kann auch im Nachheinein zugeordnet werden, welches Bild welcher Nachricht entstammt.
 
-Führen Sie den Codeblock aus und beobachten Sie in Ihrem Downloadordner, wie nach und nach die Bilder heruntergeladen werden. Je nach Größe der Dateien und
-je nach Internetverbindung, kann dies eine Weile dauern.
+Führen Sie den Codeblock aus und beobachten Sie in Ihrem Downloadordner, wie nach und nach die Bilder heruntergeladen werden. Je nach Größe der Dateien und je nach Internetverbindung, kann dies eine Weile dauern.
 
 ```
+
+
 for item in messages_list:
 
     if item['file_id'] is not None:
-        filename =  media_folder + "message_media_" + str(item['message_id']) + ".jpg"
+        filename =  "photo_" + str(item['chat_id']) +"_"+ str(item['message_id']) + ".jpg"
+        print(f"Downloading {filename}")
 
-        app.download_media(item['file_id'], item['file_ref'], filename)
+        await app.download_media(item['file_id'], media_folder + filename)
+
 ```
 
 Alternativ können Sie diesen Schritt - das Herunterladen der Bilder - direkt oben in die Schleife integrieren, mit der die Mitteilungen in Dictionaries abgelegt werden.
@@ -249,8 +229,10 @@ Wenn nicht nur einzelne Chats, Mitteilungen oder Bilder erhoben werden, treten f
 
 ```
 try:
-  filename =  media_folder + "message_media_" + str(item['message_id']) + ".jpg"
-  app.download_media(item['file_id'], item['file_ref'], filename)
+    filename =  "photo_" + str(item['chat_id']) +"_"+ str(item['message_id']) + ".jpg"
+    print(f"Downloading {filename}")
+
+    await app.download_media(item['file_id'], media_folder + filename)
 except Exception as e:
   print("Fehler beim Download von "+filename+"\n")
   print(e)
