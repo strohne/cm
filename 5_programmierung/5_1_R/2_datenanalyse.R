@@ -14,10 +14,10 @@ library(tidyverse)
 
 # CSV-Daten einlesen, mit read_csv2, 
 # da Daten mit Semikolon getrennt sind.
-twitter <- read_csv2("example-twitter.csv")
+tweets <- read_csv2("example-starwars.csv")
 
 # Erstellen und Abspeichern eines neuen Datensatzes 
-tweets.jeautor <- twitter %>% 
+tweets.jeautor <- tweets %>% 
   count(from)
 
 write_csv(tweets.jeautor, "tweets.jeautor.csv")
@@ -29,68 +29,68 @@ write_csv(tweets.jeautor, "tweets.jeautor.csv")
 
 # Auszählen vo Häufigkeiten: 
 # Wie oft wurden Tweets ge-retweetet?
-table(twitter$retweets)
+table(tweets$retweets)
 
 # Ausgeben von Grafiken: 
-# Anzahl der Favorites nach Tweet-ID
-plot(twitter$favorites)
+# Streudiagramm, in dem Favorites und Retweets abgetragen sind
+plot(tweets$favorites,tweets$retweets)
 
 # Ausgeben von Boxplots: 
 # Verteilung der Retweets
-boxplot(twitter$retweets)
+boxplot(tweets$retweets)
 
 # Ausgeben der Fünf-Punkte-Zusammenfassung :
 # Verteilung der Favorites
-summary(twitter$favorites)
+summary(tweets$favorites)
 
 
 #
-# Funktionen aus dem Tidyverse für Datenanalyse ----
+# Funktionen aus dem Tidyverse für die Datenanalyse ----
 #
 
 # Auswahl durch Filter- und Select-Bedingung mit Pipe
 # Filter= Auswählen von Zeilen
 # Select= Auswählen von Spalten
-auswahl <- twitter %>% 
-  filter(from == "exogol") %>% 
+auswahl <- tweets %>% 
+  filter(from == "Universität von Exegol") %>% 
   select(hashtags)
 
 # Auswahl durch Filter- und Select-Bedingung ohne Pipe
-auswahl <- filter(twitter, from =="exogol")
+auswahl <- filter(tweets, from =="exogol")
 auswahl <- select(auswahl, hashtags)
 
 # Sortieren der Reihenfolge der Zeilen 
 # mithilfe von arrange
 # Über das "-" vor der Variable 
 # kann absteigend sortiert werden
-twitter %>% 
+tweets %>% 
   arrange(-favorites)
 
 # Erstellen und Überschreiben von Spalten mit mutate
 # Zunächst: Überschreibend der Spalte retweets, indem 
-# alle NAs mit 0ern ersetzt werdeän 
-# Anschließend: Erstellen der Spalte "engagement", 
+# alle NAs mit 0en ersetzt werden 
+# Anschließend: Erstellen der Spalte "reactions", 
 # in der die Werte aus favorites, replies und retweets
 # zusammengefasst werden.
-twitter <- twitter %>%  
+tweets <- tweets %>%  
   mutate(retweets = replace_na(retweets, 0)) %>% 
-  mutate(engagement = favorites + replies + retweets)
+  mutate(reactions = favorites + replies + retweets)
 
 # Split-Apply-Combine:
 # Je Autor:in die duchschnittliche Anzahl 
-# der Favorites übre alle Tweets hinweg bestimmen.
-favorites <- twitter %>% 
+# der Favorites über alle Tweets hinweg bestimmen.
+favorites <- tweets %>% 
   group_by(from) %>%  
   summarize(durchschnitt=mean(favorites)) %>% 
   ungroup()
 
-# Zusammenzählen von Werten eines Datensatzes
-twitter %>%
+# Zählen der Zeilen eines Datensatzes
+tweets %>%
   count()
 
-# Zusammenzählen von Werten für Gruppen 
-# durch Angabe einer Spalte
-# hier: wie viele Tweets je Autor:in verfasst wurden
-twitter %>%  
+# Zählen der Zeilen, gruppiert nach den Werten in einer
+# weiteren Spalte.
+# Hier: wie viele Tweets ja ein:e Autor:in verfasst?
+tweets %>%  
   count(from)
-aes
+

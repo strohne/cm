@@ -1,0 +1,76 @@
+id;name;from;favorites;replies;retweets;hashtags
+1;exegol;Universität von Exegol;0;0;;
+2;exegol;Universität von Exegol;9;0;8;"Laserschuss;Lichtschwerforschung"
+3;exegol;Universität von Exegol;6;0;;"Karbonit;Wissen"
+4;exegol;Universität von Exegol;5;0;;
+5;exegol;Universität von Exegol;3;1;1;
+6;exegol;Universität von Exegol;64;0;1;
+7;exegol;Universität von Exegol;3;0;;"Blasterschuss;Lichtschwerforschung;Klinge;Forschung"
+8;exegol;Universität von Exegol;30;0;6;
+9;exegol;Universität von Exegol;29;0;3;
+10;exegol;Universität von Exegol;7;0;;"Lichtschwerforschung;Kraft"
+11;exegol;Universität von Exegol;8;0;1;"Sith;Bogan"
+12;aldera;Fachhochschule Aldera;1;0;;"Technik;Forschung;neu;Hyperantrieb;Antrieb;Generator"
+13;aldera;Fachhochschule Aldera;12;0;;Engineering
+14;aldera;Fachhochschule Aldera;6;0;1;"Antriebsklasse;Route;Fakten"
+15;aldera;Fachhochschule Aldera;8;0;1;
+16;aldera;Fachhochschule Aldera;11;0;1;
+17;aldera;Fachhochschule Aldera;5;3;;"Digitalisierung;Forschung;Lehre"
+18;aldera;Fachhochschule Aldera;5;1;;"Publikation;Fachzeitschrift"
+19;aldera;Fachhochschule Aldera;12;0;2;
+20;aldera;Fachhochschule Aldera;16;0;2;
+21;aldera;Fachhochschule Aldera;11;0;;"Athmosphaerisch;Geschwindigkeit;Hyperantrieb"
+22;aldera;Fachhochschule Aldera;7;0;1;
+23;aldera;Fachhochschule Aldera;12;0;1;"Eta-2-Actis;Lang;Tief"
+24;aldera;Fachhochschule Aldera;0;0;;
+25;aldera;Fachhochschule Aldera;4;0;1;"Wissen;Hyperantrieb;Forschung;Licht"
+26;aldera;Fachhochschule Aldera;2;0;4;
+27;aldera;Fachhochschule Aldera;2;0;1;
+28;aldera;Fachhochschule Aldera;1;0;;"Druide;R-Serie;Fortschritt"
+29;aldera;Fachhochschule Aldera;23;0;2;"Astromech;Forschung"
+30;aldera;Fachhochschule Aldera;6;1;2;"Wissen;Lehre"
+31;dagobah;Dagobah Universität;15;0;;
+32;dagobah;Dagobah Universität;5;0;;
+33;dagobah;Dagobah Universität;45;3;10;"Wissen;Vermitteln"
+34;dagobah;Dagobah Universität;6;1;4;
+35;dagobah;Dagobah Universität;6;0;3;Kommunikation
+36;dagobah;Dagobah Universität;4;2;;
+37;dagobah;Dagobah Universität;4;0;;
+38;dagobah;Dagobah Universität;9;0;3;Faktenwissen
+39;dagobah;Dagobah Universität;2;1;;"Forschung;Schwermetall;Durastahl"
+40;dagobah;Dagobah Universität;9;0;3;"galaktisch;Reich"
+41;dagobah;Dagobah Universität;20;1;6;
+42;dagobah;Dagobah Universität;6;0;;
+43;dagobah;Dagobah Universität;9;0;2;
+44;dagobah;Dagobah Universität;8;0;1;"Campus;Campusleben"
+45;dagobah;Dagobah Universität;3;0;;"Durastahl;Lommit;Elom;Koratas;Forschung"
+46;dagobah;Dagobah Universität;3;0;;"Meleenium;Durastahl;Af'El"
+47;dagobah;Dagobah Universität;6;0;;
+48;dagobah;Dagobah Universität;0;0;3;
+49;dagobah;Dagobah Universität;4;0;;"Durastahl;Faktenwissen;Rohstoff"
+50;dagobah;Dagobah Universität;6;0;;
+51;corellia;Kunsthochschule Corellia;2;0;;
+52;corellia;Kunsthochschule Corellia;4;0;1;"Chancen;Campus"
+53;corellia;Kunsthochschule Corellia;3;1;1;"YodaYoga;Machmit"
+54;corellia;Kunsthochschule Corellia;4;0;2;
+55;corellia;Kunsthochschule Corellia;6;0;1;KunstvomanderenStern
+56;corellia;Kunsthochschule Corellia;7;1;2;"Antik;Forschung"
+57;corellia;Kunsthochschule Corellia;3;0;2;
+58;corellia;Kunsthochschule Corellia;8;0;2;"Universitaet;Forschung;Faktenwissen"
+59;corellia;Kunsthochschule Corellia;10;1;1;
+60;corellia;Kunsthochschule Corellia;5;0;;
+61;corellia;Kunsthochschule Corellia;3;1;;
+62;corellia;Kunsthochschule Corellia;0;0;;
+63;corellia;Kunsthochschule Corellia;5;1;;"Lehre;Wissen"
+64;corellia;Kunsthochschule Corellia;1;0;1;
+65;corellia;Kunsthochschule Corellia;7;0;1;KunstvomanderenStern
+66;corellia;Kunsthochschule Corellia;4;0;6;
+67;corellia;Kunsthochschule Corellia;2;0;;
+68;corellia;Kunsthochschule Corellia;1;0;;
+69;corellia;Kunsthochschule Corellia;11;0;4;
+70;moncala;Universität von Mon Cala;0;0;;"Roggwart;Acklay;Faktenwissen"
+71;moncala;Universität von Mon Cala;1;0;;"Naehrstoff;Flora;Forschung;Fakten"
+72;moncala;Universität von Mon Cala;0;0;;
+73;moncala;Universität von Mon Cala;3;1;;
+74;moncala;Universität von Mon Cala;4;0;2;Wisskomm
+75;moncala;Universität von Mon Cala;0;0;;"Oekosystem;Vendaxa;Wissen"

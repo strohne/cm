@@ -13,10 +13,10 @@ library(ggplot2)
 #
 
 # Daten einlesen 
-twitter <- read_csv2("example-twitter.csv")
+tweets <- read_csv2("example-tweets.csv")
 
 # Aufbereiten der Daten: Leere Werte durch 0er ersetzen 
-twitter <- twitter %>% 
+tweets <- tweets %>% 
   mutate(retweets = replace_na(retweets, 0))
 
 
@@ -25,14 +25,14 @@ twitter <- twitter %>%
 #
 
 # Erstellen einer einfachen Punktewolke
-ggplot(twitter, aes(x=favorites, y=retweets)) +
+ggplot(tweets, aes(x=favorites, y=retweets)) +
   geom_point()
 
 ggsave("EinfachePunktewolke.png", dpi=300, width = 3, height = 3)
            
 
 # Erstellen einer gestalteten Punktewolke
-ggplot(twitter, aes(x=favorites, y=retweets, color=from)) +
+ggplot(tweets, aes(x=favorites, y=retweets, color=from)) +
   geom_point() +
   
   # Thema setzen
@@ -47,7 +47,7 @@ ggsave("GestaltetePunktewolke.png", dpi=300, width = 5, height = 3)
 
 # Erstellen eines Balkendiagramms zu den häufigsten Hashtags
 
-twitter %>% 
+tweets %>% 
   
   # Datensatz vorbereiten: Auszählen der häufigsten Hashtag, durch:
   # Je Hashtag eine Zeile (separate_rows),
@@ -78,7 +78,7 @@ ggsave("Balkendiagramm.png", dpi=300, width = 3, height = 3)
 
 # Erstellen eines Boxplots
 
-twitter %>% 
+tweets %>% 
   
   # Datensatz vorbereiten: Alle Reaktionen in eine Spalte ("type") zusammenziehen,
   # die Anzahl der Reaktionen ist in der Spalte "value",
@@ -105,7 +105,7 @@ ggsave("Boxplot.png", dpi=300, width = 3, height = 3)
 
 # Erstellen eines gestapelten Balkendiagramms mit Reaktionen 
 
-twitter %>%
+tweets %>%
   
   # Datensatz vorbereiten: Alle Reaktionen in einer Spalte ("type") zusammenziehen
   # die Anzahl der Reaktionen ist in der Spalte "value"
@@ -133,7 +133,7 @@ ggsave("GestapeltesBalkendiagramm.png", dpi=300, width = 3, height = 5)
 
 # Erstellen von facettierten Boxplots
 
-twitter %>% 
+tweets %>% 
   
   # Datensatz vorbereiten: Alle Reaktionen in einer Spalte ("type") zusammenziehen
   # die Anzahl der Reaktionen ist in der Spalte "value"
