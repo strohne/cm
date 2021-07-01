@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+    php:
+        build: ./php/
+        container_name: "webdock_php"
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - "./html:/var/www/html:rw"
+            - "./dump:/var/dump:rw"
+        networks:
+            - database
+        depends_on:
+            - mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"           
+
+    mysql:        
+        image: mysql:5.6
+        container_name: "webdock_mysql"
+        restart: unless-stopped
+        ports: 
+            - "3306:3306"        
+        volumes:
+            #- "./mysql/data:/var/lib/mysql"
+            - "mysqldata:/var/lib/mysql"
+        networks:
+            - database
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "devel"
+            MYSQL_USER: "devel"
+            MYSQL_PASSWORD: "devel"
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: "webdock_phpmyadmin"
+        restart: unless-stopped
+        ports:
+            - "8080:80"
+        networks:
+            - database
+        depends_on:
+            - mysql
+        environment:
+            PMA_HOST: mysql            
+
+volumes:
+    mysqldata:
+networks:
+    database:
+        driver: bridge
