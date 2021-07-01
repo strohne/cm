@@ -7,8 +7,9 @@
    `docker compose up`
 5. Rufen Sie im Browser die Adresse der Container auf, so dass das Skript im Unterordner html gestartet wird:  
    http://localhost 
- 6. Rufen Sie die Adresse von phpMyAdmin auf und loggen Sie sich mit dem Benutzernamen "root" und dem Passwort "root" ein, um Datenbanken zu verwalten und SQL-Befehle auszuführen:
+6. Rufen Sie die Adresse von phpMyAdmin auf und loggen Sie sich mit dem Benutzernamen "root" und dem Passwort "root" ein, um Datenbanken zu verwalten und SQL-Befehle auszuführen:
    http://localhost:8080
-6. Die Container können Sie mit folgendem Befehl wieder herunterfahren:
+7. Ändern Sie etwas in der Datei `html/index.php` und aktualisieren Sie die Seite in Ihrem Browser (Taste F5).
+8. Die Container können Sie mit folgendem Befehl wieder herunterfahren:
    `docker compose stop`
    

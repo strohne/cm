@@ -7,6 +7,7 @@
    `vagrant up`
 5. Rufen Sie im Browser die Adresse der Box auf, so dass das Skript im Unterordner helloworld gestartet wird:  
    http://192.168.33.10/helloworld 
-6. Die Box können Sie mit folgendem Befehl wieder herunterfahren:
+6. Ändern Sie etwas in der Datei `helloworld/index.php` und aktualisieren Sie die Seite in Ihrem Browser (Taste F5).   
+7. Die Box können Sie mit folgendem Befehl wieder herunterfahren:
    `vagrant halt`
    
