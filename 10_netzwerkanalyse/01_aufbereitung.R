@@ -12,9 +12,8 @@ videos <- read_csv2("videos.export.csv",na = "None")
 # - wegfiltern von Informationen zur Erhebung 
 # wie die Erhebungszeit
 videos <- videos %>%
-  filter(object_type == "data") %>%
-  select(id,parent_id,object_id,snippet.title, 
-         snippet.channelTitle)
+  filter(object_type == "data" | object_type =="seed") %>%
+  select(id,parent_id,object_id,snippet.title)
 
 
 # Die Kantenliste erstellen:
@@ -34,8 +33,7 @@ videos.edges <- videos %>%
 # - Spalten auswählen und umbenennen (select)
 # - Duplikate entfernen
 videos.nodes <- videos %>%
-  select(id=object_id,label=snippet.title, 
-         kanal=snippet.channelTitle) %>% 
+  select(id=object_id,label=snippet.title) %>% 
   distinct(id, .keep_all=T)
 
 

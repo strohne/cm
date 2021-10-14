@@ -62,19 +62,20 @@ ggsave("systematic.png", dpi=300)
 
 # 3. Heatmap 
 
-
 ggplot(edges, aes(y=source, x=target))+
   geom_tile(color = "lightgray", fill="gray") +
   scale_x_discrete(limits =  c("A", "B", "C", "D", "E", "F", "G", "H", "I")) +
   scale_y_discrete(limits = c("A", "B", "C", "D", "E", "F", "G", "H", "I")) +
-  theme_bw(base_size = 18) + 
-  coord_fixed()
+  theme_bw(base_size = 30) + 
+  coord_fixed() +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank())
 
 ggsave("heatmap.png", dpi=300)
 
 # 4. Hive-Plot
 ggraph(graph, layout = 'hive', axis = type) + 
-  geom_edge_hive(color="gray") +
+  geom_edge_hive() +
   geom_axis_hive(aes(colour = type), size = 2) +
   geom_node_text(aes(label = name), size = 5) + 
   coord_fixed(1) +
