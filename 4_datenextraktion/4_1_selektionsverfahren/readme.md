@@ -1,7 +1,7 @@
 # Beispielmaterialien
 
 Sie finden hier Beispiele, um Reguläre Ausdrücke, SQL, CSS und XPath auszuprobieren:
-- example.txt enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um darin Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen!
+- example_text.txt enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um darin Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen!
 - golem.har enthält eine Liste aller Abfragen, die beim Aufruf von golem.de ausgeführt werden.
 - example_table.html enthält eine Tabelle mit den längsten Fernsehserien (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020)  
 - example_li.html enthält eine Liste von Serien mit dem Anfangsbuchstaben N (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
