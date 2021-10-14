@@ -6,3 +6,5 @@ Die Dateien enthalten alle die gleichen Daten über einen Film, in unterschiedli
 - movie.rdf enthält RDF/XML
 - movie.microdata.html enthält Microdata
 - movie.rdfa.html enthält RDFa
+
+Quelle: Eigene Aufbereitung in Anlehnung an https://www.cinestar.de/. 
