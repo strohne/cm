@@ -1,40 +1,120 @@
 #
-# Dieses Skript zeigt einige Basisfunktionen
+# Dieses Skript beinhaltet eine Einführung in
+# - Basisfunktionen und -operatoren
+# - Datentypen in R 
+# - Auswählen von Werten 
+# - Rechenoperationen
+# - Funktionen
 #
 
+# Um einzelne Zeilen auszuführen, klicken Sie auf "Run" oder 
+# setzen der Cursor auf die jeweilige Zeile und drücken die 
+# Tasten Strg bzw. Ctrl und Enter
 
+# Einzelwerte ausgeben
+# - Zuweisung von Werten ("Leo") zu Objekten (ich) durch den 
+# Zuweisungsoperator (<-). Der Wert erscheint rechts bei Ihren
+# aktuellen Datenobjekten. 
+# - Zusammenfügen von Werten durch paste0()
+# - ausgeben von Werten unten in der Konsole durch print()
+ich <- "Leo"
+gruss <- paste0("Hallo ",ich)
+print(gruss)
+
+# Entfernen von Werten aus den Datenobjekten durch rm()
+rm(ich)
+
+
+# Laden von Packages
+# - Packages stellen eine Sammlung von Funktionen bereit
+# - die Packages müssen einmalig installiert werden (über 
+# den Reiter "Packages")
+# - in jedem Skript müssen die verwendeten Packages neu 
+# über library() geladen werden
+library(tidyverse)
+
+
+# Aufrufen der Hilfe durch ?
+?paste0
+
+# Aufrufen der Hilfe von nicht geladenen FUnktionen durch ??
+??describe
+
+
+# Datentyen ---- 
 
 # 1. Einzelwerte
-me <- "Jakob"
-
-greeting <- paste0("Hi ",me,"!")
-print(greeting)
+me <- "Leo"
 
 # 2. Vektoren
-persons <- c("Inga","Bea","Leo")
-paste0("Hi ",persons)
+# Erstellen von Vektoren über die Funktion c()
+personen <- c("Bea", "Leo")
+personen <- c(personen, "Niska")
+print(personen)
+
+# Bezeichnen von Elementen in Listen oder Vektoren 
+person <- list(vorname="Inger",nachname = "Engmann")
 
 # 3. Tabellen
-persons <- data.frame(
-  firstname = c("Bea","Leo","Inga"),
-  age = c(21,38,56),
-  type = c("Bot","Human","Human")
+# Erstellen eines dataframe über die Funktion (data.frame()),
+# der dataframe besteht aus untereinandergehängte Vektoren.
+personen <- data.frame (
+  name  = c("Bea","Leo","Niska","Inger","Tobbe"),	
+  alter = c(24,26,25,52,17),
+  typ   = c("Bot","Bot","Bot", "Mensch","Mensch")
 )
 
 
-# Zugriff auf einzelne Spalten und Werte:
+# Adressieren von Werten ----
 
-persons$firstname
+# Auswählen von Spalten über $
+personen$name
 
-paste0("Hi ",persons$firstname)
+# Auswählen von Spalten über []
+personen[[1]]
 
-persons[c(1:3),2]
+# Auswählen von mehreren Spalten über [] und c()
+personen[,c("name","alter")]
+
+# Auswählen von Zellen über []
+# - der erste Parameter (hier die Liste c(1:3)) wählt die Zeilen aus
+# - der zweite Parameter (hier 1) wählt die Spalten aus
+personen[c(1:3),1]
+
+# Umwandeln in weitere Datentypen: 
+# - als Matrix (as.matrix)
+# - als tidyverse-tibble (as_tibble)
+# - zurückwandeln in einen Dataframe (as.data.frame)
+
+as.matrix(personen)
+as_tibble(personen)
+as.data.frame(personen)
+
+# Datentyp feststellen
+str(personen)
 
 
-#
-# Aufgabe ----
-#
+# Grundrechenarten ---- 
+# Rechenoperationen in R, u.a. 
+# - Addieren über +
+# - Subtrahieren über - 
+# - Multiplizieren über *
+# - Dividieren über /
+# - Quadrieren über ^2
+alter <- 2017-1989
+jahr <- 1989 + alter
 
-# Berechnen Sie den Altersdurchschnitt von Bea, Leo und Inga!
-# Benutzen Sie dazu die mean-Funktion.
 
+# Funktionen ----
+
+# Funktion definieren über function()
+# - in den Klammern werden die benötigten Parameter angegeben 
+# - danach folgt eine geschweifte Klammer {} mit den Befehlen 
+# - zum Schluss wird unter return() der Output angegeben
+calculate_age <- function(year_now,year_birth) {
+  alter <- year_now - year_birth
+  return (alter)
+}
+
+# Aufrufen einer selbstdefinierten Funktion 
+alter <- calculate_age(2017, 1989)

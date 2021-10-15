@@ -1,31 +1,17 @@
 #
-# Dieses Skript beinhaltet einige grundlegende
-# Funktionen für die Arbeit mit und Analyse von 
-# Datensätzen
+# Dieses Skript beinhaltet R-Basisfunktionen und tidyverse-Funktionen 
+# für die Datenanalyse in R
 #
 
-# Paket Tidyverse laden 
-library(tidyverse)
+# Paket laden ----
+libray(tidyverse)
 
 
-#
-# Daten einlesen und abspeichern ---- 
-#
-
-# CSV-Daten einlesen, mit read_csv2, 
-# da Daten mit Semikolon getrennt sind.
-tweets <- read_csv2("example-starwars.csv")
-
-# Erstellen und Abspeichern eines neuen Datensatzes 
-tweets.jeautor <- tweets %>% 
-  count(from)
-
-write_csv(tweets.jeautor, "tweets.jeautor.csv")
+# Datensatz einlesen ----
+tweets<- read_csv2("example-tweets.csv")
 
 
-#
-# Basifunktionen in R für Datenanalyse----
-#
+# Basifunktionen zur Datenanalyse ----
 
 # Auszählen vo Häufigkeiten: 
 # Wie oft wurden Tweets ge-retweetet?
@@ -44,19 +30,17 @@ boxplot(tweets$retweets)
 summary(tweets$favorites)
 
 
-#
-# Funktionen aus dem Tidyverse für die Datenanalyse ----
-#
+# Datenanalyse mit Tidyverse ----
 
 # Auswahl durch Filter- und Select-Bedingung mit Pipe
 # Filter= Auswählen von Zeilen
 # Select= Auswählen von Spalten
 auswahl <- tweets %>% 
-  filter(from == "Universität von Exegol") %>% 
+  filter(name == "unialdera") %>% 
   select(hashtags)
 
 # Auswahl durch Filter- und Select-Bedingung ohne Pipe
-auswahl <- filter(tweets, from =="exogol")
+auswahl <- filter(tweets, name =="unialdera")
 auswahl <- select(auswahl, hashtags)
 
 # Sortieren der Reihenfolge der Zeilen 
@@ -88,9 +72,14 @@ favorites <- tweets %>%
 tweets %>%
   count()
 
-# Zählen der Zeilen, gruppiert nach den Werten in einer
-# weiteren Spalte.
-# Hier: wie viele Tweets ja ein:e Autor:in verfasst?
+# Zählen der Zeilen nach Gruppen 
+# - die Gruppe wird in der Funktion count angegeben
+# - hier: wie viele Tweets gibt es je Verfasser:in?
 tweets %>%  
   count(from)
 
+# Alternative zu Count
+tweets %>%
+  group_by(from) %>%
+  summarize(n=n()) %>%
+  ungroup()
