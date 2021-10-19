@@ -5,6 +5,7 @@
 
 # Paket laden ----
 libray(tidyverse)
+library(tidyr)
 
 
 # Datensatz einlesen ----
@@ -83,3 +84,11 @@ tweets %>%
   group_by(from) %>%
   summarize(n=n()) %>%
   ungroup()
+
+# Umwandeln vom Wide- ins Long-Format
+# - Alle Reaktionen in eine Spalte ("reactions") zusammenziehen,
+# - die Anzahl der Reaktionen ist in der neu erstellen Spalte "value"
+tweets_long <- tweets %>%  
+  pivot_longer(cols=c(favorites, replies, retweets),
+               names_to="reactions") 
+
