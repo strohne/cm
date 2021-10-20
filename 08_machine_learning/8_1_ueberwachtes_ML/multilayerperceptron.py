@@ -25,7 +25,8 @@ from sklearn.model_selection import\
 # die Pixel der Bilder als Liste auszulesen
 def load_images(folder):
     images = []
-    for filename in os.listdir(folder):
+    files = sorted(os.listdir(folder))
+    for filename in files:
         fullname = os.path.join(folder, filename)
         img = Image.open(fullname)
         img = list(img.getdata())
