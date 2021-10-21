@@ -82,7 +82,7 @@ mlp.fit(X_train, y_train)
 
 #%% Lernkurven visualisieren
 
-# - Werte für Lernkurve durch learning_curve() berechnen. Die Berechnung kann einige Zeit in Anspruch nehmen.
+# - Werte für Lernkurve durch learning_curve() berechnen. Die Berechnung kann einige Zeit in Anspruch nehmen. Auch bis Sie den ersten Fortschritt sehen, wird es einige Minuten dauern.
 # - cv = 5 bedeutet, es wird eine 5-fache-Kreuzvalidierung durchgeführt
 # - scoring gibt das Maß an, das geplottet werden soll. Hier: Loss = Fehlerterm
 # - durch verbose wird der Fortschritt ausgegeben
