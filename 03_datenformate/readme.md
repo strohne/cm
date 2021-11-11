@@ -70,7 +70,7 @@ Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wi
 <html> 
   <head> 
      <title>Tabelleninhalte</title> 
-         </head>  
+  </head>  
   <body> 
 	<table style="width:100%">
 		<tr>
