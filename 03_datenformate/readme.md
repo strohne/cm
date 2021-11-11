@@ -144,6 +144,6 @@ Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wi
 	  "replies" : 0,    
 	  "retweets": 6,   
 	  "hashtags": "kyber"  
-    },   
+    }
 ]  
 ```
