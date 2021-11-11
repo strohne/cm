@@ -70,48 +70,48 @@ Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wi
 <html> 
   <head> 
      <title>Tabelleninhalte</title> 
-         </head> 
-         <body> 
-		<table style="width:100%">
-			<tr>
-				<th>id</th>
-				<th>name</th> 
-				<th>from</th> 
-				<th>favorites</th>
-				<th>replies</th>
-				<th>retweets</th>
-				<th>hashtags</th>
-			</tr>
-			<tr>
-				<th>6</th>
-				<th>eaduenergy</th>
-				<th>Forschungslabor Eadu</th>
-				<th>64</th>
-				<th>0</th>
-				<th>1</th>
-				<th>sternzerstörer,werft</th>
-			</tr>
-			<tr>
-				<th>7</th>
-				<th>eaduenergy</th>
-				<th>Forschungslabor Eadu</th>
-				<th>3</th>
-				<th>0</th>
-				<th></th>
-				<th>todesstern</th>
-			</tr>
-			<tr>
-				<th>8</th>
-				<th>eaduenergy</th>
-				<th>Forschungslabor Eadu</th>
-				<th>30</th>
-				<th>0</th>
-				<th>6</th>
-				<th>kyber</th>
-			</tr>
-		</table>
-         </body>
-       </html>
+         </head>  
+  <body> 
+	<table style="width:100%">
+		<tr>
+			<th>id</th>
+			<th>name</th> 
+			<th>from</th> 
+			<th>favorites</th>
+			<th>replies</th>
+			<th>retweets</th>
+			<th>hashtags</th>
+		</tr>
+		<tr>
+			<th>6</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>64</th>
+			<th>0</th>
+			<th>1</th>
+			<th>sternzerstörer,werft</th>
+		</tr>
+		<tr>
+			<th>7</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>3</th>
+			<th>0</th>
+			<th></th>
+			<th>todesstern</th>
+		</tr>
+		<tr>
+			<th>8</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>30</th>
+			<th>0</th>
+			<th>6</th>
+			<th>kyber</th>
+		</tr>
+	</table>
+   </body>
+</html>
 ```
 
 
