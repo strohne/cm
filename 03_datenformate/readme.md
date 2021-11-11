@@ -18,40 +18,49 @@ Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wi
 <table style="width:100%">
 <tr>
 	<th>id</th>
-	<th>favorites</th> 
-	<th>replies</th> 
+	<th>name</th> 
+	<th>from</th> 
+	<th>favorites</th>
+	<th>replies</th>
 	<th>retweets</th>
 	<th>hashtags</th>
 </tr>
 <tr>
-	<th>1</th>
-	<th>0</th>
-	<th>0</th>
-	<th>0</th>
-	<th>Lastenräder,UniGreifswald</th>
-</tr>
-<tr>
-	<th>3</th>
 	<th>6</th>
+	<th>eaduenergy</th>
+	<th>Forschungslabor Eadu</th>
+	<th>64</th>
 	<th>0</th>
-	<th>0</th>	
-	<th>citizenscience,Naturpark</th>
+	<th>1</th>
+	<th>sternzerstörer,werft</th>
 </tr>
 <tr>
-	<th>4</th>
-	<th>5</th>
+	<th>7</th>
+	<th>eaduenergy</th>
+	<th>Forschungslabor Eadu</th>
+	<th>3</th>
 	<th>0</th>
-	<th>0</th>	
-	<th>Nachhaltigkeit,Thema,Ideen</th>	
+	<th></th>
+	<th>todesstern</th>
+</tr>
+<tr>
+	<th>8</th>
+	<th>eaduenergy</th>
+	<th>Forschungslabor Eadu</th>
+	<th>30</th>
+	<th>0</th>
+	<th>6</th>
+	<th>kyber</th>
 </tr>
 </table>
 
 
 **CSV**  
-id,favorites,replies,retweets,hashtags  
-1,0,0,0,"Lastenräder,UniGreifswald"  
-3,6,0,0,"citizenscience,Naturpark"  
-4,5,0,0,"Nachhaltigkeit,Thema,Ideen"  
+id,name,from,favorites,replies,retweets,hashtags
+6,eaduenergy,Forschungslabor Eadu,64,0,1,"sternzerstörer,werft"
+7,eaduenergy,Forschungslabor Eadu,3,0,,todesstern
+8,eaduenergy,Forschungslabor Eadu,30,0,6,kyber
+  
 
 
 
@@ -66,31 +75,39 @@ id,favorites,replies,retweets,hashtags
 			<table style="width:100%">
 				<tr>
 					<th>id</th>
-					<th>favorites</th> 
-					<th>replies</th> 
+					<th>name</th> 
+					<th>from</th> 
+					<th>favorites</th>
+					<th>replies</th>
 					<th>retweets</th>
 					<th>hashtags</th>
 				</tr>
 				<tr>
-					<th>1</th>
-					<th>0</th>
-					<th>0</th>
-					<th>0</th>
-					<th>Lastenräder,UniGreifswald</th>
-				</tr>
-				<tr>
-					<th>3</th>
 					<th>6</th>
+					<th>eaduenergy</th>
+					<th>Forschungslabor Eadu</th>
+					<th>64</th>
 					<th>0</th>
-					<th>0</th>	
-					<th>citizenscience,Naturpark</th>
+					<th>1</th>
+					<th>sternzerstörer,werft</th>
 				</tr>
 				<tr>
-					<th>4</th>
-					<th>5</th>
+					<th>7</th>
+					<th>eaduenergy</th>
+					<th>Forschungslabor Eadu</th>
+					<th>3</th>
 					<th>0</th>
-					<th>0</th>	
-					<th>Nachhaltigkeit,Thema,Ideen</th>	
+					<th></th>
+					<th>todesstern</th>
+				</tr>
+				<tr>
+					<th>8</th>
+					<th>eaduenergy</th>
+					<th>Forschungslabor Eadu</th>
+					<th>30</th>
+					<th>0</th>
+					<th>6</th>
+					<th>kyber</th>
 				</tr>
 			</table>
          </body>
@@ -102,25 +119,31 @@ id,favorites,replies,retweets,hashtags
 ```
 [   
     {    
-      "id": 1,   
-      "favorites" : 0,   
+      "id": 6, 
+	  "name": "eaduenergy", 
+	  "from": "Forschungslabor Eadu",
+      "favorites" : 64,   
+      "replies" : 0,    
+	  "retweets": 1,   
+	  "hashtags": "sternzerstörer,werft"  
+    },  
+    {    
+      "id": 7, 
+	  "name": "eaduenergy", 
+	  "from": "Forschungslabor Eadu",
+      "favorites" : 3,   
       "replies" : 0,    
 	  "retweets": 0,   
-	  "hashtags": "Lastenräder,UniGreifswald"  
+	  "hashtags": "todesstern"  
     },  
-    {   
-      "id": 3,  
-      "favorites" : 6,  
-      "replies" : 0,   
-	  "retweets": 0,   
-	  "hashtags": "citizenscience,Naturpark"  
-    },  
-	{   
-      "id": 4,  
-      "favorites" : 5,  
-      "replies" : 0,   
-	  "retweets": 0,   
-	  "hashtags": "Nachhaltigkeit,Thema,Ideen"  
-    }  
+    {    
+      "id": 8, 
+	  "name": "eaduenergy", 
+	  "from": "Forschungslabor Eadu",
+      "favorites" : 30,   
+      "replies" : 0,    
+	  "retweets": 6,   
+	  "hashtags": "kyber"  
+    },   
 ]  
 ```
