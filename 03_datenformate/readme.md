@@ -56,10 +56,10 @@ Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wi
 
 
 **CSV**  
-id,name,from,favorites,replies,retweets,hashtags
-6,eaduenergy,Forschungslabor Eadu,64,0,1,"sternzerstörer,werft"
-7,eaduenergy,Forschungslabor Eadu,3,0,,todesstern
-8,eaduenergy,Forschungslabor Eadu,30,0,6,kyber
+<br>id,name,from,favorites,replies,retweets,hashtags
+<br>6,eaduenergy,Forschungslabor Eadu,64,0,1,"sternzerstörer,werft"
+<br>7,eaduenergy,Forschungslabor Eadu,3,0,,todesstern
+<br>8,eaduenergy,Forschungslabor Eadu,30,0,6,kyber
   
 
 
@@ -70,48 +70,48 @@ id,name,from,favorites,replies,retweets,hashtags
 <html> 
   <head> 
      <title>Tabelleninhalte</title> 
-         </head> 
-         <body> 
-			<table style="width:100%">
-				<tr>
-					<th>id</th>
-					<th>name</th> 
-					<th>from</th> 
-					<th>favorites</th>
-					<th>replies</th>
-					<th>retweets</th>
-					<th>hashtags</th>
-				</tr>
-				<tr>
-					<th>6</th>
-					<th>eaduenergy</th>
-					<th>Forschungslabor Eadu</th>
-					<th>64</th>
-					<th>0</th>
-					<th>1</th>
-					<th>sternzerstörer,werft</th>
-				</tr>
-				<tr>
-					<th>7</th>
-					<th>eaduenergy</th>
-					<th>Forschungslabor Eadu</th>
-					<th>3</th>
-					<th>0</th>
-					<th></th>
-					<th>todesstern</th>
-				</tr>
-				<tr>
-					<th>8</th>
-					<th>eaduenergy</th>
-					<th>Forschungslabor Eadu</th>
-					<th>30</th>
-					<th>0</th>
-					<th>6</th>
-					<th>kyber</th>
-				</tr>
-			</table>
-         </body>
-       </html>
+  </head>  
+  <body> 
+	<table style="width:100%">
+		<tr>
+			<th>id</th>
+			<th>name</th> 
+			<th>from</th> 
+			<th>favorites</th>
+			<th>replies</th>
+			<th>retweets</th>
+			<th>hashtags</th>
+		</tr>
+		<tr>
+			<th>6</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>64</th>
+			<th>0</th>
+			<th>1</th>
+			<th>sternzerstörer,werft</th>
+		</tr>
+		<tr>
+			<th>7</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>3</th>
+			<th>0</th>
+			<th></th>
+			<th>todesstern</th>
+		</tr>
+		<tr>
+			<th>8</th>
+			<th>eaduenergy</th>
+			<th>Forschungslabor Eadu</th>
+			<th>30</th>
+			<th>0</th>
+			<th>6</th>
+			<th>kyber</th>
+		</tr>
+	</table>
+   </body>
+</html>
 ```
 
 
@@ -122,8 +122,8 @@ id,name,from,favorites,replies,retweets,hashtags
       "id": 6, 
 	  "name": "eaduenergy", 
 	  "from": "Forschungslabor Eadu",
-      "favorites" : 64,   
-      "replies" : 0,    
+	  "favorites" : 64,   
+	  "replies" : 0,    
 	  "retweets": 1,   
 	  "hashtags": "sternzerstörer,werft"  
     },  
@@ -131,8 +131,8 @@ id,name,from,favorites,replies,retweets,hashtags
       "id": 7, 
 	  "name": "eaduenergy", 
 	  "from": "Forschungslabor Eadu",
-      "favorites" : 3,   
-      "replies" : 0,    
+	  "favorites" : 3,   
+	  "replies" : 0,    
 	  "retweets": 0,   
 	  "hashtags": "todesstern"  
     },  
@@ -140,10 +140,10 @@ id,name,from,favorites,replies,retweets,hashtags
       "id": 8, 
 	  "name": "eaduenergy", 
 	  "from": "Forschungslabor Eadu",
-      "favorites" : 30,   
-      "replies" : 0,    
+	  "favorites" : 30,   
+	  "replies" : 0,    
 	  "retweets": 6,   
 	  "hashtags": "kyber"  
-    },   
+    }
 ]  
 ```
