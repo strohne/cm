@@ -5,6 +5,7 @@
 # - Auswählen von Werten 
 # - Rechenoperationen
 # - Funktionen
+# - Kontrollstrukturen
 #
 
 # Um einzelne Zeilen auszuführen, klicken Sie auf "Run" oder 
@@ -104,7 +105,6 @@ str(personen)
 alter <- 2017-1989
 jahr <- 1989 + alter
 
-
 # Funktionen ----
 
 # Funktion definieren über function()
@@ -118,3 +118,50 @@ calculate_age <- function(year_now,year_birth) {
 
 # Aufrufen einer selbstdefinierten Funktion 
 alter <- calculate_age(2017, 1989)
+
+
+
+# Kontrollstrukturen ----
+
+# Loop mit for: 
+# - für jeden Eintrag (name) in Liste (personen$name)
+#   wird Funktion ausgeführt (print())
+for (item in personen$name) {
+  print(paste0(item," is a bot"))
+}
+
+# lapply()-Funktion
+# - Wendet auf Liste (1. Parameter) eine Funktion 
+#  (2. Parameter) an.
+lapply(personen$name, paste0, " is a bot")
+
+# Vektorisierte Funktionen 
+# - bes. im Tidyverse 
+# - verarbeiten nicht nur einzelne Werte sondern gleich ganze Vektoren 
+paste0(personen$name," is a bot")
+
+# if-Bedingung
+# - Bereich der Zeilennummern über 1:nrow() ermitteln 
+# - einzelne Zeilen über [i,] adressieren 
+# - Bedingung: typ == Bot in if-Schleife formulieren 
+#   --> nur wenn die Bedingung erfüllt ist, 
+#   wird der Print-Befehl ausgeführt
+for (i in 1:nrow(personen)) {
+  row = personen[i,]
+  
+  if (row$typ == "Bot") {
+    print(paste0(row$name," is a bot"))
+  }
+}
+
+# if-else-Bedingung 
+# - Ergänzung der if-Bedingung um alternative else-Bedingung 
+for (i in 1:nrow(personen)) {
+  row = personen[i,]
+  
+  if (row$typ == "Bot") {
+    print(paste0(row$name," is a bot"))
+  } else
+    print(paste0(row$name," is a human"))
+}
+
