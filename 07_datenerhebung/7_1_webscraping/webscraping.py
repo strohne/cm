@@ -31,7 +31,7 @@ table_de = tables[3]
 # Alle Zeilen in der Tabelle finden
 # Die erste Zeile (mit den Spaltennamen) entfernen
 table_rows = table_de.find_all('tr')
-table_rows.pop(0)
+table_rows = table_rows[1:]
  
 # Alle Zeilen abarbeiten, 
 # die Ergebnisse in der results-Liste 
