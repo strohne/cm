@@ -11,8 +11,9 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 # URL und Dateiname festlegen
-url = "http://www.fernsehserien.de/serien-a-z/n"
-dateiname = directory+"/fernsehserien-g.html"    
+url = "https://de.wikipedia.org/wiki/\
+Liste_auflagenst%C3%A4rkster_Zeitschriften"
+dateiname = directory + "/zeitschriften.html"  
 
 # Herunterladen
 response = requests.get(url)  
@@ -23,32 +24,52 @@ if response.status_code == 200:
 # Datei öffnen und Html mit Beautifulsoup parsen
 soup = BeautifulSoup(open(dateiname,encoding="utf-8"),'lxml')
 
-# Das ul-Element mit der ID a-z-liste finden,
-# darin alle li-Elemente finden
-soup_ul = soup.find('ul',{'id':'a-z-liste'})
-soup_li = soup_ul.find_all('li')
+# Alle Tabellen auslesen und die vierte Tabelle rausziehen 
+tables = soup.find_all('table')
+table_de = tables[3]
+
+# Alle Zeilen in der Tabelle finden
+# Die erste Zeile (mit den Spaltennamen) entfernen
+table_rows = table_de.find_all('tr')
+table_rows = table_rows[1:]
  
-# Alle li-Elemente abarbeiten,
-# die Ergebnisse in der results-Liste
-# ablegen
+# Alle Zeilen abarbeiten, 
+# die Ergebnisse in der results-Liste 
+# ablegen 
 results = []
 
-for li in soup_li:
+for row in table_rows:
+    
+    # Alle Spalten innerhalb einer Zeile finden 
+    cols = row.find_all('td')
+    
     # Ein leeres dict anlegen, in dem die Werte 
     # gespeichert werden
-    # Name der Serie aus span-Tag auslesen
-    # Das dict zur Liste hinzufügen
+    # Einzelne Spalten auslesen
     item = {}
-    item['name'] = li.find('span').previousSibling
-    #item ['name'] = re.sub('\s+\(.*', '', li.find('div').text)
+    item['rang'] = cols[0].text.strip()
+    item['titel'] = cols[1].text.strip()
+    item['auflage'] = cols[2].text.strip()
+    item['gruppe'] = cols[3].text.strip()
+    
+    # Zusätzlich den Link zur Wikipedia-Seite 
+    # des Titels auslesen
+    # in try-except kapseln, da nicht immer ein Link 
+    # vorhanden ist 
+    try: 
+        link = cols[1].find('a').get('href')
+        item['link'] = "www.wikipedia.org" + link
+    except AttributeError:
+        pass
+    
+    # Das dict zur Liste hinzufügen 
     results.append(item)
   
-
-# Liste mit Dictionaries in DataFrame umwandeln
+# Liste mit Dictionaries in Dataframe umwandeln
 results = pd.DataFrame(results)
+
 # Diese Liste im Notebook ausgeben 
 # (erste und letzte Einträge)
-
 pd.set_option('display.max_rows', 10)
 display(results)
 

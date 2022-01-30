@@ -1,15 +1,20 @@
-# Beispielmaterialien
-
-Sie finden hier Beispiele, um Reguläre Ausdrücke, SQL, CSS und XPath auszuprobieren:
-- example_text.txt enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um darin Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen!
-- golem.har enthält eine Liste aller Abfragen, die beim Aufruf von golem.de ausgeführt werden (aufgerufen am 26.11.2019).
-- example_table.html enthält eine Tabelle mit den längsten Fernsehserien (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020) 
-- example_li.html enthält eine Liste von Serien mit dem Anfangsbuchstaben N (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
-- example_imdb.db ist eine SQLite-Datenbank, sie enthält einen Auszug aus der IMDb mit in Deutschland nach dem Jahr 2000 erschienenen Titeln (Quelle: https://datasets.imdbws.com/; 8.2.2020; nur für den persönlichen akademischen Gebrauch; siehe http://www.imdb.com/interfaces/)  
+# Datenselektion
+Oftmals müssen Daten zunächst aus unstrukturierten Datenquellen gewonnen werden oder Daten für Analysen speziell zugeschnitten oder 
+um irrelevante Informationen bereinigt werden. Für ebendiese Selektion von Daten gibt es je nach Datengrundlage unterschiedliche Strategien (Kapitel 4.1). 
+In diesem Repositorium finden Sie Beispiele, um Daten aus Texten mithilfe von regulären Ausdrücken zu extrahieren (Kapitel 4.1.1), 
+vorstrukturierte Daten in HTML-Quellcode durch CSS-Selektoren zu gewinnen (Kapitel 4.1.2), Daten im XML-Format über XPath herauszuziehen (Kapitel 4.1.3) und 
+Datenbanken mit SQL-Befehlen abzufragen (Kapitel 4.1.4).
 
 
-# CSS- und XPath-Ausdrücke mit Facepager üben
+## Übersicht über Dateien
+- **example_text.txt** enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um darin Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen!
+- **golem.har enthält** eine Liste aller Abfragen, die beim Aufruf von golem.de ausgeführt werden (aufgerufen am 26.11.2019).
+- **example_table.html** enthält eine Tabelle mit den längsten Fernsehserien (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020) 
+- **example_li.html** enthält eine Liste von Serien mit dem Anfangsbuchstaben N (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
+- **example_imdb.db** ist eine SQLite-Datenbank, sie enthält einen Auszug aus der IMDb mit in Deutschland nach dem Jahr 2000 erschienenen Titeln (Quelle: https://datasets.imdbws.com/; 8.2.2020; nur für den persönlichen akademischen Gebrauch; siehe http://www.imdb.com/interfaces/)  
 
+
+## CSS- und XPath-Ausdrücke mit Facepager üben
 - Installieren Sie Facepager: [https://github.com/strohne/Facepager](https://github.com/strohne/Facepager). Eine Einführung und Getting started-Tutorials finden Sie im [Wiki](https://github.com/strohne/Facepager/wiki).
 - Legen Sie mit Facepager eine neue Datenbank an (Menüpunkt `New Database`).
 - Fügen Sie die Adresse einer Webseite als Startknoten ein (Menüpunkt `Add Nodes`). Für das Beispiel sollte die Seite li-Elemente enthalten, zum Beispiel 'https://www.fernsehserien.de/serien-a-z/n' oder die Beispieldatei 'https://github.com/strohne/cm/raw/master/4_datenextraktion/4_1_selektionsverfahren/example_li.html'.

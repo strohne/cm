@@ -8,7 +8,7 @@ Einen praktischen Einstieg in die Arbeit mit R bieten die Dateien und Skripte in
 # Übersicht über Skripte und Dateien
 - example-tweets.csv: Beispieldatensatz
 - 1_grundlagen.R: Skript mit Basisfunktionen und -operatoren, Einführung in Datentypen in R, die Adressierung von Werten, Rechenoperationen und Funktionen (Kapitel 5.1.1 bis 5.1.4)
-- 2_datensaetze.R: Skript mit Funktionen zum Einlesen und Exportieren von Datensätzen (Kapitel 5.1.5)
+- 2_datensaetze.R: Skript mit Funktionen zum Einlesen und Exportieren von Datensätzen (Kapitel 5.1.6)
 - 3_datenanalyse.R: Skript mit Funktionen zur Datenanalyse (Kapitel 5.1.7)
 - 4_grafiken.R: Skript zum Erstellen von Grafiken mit ggplot2 (Kapitel 5.1.8)
 - R.proj: Projektverzeichnis

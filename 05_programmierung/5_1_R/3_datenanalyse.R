@@ -5,6 +5,7 @@
 
 # Paket laden ----
 libray(tidyverse)
+library(tidyr)
 
 
 # Datensatz einlesen ----
@@ -29,6 +30,14 @@ boxplot(tweets$retweets)
 # Verteilung der Favorites
 summary(tweets$favorites)
 
+# Lineares Modell (Regression) mit lm(): 
+# - erster Parameter: abhängige Variable, 
+#   gefolgt von einer Tilde ~ und den unabhängigen Variablen 
+# - data-Parameter nimmt den Datensatz entgegen 
+# - Ergebnisse in Objekt abspeichern (hier: fit)
+# - über summary(fit) die Kennwerte der Regressionsanalyse anzeigen 
+fit <- lm(replies ~ favorites, data=tweets)
+summary(fit)
 
 # Datenanalyse mit Tidyverse ----
 
@@ -83,3 +92,11 @@ tweets %>%
   group_by(from) %>%
   summarize(n=n()) %>%
   ungroup()
+
+# Umwandeln vom Wide- ins Long-Format
+# - Alle Reaktionen in eine Spalte ("reactions") zusammenziehen,
+# - die Anzahl der Reaktionen ist in der neu erstellen Spalte "value"
+tweets_long <- tweets %>%  
+  pivot_longer(cols=c(favorites, replies, retweets),
+               names_to="reactions") 
+
