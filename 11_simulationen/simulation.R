@@ -98,7 +98,7 @@ worldPlot <- function(agents) {
 }
 
 # Plot the diffusion rate over time
-historyTrace <- function(history) {
+historyTracePlot <- function(history) {
   
   trace <- history %>% 
     group_by(epoch) %>% 
@@ -107,13 +107,32 @@ historyTrace <- function(history) {
   
   pl <- trace %>% 
     ggplot(aes(epoch,diffusion)) +
-    geom_line(color="red")
+    geom_line(color="maroon")
   
   return (pl)
 }
 
+historyTraceAnimate <- function(history, secs) {
+
+  trace <- history %>% 
+    group_by(epoch) %>% 
+    summarise(diffusion = mean(state)) %>% 
+    ungroup()
+  
+  pl <- trace %>% 
+    ggplot(aes(epoch,diffusion)) +
+    geom_line(color="maroon") +
+    geom_point() +
+    transition_reveal(epoch)
+  
+  pl <- animate(pl,nframes=n_distinct(history$epoch),duration=secs)
+  
+  pl
+}
+
+
 # Create an animation of the world
-historyAnimate <- function(history, secs) {
+historyWorldAnimate <- function(history, secs) {
   
   pl <- history %>% 
     ggplot(aes(x,y,angle=dir,color=state,group=no)) +
@@ -188,11 +207,18 @@ for (epoch in c(1:world_epochs)) {
 # 4. Analyze world ----
 #
 
+# Last state
 worldStats(agents)
 worldPlot(agents)
 
-historyTrace(history)
-historyAnimate(history,10)
+# Traceplot
+historyTracePlot(history)
 
+historyTraceAnimante(history,10)
+anim_save("trace.gif")
+
+
+# Epoch animations
+historyWorldAnimate(history,10)
 anim_save("diffusion.gif")
 
