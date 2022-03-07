@@ -31,7 +31,7 @@ tweets_jeautor <- tweets %>%
 write_csv(tweets_jeautor, "tweets_jeautor.csv")
 
 
-# Kopieren in Zwischenablagen ---- 
+# Kopieren in Zwischenablage ---- 
 
 # Datensatz mit Tabulator getrennt kopieren
 write_tsv(tweets_jeautor, "clipboard")

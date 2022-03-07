@@ -1,22 +1,26 @@
 #
-# Dieses Skript beinhaltet R-Basisfunktionen und tidyverse-Funktionen 
-# für die Datenanalyse in R
+# Dieses Skript beinhaltet R-Basisfunktionen 
+# und tidyverse-Funktionen für die Datenanalyse in R
 #
 
-# Paket laden ----
-libray(tidyverse)
-library(tidyr)
-
+# Pakete laden ----
+library(tidyverse)
+library(skimr)
 
 # Datensatz einlesen ----
 tweets<- read_csv2("example-tweets.csv")
 
+??skim
 
 # Basifunktionen zur Datenanalyse ----
 
-# Auszählen vo Häufigkeiten: 
-# Wie oft wurden Tweets ge-retweetet?
-table(tweets$retweets)
+# Auszählen von Häufigkeiten: 
+# Wie viel hat wer getweetet?
+table(tweets$name)
+
+# Verteilung von Häufigkeiten:
+skim(tweets$retweets)
+
 
 # Ausgeben von Grafiken: 
 # Streudiagramm, in dem Favorites und Retweets abgetragen sind
@@ -94,9 +98,11 @@ tweets %>%
   ungroup()
 
 # Umwandeln vom Wide- ins Long-Format
-# - Alle Reaktionen in eine Spalte ("reactions") zusammenziehen,
-# - die Anzahl der Reaktionen ist in der neu erstellen Spalte "value"
+# - Alle Reaktionen in eine Spalte "metric" zusammenziehen,
+# - die Anzahl der Reaktionen ist in der neu erstellen Spalte "value" enthalten
 tweets_long <- tweets %>%  
-  pivot_longer(cols=c(favorites, replies, retweets),
-               names_to="reactions") 
-
+  pivot_longer(
+    c(favorites, replies, retweets),
+    names_to="metric",
+    values_to="value"
+    ) 
