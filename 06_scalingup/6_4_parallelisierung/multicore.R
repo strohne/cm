@@ -19,7 +19,7 @@ library(tictoc)
 # Document-Feature-Matrix einlesen ----
 #
 
-dfm <- read_rds("data/usenews.mediacloud.wm.2020.small.rds")
+dfm <- read_rds("usenews.mediacloud.wm.2020.small.rds")
 dfm
 
 
