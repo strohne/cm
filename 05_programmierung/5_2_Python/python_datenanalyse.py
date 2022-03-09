@@ -89,7 +89,7 @@ df[(df.favorites > 10) & (df.retweets > 5)]
 
 
 # Aneinanderketten von Funktionen 
-auswahl = df[df.favorites > 10].loc[:,['replies','favorites']]
+df = df[df.favorites > 10].loc[:,['replies','favorites']]
 
 
 # Filter der Spalte "hashtag" durch regulären Ausdruck 
