@@ -95,7 +95,11 @@ auswahl = df[df.favorites > 10].loc[:,['replies','favorites']]
 # Filter der Spalte "hashtag" durch regulären Ausdruck 
 # (=Formuliereung von Suchmustern, die in der entsprechenden Zeile 
 # vorhanden sein müssen).
-df['hashtags'].str.contains("natur|klima|umwelt", case=False, regex=True)
+df['hashtags'].str.contains("natur|klima|umwelt", case=False, regex=True, na=False)
+
+
+# Teildatensatz mit der Filterbedingung auswählen
+df[df.hashtags.str.contains("natur|klima|umwelt", case=False, regex=True, na=False)] 
 
 
 # Erstellen der neuen Spalte "natur"
