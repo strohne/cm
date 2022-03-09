@@ -2,138 +2,165 @@
 # Dieses Skript erzeugt Grafiken mit ggplot2
 #
 
-# Pakete laden 
+#
+# Pakete laden  ----
+#
+
 library(tidyverse)
 library(ggplot2)
-
+theme_set(theme_bw())
 
 #
-# Daten Einlesen und Aufbereiten ---- 
+# Daten einlesen und aufbereiten ----
 #
 
-# Daten einlesen 
+# Daten einlesen
 tweets <- read_csv2("example-tweets.csv")
 
-# Aufbereiten der Daten: Leere Werte durch 0er ersetzen 
-tweets <- tweets %>% 
+
+# Aufbereiten der Daten: Leere Werte durch 0 ersetzen
+tweets <- tweets %>%
   mutate(retweets = replace_na(retweets, 0))
 
 
 #
-# Grafiken erstellen ---- 
+# Grafiken erstellen ----
 #
 
-# Erstellen einer einfachen Punktewolke
-ggplot(tweets, aes(x=favorites, y=retweets)) +
+# Erstellen eines Streudiagramms (Punktewolke)
+# (geeignet für zwei metrische Variablen)
+ggplot(tweets, aes(x = retweets, y = favorites)) +
   geom_point()
 
-ggsave("EinfachePunktewolke.png", dpi=300, width = 3, height = 3)
-           
+ggsave("streudiagramm.png", dpi = 300, width = 3, height = 3)
+
 
 # Erstellen eines einfachen Balkendiagramms
-tweets %>% 
-  
+# (geeignet für den Gruppenvergleich von Anzahlen)
+tweets %>%
   # Datensatz vorbereiten: Auszählen der häufigsten namen, durch:
   # - Häufigkeit auszählen (count)
   count(name) %>%
-  
   # Erstellen des Balkendiagramms
-  ggplot(aes(x=n, y=name)) + 
-  geom_col() 
+  ggplot(aes(y = n, x = name)) +
+  geom_col()
 
-ggsave("EinfachesBalkendiagramm.png", dpi=300, width = 3, height = 3)
+
+ggsave("saeulendiagramm.png", dpi = 300, width = 4, height = 4)
 
 
 # Erstellen eines Boxplots
-ggplot(tweets, aes(x=name, y=favorites)) +
+# (geeignet für den Gruppenvergleich eines metrischen Merkmals)
+ggplot(tweets, aes(x = name, y = favorites)) +
   geom_boxplot()
 
-ggsave("EinfacherBoxplot.png", dpi=300, width = 3, height = 3)
+ggsave("boxplot.png", dpi = 300, width = 3, height = 3)
 
 
-# Erstellen einer gestalteten Punktewolke
-ggplot(tweets, aes(x=favorites + 1, y=retweets + 1, color=name)) +
-  geom_point(position="jitter") +
-  
-  # Logarithmieren 
+# Mosaic-Plot
+library(ggmosaic)
+tweets %>%
+  ggplot() +
+  geom_mosaic(aes(product(media, name)))
+
+ggsave("mosaicplot.png", dpi = 300, width = 4, height = 4)
+
+
+#
+# Erstellen eines Streudiagramms mit Farben und Legende ----
+#
+
+ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
+  geom_point(position = "jitter") +
+
+  # Logarithmieren
   scale_x_log10() +
   scale_y_log10() +
-  
-  # Beschriftungen hinzufügen 
-  labs(y="Anzahl Retweets + 1", 
-       x="Anzahl Favorites + 1") + 
-  ggtitle("Verhältnis von Favorites zu Retweets") + 
-  
+
+  # Beschriftungen hinzufügen
+  labs(
+    y = "Anzahl Favorites + 1",
+    x = "Anzahl Retweets + 1"
+  ) +
+  ggtitle("Verhältnis von Favorites zu Retweets") +
+
   # Thema setzen, Legende formatieren
-  theme_bw(base_size=12) 
+  theme_bw(base_size = 12)
 
 
-ggsave("GestaltetePunktewolke.png", dpi=300, width = 5, height=3)
+ggsave("streudiagramm_farbig.png", dpi = 300, width = 5, height = 3)
 
 
-
-# Erstellen eines gestapelten Balkendiagramms mit Reaktionen 
+#
+# Erstellen eines gestapelten Säulendiagramms ----
+#
 
 tweets %>%
   
-  # Datensatz vorbereiten: Alle Reaktionen in einer Spalte ("type") zusammenziehen
-  # die Anzahl der Reaktionen ist in der Spalte "value"
-  # fehlende Werte durch "0" ersetzen
-  pivot_longer(cols=c(favorites, replies, retweets), names_to="type") %>% 
-  mutate(value = replace_na(value, 0)) %>% 
+  # Datensatz vorbereiten:
+  # - alle Reaktionen in einer Spalte ("type") zusammenziehen
+  # - die Anzahl der Reaktionen ist anschließend in der Spalte "value" enthalten
+  # - fehlende Werte durch "0" ersetzen
+  
+  pivot_longer(
+    cols = c(favorites, replies, retweets),
+    names_to = "type",
+    values_to = "value"
+  ) %>%
+  
+  mutate(value = replace_na(value, 0)) %>%
   
   # Grafik erstellen: Gestapeltes Balkendiagramm
-  ggplot(aes(x=name, y=value, fill=type)) +
-  geom_col(position="stack") +
-  
+  ggplot(aes(x = name, y = value, fill = type)) +
+  geom_col(position = "stack") +
+
   # Beschriftungen hinzufügen
-  ggtitle("Reaktionen je Profil") + 
-  labs(y="Anzahl der Reaktionen") + 
-  
+  ggtitle("Reaktionen je Profil") +
+  labs(y = "Anzahl der Reaktionen") +
+
   # Beschriftung auf x-Achse hochkant drehen
-  scale_x_discrete(guide=guide_axis(angle=90)) +
-  
+  scale_x_discrete(guide = guide_axis(angle = 90)) +
+
   # Thema setzen, Legendenposition verändern
-  theme_bw(base_size=12) +
-  theme(legend.position="bottom",
-        axis.title.x=element_blank(),
-        legend.title=element_blank()) 
+  theme_bw(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    axis.title.x = element_blank(),
+    legend.title = element_blank()
+  )
 
-ggsave("GestapeltesBalkendiagramm.png", dpi=300, width = 3.2, height = 4)
+ggsave("saeulendiagramm_gestapelt.png", dpi = 300, width = 3.2, height = 4)
 
+#
+# Erstellen von facettierten Boxplots ----
+#
 
-# Erstellen von facettierten Boxplots
-
-tweets %>% 
-  
-  # Datensatz vorbereiten: Alle Reaktionen in einer Spalte ("type") zusammenziehen
-  # die Anzahl der Reaktionen ist in der Spalte "value"
-  # fehlende Werte durch "0" ersetzen
-  pivot_longer(cols=c(favorites, replies, retweets), names_to="type") %>% 
-  mutate(value = replace_na(value, 0)) %>% 
+tweets %>%
+  # Datensatz vorbereiten
+  # - Alle Reaktionen in einer Spalte ("type") zusammenziehen
+  # - die Anzahl der Reaktionen ist anschließend in der Spalte "value" enthalten
+  # - fehlende Werte durch "0" ersetzen
+  pivot_longer(
+    cols = c(favorites, replies, retweets), 
+    names_to = "type",
+    values_to = "value"
+  ) %>%
+  mutate(value = replace_na(value, 0)) %>%
   
   # Grafik erstellen: Boxplot
-  ggplot(aes(x=type, y=value, color=name)) +
+  ggplot(aes(x = type, y = value + 1, color = name)) +
   geom_boxplot() +
-  
-  # Skala logarithmieren (Vergleich wird sichtbarer) 
+
+  # Skala logarithmieren (Vergleich wird sichtbarer)
   scale_y_log10() +
-  
-  facet_wrap( ~name) +
-  
-  # Beschriftungen hinzufügen 
-  labs(y="Anzahl", x="Reaktion") + 
+  facet_wrap(~name) +
+
+  # Beschriftungen hinzufügen
+  labs(y = "Anzahl + 1", x = "Reaktion") +
   ggtitle("Verteilung der Reaktionen") +
-  
+
   # Theme setzen und Legende entfernen
   theme_bw() +
-  theme(legend.position="none")
+  theme(legend.position = "none")
 
-ggsave("FacettierteBoxplots.png", dpi=300, width = 3.5, height = 3)
-
-
-
-
-
-
-
+ggsave("boxplot_facettiert.png", dpi = 300, width = 3.5, height = 3)

@@ -68,19 +68,43 @@ personen <- data.frame (
 
 # Adressieren von Werten ----
 
-# Auswählen von Spalten über $
-personen$name
+# Auswählen einer Zeile
+personen[1,]
 
-# Auswählen von Spalten über []
-personen[[1]]
+# Auswählen einer Spalte
+personen[,1]
+
+# Auswählen eines Werts
+personen[1,1]
+
 
 # Auswählen von mehreren Spalten über [] und c()
 personen[,c("name","alter")]
 
-# Auswählen von Zellen über []
+# Auswählen von mehreren Zeilen oder Werten über []
 # - der erste Parameter (hier die Liste c(1:3)) wählt die Zeilen aus
 # - der zweite Parameter (hier 1) wählt die Spalten aus
 personen[c(1:3),1]
+
+# Auswahlen von mehreren Zeilen über eine Bedingung
+personen[personen$alter > 30,]
+
+# Weitere Varianten für die Auswahl von Spalten,
+# bei denen teils andere Datentypen zurückgegeben werden:
+personen[1]
+personen[[1]]
+personen[,1,drop=F]
+
+# Auswählen von Spalten über $
+personen$name
+
+
+# Ändern des Wertes
+personen$name <- "anonym"
+personen$name <- NULL
+personen$name <- c("Bea","Leo","Niska","Inger","Tobbe")
+
+
 
 # Umwandeln in weitere Datentypen: 
 # - als Matrix (as.matrix)
@@ -127,18 +151,10 @@ alter <- calculate_age(2017, 1989)
 # - für jeden Eintrag (name) in Liste (personen$name)
 #   wird Funktion ausgeführt (print())
 for (item in personen$name) {
-  print(paste0(item," is a bot"))
+  message <- paste0(item," is a bot")
+  print(message)
 }
 
-# lapply()-Funktion
-# - Wendet auf Liste (1. Parameter) eine Funktion 
-#  (2. Parameter) an.
-lapply(personen$name, paste0, " is a bot")
-
-# Vektorisierte Funktionen 
-# - bes. im Tidyverse 
-# - verarbeiten nicht nur einzelne Werte sondern gleich ganze Vektoren 
-paste0(personen$name," is a bot")
 
 # if-Bedingung
 # - Bereich der Zeilennummern über 1:nrow() ermitteln 
@@ -155,13 +171,57 @@ for (i in 1:nrow(personen)) {
 }
 
 # if-else-Bedingung 
+for (i in 1:nrow(personen)) {
+  row = personen[i,]
+  
+  if (row$typ == "Bot") {
+    message <- paste0(row$name," is a bot")
+  } else {
+    message <- paste0(row$name," is a human")
+  }
+
+  print(message)
+}
+
+
+# if-else-Bedingung 
 # - Ergänzung der if-Bedingung um alternative else-Bedingung 
 for (i in 1:nrow(personen)) {
   row = personen[i,]
   
   if (row$typ == "Bot") {
-    print(paste0(row$name," is a bot"))
-  } else
-    print(paste0(row$name," is a human"))
+    message <- paste0(row$name," is a bot")
+  } else {
+    message <- paste0(row$name," is a human")
+  }
+  
+  print(message)
+  
 }
 
+
+for (i in 1:nrow(personen)) {
+  row = personen[i,]
+  
+  if (row$alter < 20) {
+    print("A young person")
+  } 
+  else if (row$alter < 30) {
+    print("A twen")
+  }
+  else {
+    print("How old is old? ")
+  }
+}
+
+
+#
+# Vektorisierung ----
+#
+
+
+# Vektorisierte Funktionen 
+paste0(personen$name," is a bot")
+
+# lapply()-Funktion: wendet auf Liste (1. Parameter) eine Funktion (2. Parameter) an.
+lapply(personen$name, paste0, " is a bot")

@@ -19,7 +19,7 @@ tweets<- read_csv2("example-tweets.csv")
 table(tweets$name)
 
 # Verteilung von Häufigkeiten:
-skim(tweets$retweets)
+summary(tweets$retweets)
 
 
 # Ausgeben von Grafiken: 
@@ -40,7 +40,7 @@ summary(tweets$favorites)
 # - data-Parameter nimmt den Datensatz entgegen 
 # - Ergebnisse in Objekt abspeichern (hier: fit)
 # - über summary(fit) die Kennwerte der Regressionsanalyse anzeigen 
-fit <- lm(replies ~ favorites, data=tweets)
+fit <- lm(favorites ~ retweets, data=tweets)
 summary(fit)
 
 # Datenanalyse mit Tidyverse ----
@@ -78,8 +78,11 @@ tweets <- tweets %>%
 # der Favorites über alle Tweets hinweg bestimmen.
 favorites <- tweets %>% 
   group_by(from) %>%  
-  summarize(durchschnitt=mean(favorites)) %>% 
+  summarize(favs=mean(favorites)) %>% 
   ungroup()
+
+# Skim
+skim(tweets, favorites)
 
 # Zählen der Zeilen eines Datensatzes
 tweets %>%
