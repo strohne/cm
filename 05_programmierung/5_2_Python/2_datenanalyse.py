@@ -1,22 +1,21 @@
 # Pandas importieren
 import pandas as pd
 
+#
+# Datensätze einlesen, erstellen und speichern ----
+#
 
 # Datensatz laden
 df = pd.read_csv("example-twitter.csv", sep=';')
 
-# Würde der Datensatz als Excel-Datei vorliegen, 
-# ließe er sich mit folgendem Befehl einlesen:
-# df = pd.read_csv("example-twitter.xlsx")
-
+# Die Hilfe aufrufen
+pd.read_csv?
 
 # Datensatz anzeigen
 display(df)
 
-
 # Datensatz speichern als CSV-Datei
 df.to_csv("example-twitter-small.csv", index=False)
-
 
 # Leeren Datensatz erstellen und mit Werten füllen 
 # hier: Liste aus Dictionaries, die in "data" abgelegt wird
@@ -26,20 +25,18 @@ data = [{'id':1,'name':'rey'}, {'id':2,'name':'han'}]
 
 df_small = df_small.append(data, sort=False, ignore_index=True)
 
-
 # Objekt löschen 
 del df_small
 
-
-# Funktionen zum Auswählen von Spalten
+#
+# Funktionen zum Auswählen von Spalten ----
+#
 
 # Auswählen der Spalte "replies" aus "df"
 df.loc[:,'replies']
 
-
 # Auswählen mehrerer Spalten (einer Liste von Spalten)
 df.loc[:,['replies','favorites']]
-
 
 # Auswahl von Spalten nach Bereich
 df.loc[:,'replies':'retweets']
@@ -60,75 +57,74 @@ type(x)
 x = df.favorites
 type(x)
 
-
-# Funktionen zum Auswählen von Zeilen
+#
+# Funktionen zum Auswählen von Zeilen ----
+#
 
 # Zeilenindex setzen (statt Zeilennummern)
-# Zurücksetzen von Zeilenindizes über df = df.reset_index() möglich.
 df = df.set_index(['from'])
-
 
 # Auswählen aller Zeilen mit dem Wert "dagobah" aus der indexierten Spalte "from"
 df.loc['dagobah']
 
+# Zurücksetzen von Zeilenindizes
+df = df.reset_index()
 
 # Einschränken des Datensatzes auf Zeilen und Spalten
 df_subset = df.loc[['dagobah','exogol'], ['favorites']]
 
-
 # Zeilen und Spalten mittels Positionen auswählen
 df.iloc[:5,2:]
 
+#
+# Auswählen von Zeilen mit Bedingungen ----
+#
 
-# Filtern von Werten
+# Filtern mit einer Bedingung
 df[df.favorites > 10]
 
+# Die folgende Anweisung würde den ursprünglichen df überschreiben
+# df = df[df.favorites > 10]
 
 # Kombinieren von Bedingungen beim Filtern von Werten 
 df[(df.favorites > 10) & (df.retweets > 5)]
 
-
-# Aneinanderketten von Funktionen 
-df = df[df.favorites > 10].loc[:,['replies','favorites']]
-
-
-# Filter der Spalte "hashtag" durch regulären Ausdruck 
-# (=Formuliereung von Suchmustern, die in der entsprechenden Zeile 
-# vorhanden sein müssen).
-df['hashtags'].str.contains("natur|klima|umwelt", case=False, regex=True, na=False)
-
+# Bedingung mithilfe eines regulären Ausdrucks 
+# (=Formuliereung von Suchmustern, die in der entsprechenden Zeile vorhanden sein müssen).
+df.hashtags.str.contains("natur|klima|umwelt", case=False, regex=True, na=False)
 
 # Teildatensatz mit der Filterbedingung auswählen
 df[df.hashtags.str.contains("natur|klima|umwelt", case=False, regex=True, na=False)] 
 
+# Aneinanderketten von Funktionen 
+df_subset = df[df.favorites > 10].loc[:,['replies','favorites']]
 
+#
+# Neue Spalten erzeugen ----
+#
+
+# Erstellen der neuen Spalte "reactions"
+# durch addieren der "retweets" und "replies"
+df['reactions'] = df['retweets'] + df['replies']
+
+# Ersetzen von fehlenden Werten (nan) mit Nullen
+df['retweets'] = df['retweets'].fillna(0)
+      
 # Erstellen der neuen Spalte "natur"
 # Die Spalte enthält true- und false-Werte, je nachdem, 
 # ob der Hashtag "natur" in einer Zeile auftaucht oder nicht.
 df['natur'] = df['hashtags'].str.contains("natur|klima|umwelt", case = False, regex = True)
 
-
-# Erstellen der neuen Spalte "engagement"
-# durch addieren der "retweets" und "replies"
-df['engagement '] = df['retweets'] + df['replies']
-
-
-# Ersetzen von fehlenden Werten (nan) mit Nullen
-df['retweets'] = df['retweets'].fillna(0)
-      
-
-# Funktionen zum Aggregieren und Auszählen
+#
+# Funktionen zum Aggregieren und Auszählen ----
+#
 
 # Auszählen, wie oft die Autor:innen in der Spalte 
 # "from" vorkommen. 
-# Achtung: Diese Spalte darf nicht indexiert sein. 
-# Gegebenenfalls muss die Indexierung entfernt werden.
 df['from'].value_counts()   
-
 
 # Erstellen einer Kreuztabelle
 pd.crosstab(df['from'],df['natur'])      
-
 
 # Ermitteln von Mittelwerten von einer oder mehreren Spalten
 df['favorites'].mean()
@@ -137,20 +133,18 @@ df[['retweets','replies']].mean()
 # Ermitteln von Mittelwerten je Zeile 
 df[['retweets','replies']].mean(axis=1)
 
-
-# Übersicht über Werte (u.a. Standardabweichung, Minimum, Maximum)
-#aller zahlenbasierter Spalten
+# Übersicht über deksriptive Kennwerte
+# (u.a. Standardabweichung, Minimum, Maximum)
+# von allen zahlenbasierten Spalten
 df.describe()
-
 
 # Vergleiche von Gruppen: 
 # - Größe
 # - Mittelwerte
-# - allgemeine Übersicht 
+# - Deskriptive Kennwerte
 df.groupby('from').size()
 df.groupby('from')[['retweets','replies']].mean() 
 df.groupby('from')['favorites'].describe()
-
 
 # Abspeichern von Auswertungen in neuem 
 # Datensatz; Überführen des Indexes in eine eigene Spalte 
