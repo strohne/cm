@@ -15,20 +15,20 @@ display(df)
 
 
 # Datensatz speichern als CSV-Datei
-df.to_csv("example-twitter-neu.csv", index=False)
+df.to_csv("example-twitter-small.csv", index=False)
 
 
 # Leeren Datensatz erstellen und mit Werten füllen 
 # hier: Liste aus Dictionaries, die in "data" abgelegt wird
-df_new = pd.DataFrame()
+df_small = pd.DataFrame()
 
 data = [{'id':1,'name':'rey'}, {'id':2,'name':'han'}]
 
-df_new = df_new.append(data, sort=False, ignore_index=True)
+df_small = df_small.append(data, sort=False, ignore_index=True)
 
 
 # Objekt löschen 
-del df_new
+del df_small
 
 
 # Funktionen zum Auswählen von Spalten
