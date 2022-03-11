@@ -1,4 +1,9 @@
 #
+# Modularized simulation of artificial world
+#
+
+
+#
 # Packages ----
 #
 
@@ -214,7 +219,7 @@ worldPlot(agents)
 # Traceplot
 historyTracePlot(history)
 
-historyTraceAnimante(history,10)
+historyTraceAnimate(history,10)
 anim_save("trace.gif")
 
 
