@@ -12,6 +12,7 @@ Einen konzeptionellen und praktischen (mit R) Einsteig in Simulationen bietet Ka
 # Daten und Skripte: 
 - 1_simulation_basic.R: R-Skript mit den Befehlen aus dem Lehrbuch, um eine künstliche Welt aufzubauen und ein Ereignis durchzusimulieren 
 - 2_simulation_modul.R: Modularisierte Version des Skripts 1_simulation_basic.R mit zusätzlichen Funktionen - beispielsweise zur Animation der Simulation
+- simulation.Rproj: R-Projekt zu den Skripten
 - diffusion.gif: Animierung von Akteuren, die sich in künstlicher Welt bewegen
 - trace.gif: Animierte Entwicklung des Trace Plots
 
