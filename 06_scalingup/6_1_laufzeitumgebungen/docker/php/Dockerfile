@@ -1,5 +1,5 @@
 FROM php:7.1.2-apache
-MAINTAINER jakobjuenger@freenet.de
+MAINTAINER jakob.juenger@uni-muenster.de
 
 WORKDIR /var/www/html
 
