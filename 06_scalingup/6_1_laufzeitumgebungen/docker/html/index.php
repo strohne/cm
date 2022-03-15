@@ -1,20 +1,51 @@
-<div class="center">
-  <h1>Hello World!</h1>
-</div>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example page</title>
+  </head>
+  <body> 
+    
 
-<div class="center">
-<table>
-  <tbody>
-    <tr class="h"><td><h1 class="p">SQL Connection</h1></td></tr>
-  </tbody>
-</table>
+<h1>Datenbanken</h1>
+  <?php
+    //Connect to MySQL
+    try {
+      $pdo = new PDO('mysql:host=sql', 'root', 'root');
+      
+      $statement = $pdo->query("SHOW DATABASES");
+      $databases = $statement->fetchAll(PDO::FETCH_COLUMN,0); 
+      $errors = $pdo->errorInfo()[2];
+    } catch (PDOException $e) {
+        $errors =$e->getMessage();
+        $rows = [];
+    }  
+  ?>
+  
+<p>  
+  <?php if (!empty($errors)): ?>
+  
+    Es kann keine Verbindung zur Datenbank aufgebaut werden. 
+    Bitte überprüfen Sie die Einstellungen:<br>    
+    <?= $errors ?>
+    
+  <?php else: ?>
+    Folgende Datenbanken sind auf dem Server vorhanden:<br>
+    <?= implode(', ',$databases) ?>
+  <?php endif; ?>
+</p>
 
+
+<?php if (in_array('devel',$databases)): ?>
+
+<h1>Datenbank devel</h1>
 <?php
-//Connect to MySQL
+  //Connect to MySQL
   try {
-    $pdo = new PDO('mysql:host=mysql', 'root', 'root');
-    $statement = $pdo->query("SHOW DATABASES");
-    $records = $statement->fetchAll(PDO::FETCH_COLUMN,0); 
+    $pdo = new PDO('mysql:host=sql;charset=utf8mb4;dbname=devel', 'root', 'root');
+    
+    $statement = $pdo->query("SELECT * FROM people LIMIT 10");
+    $rows = $statement->fetchAll();
     $errors = $pdo->errorInfo()[2];
   } catch (PDOException $e) {
       $errors =$e->getMessage();
@@ -22,21 +53,34 @@
   }  
 ?>
 
-<table>
-  <tbody>
-    <tr>
-      <td class="e">Connection </td>
-      <td class="v"><?= empty($errors)?'ok':'Error: '.$errors ?></td>
-    </tr>
-    <tr>
-      <td class="e">Databases </td>
-      <td class="v"><?= implode('; ',$records) ?></td>
-    </tr>
- 
-  </tbody>
-</table>
+  <?php if (!empty($errors)): ?>
+      Konnte keine Daten abfragen:<br>      
+      <?= $errors ?><br>
+      Bitte legen Sie die Tabelle "people" in der Datenbank "devel" an.
+  <?php else: ?>  
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Born</td>
+          <td>Died</td>
+        </tr>
+      </thead>
+      
+      <tbody>
+      
+      <?php foreach($rows as $row) :?>
+      <tr>
+        <td><?= $row['name'] ?? '' ?></td>
+        <td><?= $row['born'] ?? '' ?></td>
+        <td><?= $row['died'] ?? '' ?></td>
+      </tr>
+      <?php endforeach;?>
+      </tbody>
+    </table>
 
-</div>
+  <?php endif; ?>
+<?php endif; ?>
 
-
-<?php phpinfo(); ?>
+  </body>
+</html>
