@@ -1,11 +1,30 @@
 #
-# Dieses Skript beinhaltet eine Einführung in
-# - Basisfunktionen und -operatoren
-# - Datentypen in R 
-# - Auswählen von Werten 
-# - Rechenoperationen
-# - Funktionen
-# - Kontrollstrukturen
+# Einführung in R
+#
+
+# - 1. Basisfunktionen und -operatoren [im Buch: Kapitel 5.1.1]
+#       - Einzelwerte ausgeben
+#       - Laden von Packages
+#       - Aufrufen der Hilfe
+# - 2. Funktionsaufrufe [im Buch Kapitel 5.1.2]
+#       - Einzelwerte
+#       - Bezeichnung von Elementen in Listen oder Vektoren
+#       - Grundrechenarten/Rechenoperatoren 
+#       - Funktionen 
+# - 3. Datentypen [im Buch: Kapitel 5.1.3]
+#       - Vektoren
+#       - Bezeichnen von Elementen in Listen oder Vektoren
+#       - Tabellen
+#       - Adressieren von Werten
+# - 4. Loops und Kontrollstrukturen [im Buch: Kapitel 5.1.3]
+#       -  Loop mit for
+#       -  Loop mit for ohne "item"
+#       -  if-Bedingung
+#       -  if-else-Bedingung
+#       - Vektorisierte Funktionen [im Buch: Kapitel 5.1.3]
+
+#
+# 1. Basisfunktionen und -operatoren [Kapitel 5.1.1] ---- 
 #
 
 # Um einzelne Zeilen auszuführen, klicken Sie auf "Run" oder 
@@ -25,38 +44,70 @@ print(gruss)
 # Entfernen von Werten aus den Datenobjekten durch rm()
 rm(ich)
 
-
 # Laden von Packages
 # - Packages stellen eine Sammlung von Funktionen bereit
 # - die Packages müssen einmalig installiert werden (über 
 # den Reiter "Packages")
 # - in jedem Skript müssen die verwendeten Packages neu 
 # über library() geladen werden
+# - Packages werden zu Anfang eines R-Skripts geladen
 library(tidyverse)
-
 
 # Aufrufen der Hilfe durch ?
 ?paste0
 
 # Aufrufen der Hilfe von nicht geladenen FUnktionen durch ??
-??describe
+??skim
 
+#
+# 2. Funktionsaufrufe [5.1.2] ----
+#
 
-# Datentyen ---- 
+# I. Einzelwerte
+name <- "Bea"
 
-# 1. Einzelwerte
-me <- "Leo"
+# II. Bezeichnung von Elementen in Listen oder Vektoren (Normaler Funktionsaufruf)
+name <- paste0("Inger","Engmann") 
 
-# 2. Vektoren
+# III. Grundrechenarten/Rechenoperatoren 
+
+# Grundrechenarten in R, u.a. 
+# - Addieren über +
+# - Subtrahieren über - 
+# - Multiplizieren über *
+# - Dividieren über /
+# - Quadrieren über ^2
+alter <- 2017-1989
+jahr <- 1989 + alter
+
+# IV. Funktionen
+
+# Funktion definieren über function()
+# - in den Klammern werden die benötigten Parameter angegeben 
+# - danach folgt eine geschweifte Klammer {} mit den Befehlen 
+# - zum Schluss wird unter return() der Output angegeben
+calculate_age <- function(year_now,year_birth) {
+  alter <- year_now - year_birth
+  return (alter)
+}
+
+# Aufrufen einer selbstdefinierten Funktion 
+alter <- calculate_age(2017, 1989)
+
+#
+# 3.Datentyen [Kapitel 5.1.3] ---- 
+#
+
+# I. Vektoren
 # Erstellen von Vektoren über die Funktion c()
 personen <- c("Bea", "Leo")
 personen <- c(personen, "Niska")
 print(personen)
 
-# Bezeichnen von Elementen in Listen oder Vektoren 
+# II. Bezeichnen von Elementen in Listen oder Vektoren 
 person <- list(vorname="Inger",nachname = "Engmann")
 
-# 3. Tabellen
+# III. Tabellen
 # Erstellen eines dataframe über die Funktion (data.frame()),
 # der dataframe besteht aus untereinandergehängte Vektoren.
 personen <- data.frame (
@@ -65,8 +116,7 @@ personen <- data.frame (
   typ   = c("Bot","Bot","Bot", "Mensch","Mensch")
 )
 
-
-# Adressieren von Werten ----
+# IV. Adressieren von Werten
 
 # Auswählen einer Zeile
 personen[1,]
@@ -76,7 +126,6 @@ personen[,1]
 
 # Auswählen eines Werts
 personen[1,1]
-
 
 # Auswählen von mehreren Spalten über [] und c()
 personen[,c("name","alter")]
@@ -98,13 +147,13 @@ personen[,1,drop=F]
 # Auswählen von Spalten über $
 personen$name
 
-
 # Ändern des Wertes
 personen$name <- "anonym"
-personen$name <- NULL
 personen$name <- c("Bea","Leo","Niska","Inger","Tobbe")
 
-
+#Spalten ergänzen oder löschen
+personen$nummer <- c(1,2,3,4,5)
+personen$nummer <- NULL
 
 # Umwandeln in weitere Datentypen: 
 # - als Matrix (as.matrix)
@@ -118,36 +167,11 @@ as.data.frame(personen)
 # Datentyp feststellen
 str(personen)
 
+#
+# 4. Loops und Kontrollstrukturen [Kapitel 5.1.3] ----
+#
 
-# Grundrechenarten ---- 
-# Rechenoperationen in R, u.a. 
-# - Addieren über +
-# - Subtrahieren über - 
-# - Multiplizieren über *
-# - Dividieren über /
-# - Quadrieren über ^2
-alter <- 2017-1989
-jahr <- 1989 + alter
-
-# Funktionen ----
-
-# Funktion definieren über function()
-# - in den Klammern werden die benötigten Parameter angegeben 
-# - danach folgt eine geschweifte Klammer {} mit den Befehlen 
-# - zum Schluss wird unter return() der Output angegeben
-calculate_age <- function(year_now,year_birth) {
-  alter <- year_now - year_birth
-  return (alter)
-}
-
-# Aufrufen einer selbstdefinierten Funktion 
-alter <- calculate_age(2017, 1989)
-
-
-
-# Kontrollstrukturen ----
-
-# Loop mit for: 
+# I. Loop mit for: 
 # - für jeden Eintrag (name) in Liste (personen$name)
 #   wird Funktion ausgeführt (print())
 for (item in personen$name) {
@@ -155,8 +179,14 @@ for (item in personen$name) {
   print(message)
 }
 
+# II. Loop mit for ohne "item"
+for(name in personen$name) {
+  message <- paste0(name, " is a bot")
+  print(message)
+}
 
-# if-Bedingung
+
+# III. if-Bedingung
 # - Bereich der Zeilennummern über 1:nrow() ermitteln 
 # - einzelne Zeilen über [i,] adressieren 
 # - Bedingung: typ == Bot in if-Schleife formulieren 
@@ -170,7 +200,7 @@ for (i in 1:nrow(personen)) {
   }
 }
 
-# if-else-Bedingung 
+# IV. if-else-Bedingung 
 for (i in 1:nrow(personen)) {
   row = personen[i,]
   
@@ -179,12 +209,11 @@ for (i in 1:nrow(personen)) {
   } else {
     message <- paste0(row$name," is a human")
   }
-
+  
   print(message)
 }
 
-
-# if-else-Bedingung 
+# V. if-else-Bedingung 
 # - Ergänzung der if-Bedingung um alternative else-Bedingung 
 for (i in 1:nrow(personen)) {
   row = personen[i,]
@@ -198,7 +227,6 @@ for (i in 1:nrow(personen)) {
   print(message)
   
 }
-
 
 for (i in 1:nrow(personen)) {
   row = personen[i,]
@@ -214,14 +242,8 @@ for (i in 1:nrow(personen)) {
   }
 }
 
-
-#
-# Vektorisierung ----
-#
-
-
-# Vektorisierte Funktionen 
-paste0(personen$name," is a bot")
+# VI. Vektorisierte Funktionen
+paste0(personen$name," is alive")
 
 # lapply()-Funktion: wendet auf Liste (1. Parameter) eine Funktion (2. Parameter) an.
 lapply(personen$name, paste0, " is a bot")
