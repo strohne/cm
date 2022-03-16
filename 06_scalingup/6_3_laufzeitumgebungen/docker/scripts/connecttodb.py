@@ -35,3 +35,9 @@ display(df)
 
 born_by_year = df.born.value_counts().sort_index()
 born_by_year.plot(kind='bar')
+
+#
+# Alle Verbindungen schließen ----
+#
+
+db_connection.dispose()
