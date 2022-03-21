@@ -1,6 +1,6 @@
 #
-# Beispiel f�r die Parallelisierung auf mehreren Kernen
-# eines Computers. Im Beispiel wird die Kosinus�hnlichkeit
+# Beispiel für die Parallelisierung auf mehreren Kernen
+# eines Computers. Im Beispiel wird die Kosinusähnlichkeit
 # von Texten berechnet.
 #
 
@@ -19,7 +19,7 @@ library(tictoc)
 # Document-Feature-Matrix einlesen ----
 #
 
-dfm <- read_rds("usenews.mediacloud.wm.2020.small.rds")
+dfm <- read_rds("usenews_small.rds")
 dfm
 
 
@@ -62,7 +62,7 @@ toc()
 # Ergebnis ----
 #
 
-# Titel, URL und Datum an die Liste ähnlicher Dokumente joinen
+# Titel, URL und Datum an die Liste Ã¤hnlicher Dokumente joinen
 docs <- tibble(docname=docnames(dfm),docvars(dfm))
 sim <- sim %>% 
   left_join(select(docs,document1=docname,doc1_title=title,doc1_url=url,doc1_date=publish_date), by="document1") %>%
