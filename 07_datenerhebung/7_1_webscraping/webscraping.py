@@ -11,8 +11,7 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 # URL und Dateiname festlegen
-url = "https://de.wikipedia.org/wiki/\
-Liste_auflagenst%C3%A4rkster_Zeitschriften"
+url = "https://de.wikipedia.org/wiki/Liste_auflagenstärkster_Zeitschriften"
 dateiname = directory + "/zeitschriften.html"  
 
 # Herunterladen
@@ -24,13 +23,14 @@ if response.status_code == 200:
 # Datei öffnen und Html mit Beautifulsoup parsen
 soup = BeautifulSoup(open(dateiname,encoding="utf-8"),'lxml')
 
+
 # Alle Tabellen auslesen und die vierte Tabelle rausziehen 
-tables = soup.find_all('table')
+tables = soup.select('table')
 table_de = tables[3]
 
 # Alle Zeilen in der Tabelle finden
 # Die erste Zeile (mit den Spaltennamen) entfernen
-table_rows = table_de.find_all('tr')
+table_rows = table_de.select('tr')
 table_rows = table_rows[1:]
  
 # Alle Zeilen abarbeiten, 
@@ -41,7 +41,7 @@ results = []
 for row in table_rows:
     
     # Alle Spalten innerhalb einer Zeile finden 
-    cols = row.find_all('td')
+    cols = row.select('td')
     
     # Ein leeres dict anlegen, in dem die Werte 
     # gespeichert werden
@@ -57,7 +57,7 @@ for row in table_rows:
     # in try-except kapseln, da nicht immer ein Link 
     # vorhanden ist 
     try: 
-        link = cols[1].find('a').get('href')
+        link = cols[1].select_one('a').get('href')
         item['link'] = "www.wikipedia.org" + link
     except AttributeError:
         pass
