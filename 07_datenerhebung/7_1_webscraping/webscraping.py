@@ -23,7 +23,6 @@ if response.status_code == 200:
 # Datei öffnen und Html mit Beautifulsoup parsen
 soup = BeautifulSoup(open(dateiname,encoding="utf-8"),'lxml')
 
-
 # Alle Tabellen auslesen und die vierte Tabelle rausziehen 
 tables = soup.select('table')
 table_de = tables[3]
@@ -32,41 +31,42 @@ table_de = tables[3]
 # Die erste Zeile (mit den Spaltennamen) entfernen
 table_rows = table_de.select('tr')
 table_rows = table_rows[1:]
- 
-# Alle Zeilen abarbeiten, 
-# die Ergebnisse in der results-Liste 
-# ablegen 
+
+
+# Die Ergebnisse werden in der results-Liste abgelegt
 results = []
 
+# Alle Zeilen abarbeiten
 for row in table_rows:
     
     # Alle Spalten innerhalb einer Zeile finden 
     cols = row.select('td')
     
-    # Ein leeres dict anlegen, in dem die Werte 
-    # gespeichert werden
-    # Einzelne Spalten auslesen
+    # Ein leeres dict anlegen, in dem die Werte gespeichert werden
     item = {}
+    
+    # Einzelne Spalten auslesen
     item['rang'] = cols[0].text.strip()
     item['titel'] = cols[1].text.strip()
     item['auflage'] = cols[2].text.strip()
     item['gruppe'] = cols[3].text.strip()
+        
+    # Link auslesen
+    link = cols[1].select_one('a')    
+    if link:
+        item['link'] = "www.wikipedia.org" + link.get('href')
+    else:
+        item['link'] = None
     
-    # Zusätzlich den Link zur Wikipedia-Seite 
-    # des Titels auslesen
-    # in try-except kapseln, da nicht immer ein Link 
-    # vorhanden ist 
-    try: 
-        link = cols[1].select_one('a').get('href')
-        item['link'] = "www.wikipedia.org" + link
-    except AttributeError:
-        pass
-    
-    # Das dict zur Liste hinzufügen 
+    # Das dict zur Liste hinzufügen
     results.append(item)
-  
+ 
 # Liste mit Dictionaries in Dataframe umwandeln
 results = pd.DataFrame(results)
+
+# Diese Liste im Notebook ausgeben (erste und letzte Einträge)
+pd.set_option('display.max_rows', 10)
+display(results)
 
 # Diese Liste im Notebook ausgeben 
 # (erste und letzte Einträge)
