@@ -4,94 +4,84 @@
 
 # Pakete
 library(tidyverse)
-library(httr)
+library(writexl)
 library(rvest)
 
-
 # Seite herunterladen und parsen
-url <- "http://www.fernsehserien.de/serien-a-z/n"
+url <- "https://de.wikipedia.org/wiki/Liste_auflagenstärkster_Zeitschriften"
 html <- read_html(url)
 html
 
 
-# Das geparste Dokument kann bei Bedarf abgespeichert werden
-write_xml(html, file="serien_n.html")
+
+# Das geparste Dokument kann bei Bedarf mit der Bibliothek
+# xml2 abgespeichert werden
+#library(xml2)
+#write_xml(html, file="zeitschriften.html")
 
 
 # Alternative:
 # - Webseite  mit GET-Funktion aus dem httr packager herunterladen
 # - Inhalt in HTML-Datei abspeichern
 # - Datei mit rvest einlesen
+# library(httr)
 # response <- GET(url)
-# cat(content(response, "text"), file="serien_n.html")
-# html <- read_html("serien_n.html")
+# cat(content(response, "text"), file="zeitschriften.html")
+# html <- read_html("zeitschriften.html")
 
 
-# Mithilfe von CSS das ul-Element 
-# mit der ID "a-z-liste" und darin alle li-Elemente finden
-html_nodes(html, "ul#a-z-liste li")
+# Mithilfe der Funktion html_nodes() alle table-Elemente finden
+tables <- html_nodes(html, "table")
 
+# Alternative Schreibweise in der tidyverse-Logik
+tables <- html %>% 
+  html_nodes("table")
 
-# Dieser Befehl kann alternativ mithilfe der Pipe geschrieben werden. 
-# Über die Pipe können Befehle aneinandergehängt werden. 
-# Als erster Parameter wird immer das Objekt aus der 
-# Funktion vor der Pipe übergeben.
-# Das Ergebnis wird im Objekt "lis" abgespeichert
-lis <- html %>% 
-  html_nodes("ul#a-z-liste li")
+# Auf das vierte Element in der Liste zugreifen
+table <- tables[4]
 
-lis
-
-
-# Auslesen der Seriennamen ---- 
-
-# Über html_text() wird nur der Text, der von dem <li>-Tag
-# eingerahmt ist, beibehalten.
-serienname <- html %>% 
-  html_nodes("ul#a-z-liste li") %>%   
-  html_text()
-
-serienname
-
+# Einzelne Zeilen bekommen 
+rows <- table %>% 
+  html_nodes("tr") 
 
 #
-# Auslesen von Seriennamen, Erscheinungsjahr und Link zur Webpage ---- 
+# Auslesen der Tabelleninhalte ---- 
 #
 
-# Leerer Vektor zum Sammeln der Daten anlegen
-serien <- c()
+# Leeres Tibble zum Sammeln der Ergebnisse
+results <- tibble()
 
-
-# Alle li-Elemente abarbeiten
-for (li in lis) {
+# Alle Zeilen abarbeiten
+for (row in rows) {
   
-  # - Daten aus dem li-Element auslesen
+  # Alle Spalten innerhalb einer Zeile finden
+  cols <- row %>%
+    html_nodes("td")
   
-  li_name <- html_node(li,"div") %>% html_text()  
-  li_name <- str_remove(li_name, "\\s+\\(.*") # Regulärer Ausdruck, um nur den Namen zu behalten.
+  # Text aus der zweiten Spalte auslesen
+  titel = cols[2] %>%
+    html_text()
   
-  li_jahr <- html_attr(li,"data-jahr")
+  # URL aus dem Attribut 'href' auslesen
+  link = cols[2] %>% 
+    html_nodes("a") %>% 
+    html_attr('href')
   
-  li_link <- html_node(li,"a") %>% html_attr("href")
-  li_link <- paste0("https://www.fernsehserien.de", li_link) #Hinzufügen der Domain vor den extrahierten Pfad. 
+  # zusätzlich noch "www.wikipedia.org" ergänzen, um 
+  # Link zu vervollständigen
+  link = paste0("www.wikipedia.org", link)
   
-  li_html <- as.character(li)
+  # In einem neuen Tibble ablegen...
+  magazine <- tibble(
+    'titel' = titel,
+    'link' = link
+  )
   
-  # - in einem neuen Tibble ablegen
-  serie <- tibble('name'=li_name,
-                  'jahr'=li_jahr,
-                  'link'=li_link,
-                  'html'=li_html)
-  
-  # - Tibble zum Vektor hinzufügen
-  serien <-  c(serien,list(serie))
+  # ... und zu den Ergebnissen hinzufügen
+  results <-  bind_rows(results,magazine)
   
 }
 
 
-# Die Liste mit allen Tibbles zu einem 
-# einzigen Tibble verbinden
-serien <- bind_rows(serien)
-
 # Ergebnis als Excel-Datei abspeichern
-write_xlsx(serien,"serien_n.xlsx")
+write_xlsx(results,"zeitschriften.xlsx")
