@@ -16,15 +16,18 @@ nicht mehr genauso funktionieren und es zu Fehlermeldungen kommt, wenn beispiels
 
 # Nützliche Techniken zum Boilerplate Removal
 
-https://medium.com/@mbatchkarov/a-benchmark-comparison-of-extraction-from-html-pages-98d7c1229f51
+Beim Boilerplate Removal besteht das Ziel darin, die Inhalte vom Layout zu trennen. Dabei lassen sich grob drei Ansätze unterscheiden:
 
-https://ujeebu.com/blog/how-to-extract-clean-text-from-html/
+- Textbasiert: den Text wird aus allen Elementen ausgelesen, z.B. mit der Funktion getText() von BeautifulSoup.
+- Elementbasiert: mit Heuristiken werden bestimmte HTML-Elemente (wie z.B. `nav`) aussortiert.
+- Grafisch: die Webseite wird gerendered, um optisch zusammenhängede Bereiche zu identifizieren.
 
-https://trafilatura.readthedocs.io/en/latest/ https://github.com/adbar/trafilatura
+Die Techniken entwickeln sich stets weiter. Wenn Sie Boilerplate Removal benötigen, lohnt sich eine kurze Recherche nach Beiträgen, in denen verschiedene Verfahren verglichen werden (benchmarks). Beispiele für entsprechende Packages sind:
 
-https://github.com/misja/python-boilerpipe
+- Boilerpipe: https://github.com/misja/python-boilerpipe
+- Trafilature: https://github.com/adbar/trafilatura
+- Newspaper: https://github.com/codelucas/newspaper
 
-https://ws-dl.blogspot.com/2017/03/2017-03-20-survey-of-5-boilerplate.html
 
 # Eine Alternative zum Installieren des GeckoDriver
 
