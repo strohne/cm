@@ -3,9 +3,18 @@
 #
 
 # Selenium zur Fernsteuerung des Browsers
-from selenium import webdriver 
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+
+driver = Service(GeckoDriverManager().install())
+
+# By.Name und By.Id zum Extrahieren der Elemente
+from selenium.webdriver.common.by import By
+
+
 # Bibliothek für Reguläre Ausdrücke zum Verarbeiten von Zeichenketten laden
 import re
+
 # Pandas zum Abspeichern als CSV-Datei
 import pandas as pd
 
@@ -14,7 +23,7 @@ import pandas as pd
 # 2. Browser starten
 #
 
-browser = webdriver.Firefox(executable_path="geckodriver.exe")
+browser = webdriver.Firefox(service=driver)
 browser.get("https://www.google.de/")
 
 
@@ -22,12 +31,12 @@ browser.get("https://www.google.de/")
 # 3. Google-Suche durchführen
 #
 
-# Beim Zugriff auf Elemente der Seite (find_element_by_name) 
+# Beim Zugriff auf Elemente der Seite (find_element) 
 # bis zu 10 Sekunden warten, so dass die Seite laden kann.
 browser.implicitly_wait(10)
 
 # Suchschlitz finden
-suchschlitz = browser.find_element_by_name("q")
+suchschlitz = browser.find_element(By.NAME,"q")
 
 # In den Suchschlitz schreiben
 suchschlitz.send_keys("Wie macht ein ")
@@ -42,7 +51,7 @@ suchschlitz.submit()
 
 
 # Anzahl der Ergebnisse auslesen
-ergebnisse = browser.find_element_by_id('result-stats')
+ergebnisse = browser.find_element(By.ID,'result-stats')
 print(ergebnisse.text)
 
 # Zahl mit regulärem Ausdruck extrahieren
@@ -78,11 +87,11 @@ for keyword in keywords:
     print(keyword)    
     browser.get(url)
     
-    suchschlitz = browser.find_element_by_name("q")
+    suchschlitz = browser.find_element(By.NAME,"q")
     suchschlitz.send_keys(keyword)
     suchschlitz.submit()    
     
-    anzahl = browser.find_element_by_id('result-stats').text
+    anzahl = browser.find_element(By.ID, 'result-stats').text
     results.append({'keyword':keyword, 'count':anzahl })
 
 results
@@ -109,7 +118,7 @@ html = browser.page_source
 # Variante 2: Quelltext von einem Element auslesen 
 # (hier das body-Element)
 
-body = browser.find_element_by_tag_name('body')
+body = browser.find_element(By.TAG_NAME, 'body')
 html= str(body.get_attribute('innerHTML' ))
 
 # Text in Datei abspeichern
@@ -120,7 +129,7 @@ with open("meineseite.html","w",encoding="utf-8") as file:
 browser.save_screenshot('meineseite.png')
 
 # Screenshot der gesamten Seite speichern (nur Firefox)
-body_element = browser.find_element_by_tag_name('body')
+body_element = browser.find_element(By.TAG_NAME, 'body')
 body_png = body_element.screenshot_as_png
 
 with open("meineseite.png", "wb") as file:
