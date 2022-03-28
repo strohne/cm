@@ -1,4 +1,4 @@
-# Übersicht über Skripte 
+# Übersicht über die Skripte 
 
 In diesem Kapitel werden unterschiedliche Varianten des Webscraping eingeführt, durch welches Inhalte von Webpages ausgelesen werden können. 
 Den größten Lerneffekt erzielen Sie dabei, wenn Sie selbst direkt Daten über Webscraping miterheben. Zum Einstieg lohnt sich zunächst ein Blick 
