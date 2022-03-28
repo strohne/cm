@@ -31,17 +31,17 @@ html
 
 
 # Mithilfe der Funktion html_nodes() alle table-Elemente finden
-tables <- html_nodes(html, "table")
+el_tables <- html_nodes(html, "table")
 
 # Alternative Schreibweise in der tidyverse-Logik
-tables <- html %>% 
+el_tables <- html %>% 
   html_nodes("table")
 
 # Auf das vierte Element in der Liste zugreifen
-table <- tables[4]
+el_table <- el_tables[4]
 
 # Einzelne Zeilen bekommen 
-rows <- table %>% 
+el_rows <- el_table %>% 
   html_nodes("tr") 
 
 #
@@ -52,18 +52,18 @@ rows <- table %>%
 results <- tibble()
 
 # Alle Zeilen abarbeiten
-for (row in rows) {
+for (el_row in el_rows) {
   
   # Alle Spalten innerhalb einer Zeile finden
-  cols <- row %>%
+  el_cols <- el_row %>%
     html_nodes("td")
   
   # Text aus der zweiten Spalte auslesen
-  titel = cols[2] %>%
+  titel = el_cols[2] %>%
     html_text()
   
   # URL aus dem Attribut 'href' auslesen
-  link = cols[2] %>% 
+  link = el_cols[2] %>% 
     html_nodes("a") %>% 
     html_attr('href')
   
