@@ -18,8 +18,8 @@ nicht mehr genauso funktionieren und es zu Fehlermeldungen kommt, wenn beispiels
 
 Beim Boilerplate Removal besteht das Ziel darin, die Inhalte vom Layout zu trennen. Dabei lassen sich grob drei Ansätze unterscheiden:
 
-- Textbasiert: den Text wird aus allen Elementen ausgelesen, z.B. mit der Funktion getText() von BeautifulSoup.
-- Elementbasiert: mit Heuristiken werden bestimmte HTML-Elemente (wie z.B. `nav`) aussortiert.
+- Textbasiert: der Text wird aus allen Elementen ausgelesen, z.B. mit der Funktion getText() von BeautifulSoup.
+- Elementbasiert: mit Heuristiken werden HTML-Elemente (wie z.B. `nav`) aussortiert und größere zusammenhängenden Textblöcken innerhalb des Quelltextes identifiziert.
 - Grafisch: die Webseite wird gerendered, um optisch zusammenhängede Bereiche zu identifizieren.
 
 Die Techniken entwickeln sich stets weiter. Wenn Sie Boilerplate Removal benötigen, lohnt sich eine kurze Recherche nach Beiträgen, in denen verschiedene Verfahren verglichen werden (benchmarks). Beispiele für entsprechende Packages sind:
