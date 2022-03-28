@@ -29,15 +29,15 @@ table_de = tables[3]
 
 # Alle Zeilen in der Tabelle finden
 # Die erste Zeile (mit den Spaltennamen) entfernen
-table_rows = table_de.select('tr')
-table_rows = table_rows[1:]
+rows = table_de.select('tr')
+rows = rows[1:]
 
 
 # Die Ergebnisse werden in der results-Liste abgelegt
 results = []
 
 # Alle Zeilen abarbeiten
-for row in table_rows:
+for row in rows:
     
     # Alle Spalten innerhalb einer Zeile finden 
     cols = row.select('td')
