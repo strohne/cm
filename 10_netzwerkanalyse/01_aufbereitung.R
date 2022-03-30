@@ -22,7 +22,7 @@ videos <- videos %>%
 # - Spalten auswählen und umbenennen (select)
 # - Duplikate entfernen (distinct)
 # - Unvollständige Zeilen entfernen (na.omit)
-videos.edges <- videos %>%
+edges <- videos %>%
   left_join(videos,by= c("parent_id"="id")) %>%
   select(source=object_id.y,target=object_id.x) %>% 
   distinct()%>%
@@ -32,13 +32,13 @@ videos.edges <- videos %>%
 # Die Knotenliste erstellen:
 # - Spalten auswählen und umbenennen (select)
 # - Duplikate entfernen
-videos.nodes <- videos %>%
+nodes <- videos %>%
   select(id=object_id,label=snippet.title) %>% 
   distinct(id, .keep_all=T)
 
 
 # Knoten- und Kantenliste abspeichern 
-write_csv(videos.edges,"videos.edges.csv",na = "")
-write_csv(videos.nodes,"videos.nodes.csv",na = "")
+write_csv(edges,"videos.edges.csv",na = "")
+write_csv(nodes,"videos.nodes.csv",na = "")
 
 

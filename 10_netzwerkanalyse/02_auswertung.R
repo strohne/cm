@@ -7,11 +7,11 @@ library(igraph)
 library(tidygraph)
 
 # Ggf. Knoten- und Kantenliste einlesen 
-videos.nodes <- read_csv("videos.nodes.csv", na="None")
-videos.edges <- read_csv("videos.edges.csv", na="None")
+nodes <- read_csv("videos.nodes.csv", na="None")
+edges <- read_csv("videos.edges.csv", na="None")
 
 # Graph-Objekt erstellen
-videos.graph <- tbl_graph(videos.nodes,videos.edges)
+graph <- tbl_graph(nodes,edges)
 
 
 #
@@ -19,31 +19,31 @@ videos.graph <- tbl_graph(videos.nodes,videos.edges)
 #
 
 # Größe des Netzwerkes 
-print(videos.graph)
+print(graph)
 
 # Anzahl der Komponenten
-no.clusters(videos.graph)
+no.clusters(graph)
 
 # Dichte des Netzwerks 
-graph.density(videos.graph)
+graph.density(graph)
 
 # Durchschnittliche Pfadlänge zwischen allen Knoten
-average.path.length(videos.graph)
+average.path.length(graph)
 
 # cliquen aus mindestens 5 Knoten 
-cliques(videos.graph, min=5)
+cliques(graph, min=5)
 
 # Übersicht über Anzahl der Beziehungen 
 # - asymetric: einseitig
 # - mutual: wechselseitig
 # - null: nicht realisiert
-dyad_census((videos.graph))
+dyad_census((graph))
 
 # Übersicht über Anzahl der Triaden
-triad.census(videos.graph)
+triad.census(graph)
 
 # Degree der Knoten
-degree_distribution(videos.graph)
+degree_distribution(graph)
 
 
 #
@@ -51,7 +51,7 @@ degree_distribution(videos.graph)
 #
 
 # Zentralität berechnen für: Degree, Betweenness, Closeness
-videos.graph <- videos.graph %>% 
+graph <- graph %>% 
   mutate(degree = centrality_degree()) %>% 
   mutate(betweenness = centrality_betweenness()) %>% 
   mutate(closeness = centrality_closeness())
@@ -60,17 +60,17 @@ videos.graph <- videos.graph %>%
 # - activate(): Nodes aus dem Graphobjekt addressieren
 # - as_tibble(): Nodes aus Graphobjekt wieder in Datenstruktur 
 # tibble überführen.
-videos.nodes <- videos.graph %>%
+nodes <- graph %>%
   activate("nodes") %>%
   as_tibble() 
 
 # Sortieren der Knoten nach Zentralität
-videos.nodes %>% 
+nodes %>% 
   arrange(-degree)
 
-videos.nodes %>% 
+nodes %>% 
   arrange(-betweenness)
 
-videos.nodes %>% 
+nodes %>% 
   arrange(-closeness)
 
