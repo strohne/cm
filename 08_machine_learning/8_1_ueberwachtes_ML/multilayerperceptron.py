@@ -103,9 +103,9 @@ plt.show()
 #%% Validierung des trainierten Modells
 
 # - Vorhersagen von Labels durch predict()
-# - visualize_pred() am Anfang vom Skript definiert, gibt Bilder und vorhergesagte Label zurück
 # - Confusion Matrix berechnen durch confusion_matrix()
 # - Werte wie Recall oder F1 durch classification_report() ausgeben
+#- Falls Sie Beispielbilder visualisieren wollen, siehe unten die Funktion vizualize_pred()
 
 # y vorhersagen
 y_pred = mlp.predict(X_train)
@@ -159,3 +159,31 @@ dump(mlp,'mlp.joblib')
 
 # Modell laden
 mlp = load('mlp.joblib')
+
+#%% Visualisierung von Einzelfällen
+
+# Die folgende Funktion wählt zufällig Bilder aus dem Trainingsdatensatz (Parameter X) aus,
+# stellt sie dar und beschriftet die Bilder mit der vorhergesagten Kategorie (Parameter y)
+def visualize_pred(X, y, ncol=5, nrow=5):
+    selected = random.sample(range(len(X)), ncol * nrow)
+
+    plt.figure(figsize=(10,10))
+
+    for i, num in enumerate(selected):
+        some_pixels = X[num]
+        some_image = some_pixels.reshape(48,48)
+
+        some_label = y[num]
+
+        plt.subplot(ncol, nrow ,i+1)
+        plt.xticks([])
+        plt.yticks([])
+        plt.grid(False)
+
+        plt.imshow(some_image, cmap="gray")
+        plt.xlabel(some_label)
+
+    plt.show()
+
+# Beispielaufruf der Funktion
+visualize_pred(X_train, y_pred)
