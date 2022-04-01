@@ -6,7 +6,7 @@ import pandas as pd
 #
 
 # Datensatz laden
-df = pd.read_csv("example-twitter.csv", sep=';')
+df = pd.read_csv("example-tweets.csv", sep=';')
 
 # Die Hilfe aufrufen
 pd.read_csv?
@@ -14,8 +14,6 @@ pd.read_csv?
 # Datensatz anzeigen
 display(df)
 
-# Datensatz speichern als CSV-Datei
-df.to_csv("example-twitter-small.csv", index=False)
 
 # Leeren Datensatz erstellen und mit Werten füllen 
 # hier: Liste aus Dictionaries, die in "data" abgelegt wird
@@ -24,6 +22,13 @@ df_small = pd.DataFrame()
 data = [{'id':1,'name':'rey'}, {'id':2,'name':'han'}]
 
 df_small = df_small.append(data, sort=False, ignore_index=True)
+
+# Datensatz speichern als CSV-Datei
+df_small.to_csv("example.csv", index=False)
+
+# Datensatz speichern als Excel-Datei
+df_small.to_excel("example.xlsx", index=False)
+
 
 # Objekt löschen 
 del df_small
@@ -39,7 +44,7 @@ df.loc[:,'replies']
 df.loc[:,['replies','favorites']]
 
 # Auswahl von Spalten nach Bereich
-df.loc[:,'replies':'retweets']
+df.loc[:,'favorites':'retweets']
 
 # Überprüfen des Typs, der von loc zurückgegeben wird (Series oder DataFrame?)
 x = df.loc[:,'replies']
@@ -62,16 +67,16 @@ type(x)
 #
 
 # Zeilenindex setzen (statt Zeilennummern)
-df = df.set_index(['from'])
+df = df.set_index(['name'])
 
 # Auswählen aller Zeilen mit dem Wert "dagobah" aus der indexierten Spalte "from"
-df.loc['dagobah']
+df.loc['theeduni']
+
+# Einschränken des Datensatzes auf Zeilen und Spalten
+df_subset = df.loc[['theeduni','unialdera'], ['favorites']]
 
 # Zurücksetzen von Zeilenindizes
 df = df.reset_index()
-
-# Einschränken des Datensatzes auf Zeilen und Spalten
-df_subset = df.loc[['dagobah','exogol'], ['favorites']]
 
 # Zeilen und Spalten mittels Positionen auswählen
 df.iloc[:5,2:]
@@ -91,10 +96,10 @@ df[(df.favorites > 10) & (df.retweets > 5)]
 
 # Bedingung mithilfe eines regulären Ausdrucks 
 # (=Formuliereung von Suchmustern, die in der entsprechenden Zeile vorhanden sein müssen).
-df.hashtags.str.contains("natur|klima|umwelt", case=False, regex=True, na=False)
+df.hashtags.str.contains("tierwelt|sumpfschnecke|reptilien", case=False, regex=True, na=False)
 
 # Teildatensatz mit der Filterbedingung auswählen
-df[df.hashtags.str.contains("natur|klima|umwelt", case=False, regex=True, na=False)] 
+df[df.hashtags.str.contains("tierwelt|sumpfschnecke|reptilien", case=False, regex=True, na=False)] 
 
 # Aneinanderketten von Funktionen 
 df_subset = df[df.favorites > 10].loc[:,['replies','favorites']]
@@ -113,7 +118,7 @@ df['retweets'] = df['retweets'].fillna(0)
 # Erstellen der neuen Spalte "natur"
 # Die Spalte enthält true- und false-Werte, je nachdem, 
 # ob der Hashtag "natur" in einer Zeile auftaucht oder nicht.
-df['natur'] = df['hashtags'].str.contains("natur|klima|umwelt", case = False, regex = True)
+df['natur'] = df['hashtags'].str.contains("tierwelt|sumpfschnecke|reptilien", case = False, regex = True)
 
 #
 # Funktionen zum Aggregieren und Auszählen ----

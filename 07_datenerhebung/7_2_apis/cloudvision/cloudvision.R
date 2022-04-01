@@ -43,8 +43,8 @@ gar_auth_service(json_file="E:/Credentials/googleservicekey.json")
 #
 
 # Quellen der Beispielbilder im Projektordner:
-# https://pixabay.com/de/photos/frog-schmetterling-teich-spiegelung-540812/
 # https://pixabay.com/de/photos/piano-klavier-musik-tasten-%C3%BCben-5353974/
+# https://pixabay.com/de/photos/schmetterling-insekt-blatt-natur-4873368/
 
 gcv_get_image_annotations(
   imagePaths = "piano.jpg",
