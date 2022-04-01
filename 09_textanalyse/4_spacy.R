@@ -15,9 +15,10 @@ theme_set(theme_bw())
 # Setup Spacy ----
 #
 # - Nur einmalig notwendig
-# - Für mehr Infos siehe https://cran.r-project.org/web/packages/spacyr/readme/README.html
+# - Für weitere Informationen siehe 
+#   https://cran.r-project.org/web/packages/spacyr/readme/README.html
 
-# Spacy Installieren
+# Spacy installieren
 spacy_install()
 
 # Deutsches Sprachmodell herunterladen 
@@ -27,18 +28,26 @@ spacy_download_langmodel("de")
 #
 # Modell initialisieren ----
 #
-spacy_initialize(model = "de_core_news_sm")
+
+
 
 
 #
 # Texte einlesen und parsen---- 
 #
+
+
 # Einlesen
 texte <- readtext("korpus",encoding="UTF-8")
 
+
+# Modell initialisieren
+# Weitere Modelle siehe https://spacy.io/models/de
+spacy_initialize(model = "de_core_news_sm")
+
 # Parsen
 # - tokenisiert Texte und ermittelt POS-Tags
-# - durch parameter dependency = TRUE werden gleichzeitig 
+# - durch den Parameter dependency = TRUE werden gleichzeitig 
 #   die Dependenzen ermittelt
 txt_parsed <- spacy_parse(texte, dependency = TRUE)
 
@@ -46,6 +55,7 @@ txt_parsed <- spacy_parse(texte, dependency = TRUE)
 #
 # POS-Tagging ----
 #
+
 # Anzahl der Wortarten ermitteln
 txt_parsed %>% 
   count(pos) %>%
@@ -64,16 +74,17 @@ txt_noun <- txt_parsed %>%
 # Das Ergebnis des Dependenz-Parsers ist ein Syntaxbaum
 # Ein Syntaxbaum besteht aus Knoten und Kanten zwischen den Knoten. 
 # Die Liste der Token kann als Kantenliste interpretiert werden,
-# denn zu jedem Wort (tid / word) ist angegeben, 
-# von welchem Wort es abhängt (source / word_source).
-# Die Art der Abhängigkeit wird in der Spalte relation angegeben, 
+# denn zu jedem Wort (token_id) ist angegeben, 
+# von welchem Wort es abhängt (head_token).
+# Die Art der Abhängigkeit wird in der Spalte dep_rel angegeben, 
 # nach dem TIGER Treebank annotation scheme.
 
-# Zur Bedeutung der Relationen siehe https://spacy.io/api/annotation#dependency-parsing
-# Für Informationen zum TIGER Treebank annotation scheme siehe http://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/TIGERCorpus/annotation/index.html
+# Zur Bedeutung der Relationen 
+# siehe https://spacy.io/api/annotation#dependency-parsing
+# Für Informationen zum TIGER Treebank annotation scheme 
+# siehe http://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/TIGERCorpus/annotation/index.html
 
 # Tabelle mit Bedeutung der syntaktischen Relationen laden
-
 #ttree <- read_tsv("docs/tiger_treebank_syntax.txt")
 
 #
@@ -81,7 +92,8 @@ txt_noun <- txt_parsed %>%
 #
 
 ex_sentence <- txt_parsed %>% 
-  filter(doc_id=="RF29.txt",sentence_id==10)
+  filter(doc_id=="RF29.txt",sentence_id==9)
+
 
 #
 # 2. Als Baum darstellen
