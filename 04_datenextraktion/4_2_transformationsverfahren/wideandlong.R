@@ -1,7 +1,7 @@
 # Libraries
 library(tidyverse)
 
-# Read data
+# Datein einlesen
 tweets <- read_csv2("example-twitter.csv")
 print(tweets)
 
