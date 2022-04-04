@@ -27,7 +27,7 @@ Die Techniken entwickeln sich stets weiter. Wenn Sie Boilerplate Removal benöti
 - Boilerpipe: https://github.com/misja/python-boilerpipe
 - Trafilature: https://github.com/adbar/trafilatura
 - Newspaper: https://github.com/codelucas/newspaper
-
+- Apache Tika: https://tika.apache.org/
 
 # Eine Alternative zum Installieren des GeckoDriver
 
