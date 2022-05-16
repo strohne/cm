@@ -1,0 +1,39 @@
+Label	Description
+ac	adpositional case marker
+adc	adjective component
+ag	genitive attribute
+ams	measure argument of adjective
+app	apposition
+avc	adverbial phrase component
+cc	comparative complement
+cd	coordinating conjunction
+cj	conjunct
+cm	comparative conjunction
+cp	complementizer
+cvc	collocational verb construction
+da	dative
+dh	discourse-level head
+dm	discourse marker
+ep	expletive es
+hd	head
+ju	junctor
+mnr	postnominal modifier
+mo	modifier
+ng	negation
+nk	noun kernel element
+nmc	numerical component
+oa	accusative object
+oa	second accusative object
+oc	clausal object
+og	genitive object
+op	prepositional object
+par	parenthetical element
+pd	predicate
+pg	phrasal genitive
+ph	placeholder
+pm	morphological particle
+pnc	proper noun component
+rc	relative clause
+re	repeated element
+rs	reported speech
+sb	subject

@@ -44,14 +44,8 @@ tweets_jeautor <- tweets %>%
 # Abspeichern des neuen Datensatzes
 write_csv(tweets_jeautor, "tweets_jeautor.csv")
 
-
-# IV. Datensatz in Zwischenablage kopieren
-
-# Datensatz mit Tabulator getrennt kopieren
-write_tsv(tweets_jeautor, "clipboard")
-
 # Datensatz für Excel kopieren
-write_excel_csv2(tweets_jeautor, "clipboard")
+write_excel_csv2(tweets_jeautor, "tweets_jeautor.csv")
 
 
 # V. Datensatz einlesen und abbspeichern für Excel

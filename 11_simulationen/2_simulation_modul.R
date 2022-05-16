@@ -38,7 +38,7 @@ agentsSpawn <- function(agents_count) {
 # Move agents
 agentsMove <- function(agents) {
   
-  # Rotate between 1 and 15 degrees
+  # Rotate between -25 and +25 degrees
   rotate <- sample(c(-25:25),nrow(agents), replace=T)
   
   agents$dir <- agents$dir + rotate

@@ -8,6 +8,7 @@
 # Packages laden ----
 #
 
+library(tidyverse)
 library(quanteda)
 library(readtext)
 
@@ -39,15 +40,16 @@ texte_dfm <- dfm(texte_token,tolower=TRUE) %>%
 
 topfeatures(texte_dfm, 20) 
 
-dict <- dictionary(list(terror = c("terrorism", "terrorists", "threat"), economy = c("jobs", 
-                                                                                     "business", "grow", "work")))
-library(quanteda)
+#
+# Diktionärsbasierte Inhaltsanalyse ----
+#
 
-# the devtools package needs to be installed for this to work
-devtools::install_github("kbenoit/quanteda.dictionaries") 
-library(quanteda.dictionaries)
-tmp <- data_dictionary_sentiws
+# Festlegen eines Diktionärs
+dict <- dictionary(list(
+  datenschutz = c("datenschutz", "daten","schutz","dsgvo"), 
+  werbung = c("werbung","werben")))
 
 
-output_lsd <- liwcalike(quanteda.corpora::data_corpus_movies, 
-                        dictionary = data_dictionary_NRC)
+# Anwenden eines Diktionärs
+coded <- dfm_lookup(texte_dfm,dict) %>% 
+  convert("data.frame")
