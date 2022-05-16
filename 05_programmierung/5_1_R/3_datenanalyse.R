@@ -1,40 +1,33 @@
 #
-# Dieses Skript beinhaltet R-Basisfunktionen 
-# und tidyverse-Funktionen für die Datenanalyse in R
+# Einführung in R
 #
 
-# Pakete laden ----
+# - 6. Datenanalyse: Funktionen für die Datenanalyse [im Buch: Kapitel 5.1.4]
+#       - Vorab: Pakete für tidyverse-Funktionen und skimr-Funktionen laden und Datensatz einlesen
+#       - Lineares Modell (Regression)
+#       - Datenanalyse mit Skim
+#       - Datenanalyse mit Tidyverse
+#       - Zusätzliche Befehle
+# - 7. Grafiken: Grafiken erstellen, gestalten und speichern [im Buch: Kapitel 5.1.5]  [im Buch: Kapitel 5.1.5]
+#       - Basisfunktionen, die nicht im Manuskript stehen
+
+
+# Vorab
+# Pakete für tidyverse-Funktionen laden
 library(tidyverse)
 library(skimr)
 
-# Datensatz einlesen ----
+# Datensatz einlesen
 tweets<- read_csv2("example-tweets.csv")
 
-??skim
+## Aufruf der Hilfe
+?table
 
-# Basifunktionen zur Datenanalyse ----
+#
+# 6. Datenanalyse: Funktionen für die Datenanalyse [Kapitel 5.1.4] ---- 
+#
 
-# Auszählen von Häufigkeiten: 
-# Wie viel hat wer getweetet?
-table(tweets$name)
-
-# Verteilung von Häufigkeiten:
-summary(tweets$retweets)
-
-
-# Ausgeben von Grafiken: 
-# Streudiagramm, in dem Favorites und Retweets abgetragen sind
-plot(tweets$favorites,tweets$retweets)
-
-# Ausgeben von Boxplots: 
-# Verteilung der Retweets
-boxplot(tweets$retweets)
-
-# Ausgeben der Fünf-Punkte-Zusammenfassung :
-# Verteilung der Favorites
-summary(tweets$favorites)
-
-# Lineares Modell (Regression) mit lm(): 
+# I. Lineares Modell (Regression) mit lm(): 
 # - erster Parameter: abhängige Variable, 
 #   gefolgt von einer Tilde ~ und den unabhängigen Variablen 
 # - data-Parameter nimmt den Datensatz entgegen 
@@ -43,7 +36,11 @@ summary(tweets$favorites)
 fit <- lm(favorites ~ retweets, data=tweets)
 summary(fit)
 
-# Datenanalyse mit Tidyverse ----
+
+# II. Datenanalyse mit Skim
+skim(tweets)
+
+# III. Datenanalyse mit Tidyverse
 
 # Auswahl durch Filter- und Select-Bedingung mit Pipe
 # Filter= Auswählen von Zeilen
@@ -56,23 +53,6 @@ auswahl <- tweets %>%
 auswahl <- filter(tweets, name =="unialdera")
 auswahl <- select(auswahl, hashtags)
 
-# Sortieren der Reihenfolge der Zeilen 
-# mithilfe von arrange
-# Über das "-" vor der Variable 
-# kann absteigend sortiert werden
-tweets %>% 
-  arrange(-favorites)
-
-# Erstellen und Überschreiben von Spalten mit mutate
-# Zunächst: Überschreibend der Spalte retweets, indem 
-# alle NAs mit 0en ersetzt werden 
-# Anschließend: Erstellen der Spalte "reactions", 
-# in der die Werte aus favorites, replies und retweets
-# zusammengefasst werden.
-tweets <- tweets %>%  
-  mutate(retweets = replace_na(retweets, 0)) %>% 
-  mutate(reactions = favorites + replies + retweets)
-
 # Split-Apply-Combine:
 # Je Autor:in die duchschnittliche Anzahl 
 # der Favorites über alle Tweets hinweg bestimmen.
@@ -80,9 +60,6 @@ favorites <- tweets %>%
   group_by(from) %>%  
   summarize(favs=mean(favorites)) %>% 
   ungroup()
-
-# Skim
-skim(tweets, favorites)
 
 # Zählen der Zeilen eines Datensatzes
 tweets %>%
@@ -108,4 +85,56 @@ tweets_long <- tweets %>%
     c(favorites, replies, retweets),
     names_to="metric",
     values_to="value"
-    ) 
+  ) 
+
+# IV. Zusätzliche Befehle, die im Manuskript nicht stehen, aber für das Verständnis nützlich sind
+
+# Sortieren der Reihenfolge der Zeilen 
+# mithilfe von arrange
+# Über das "-" vor der Variable 
+# kann absteigend sortiert werden
+tweets %>% 
+  arrange(-favorites)
+
+# Erstellen und Überschreiben von Spalten mit mutate
+# Zunächst: Überschreibend der Spalte retweets, indem 
+# alle NAs mit 0en ersetzt werden 
+# Anschließend: Erstellen der Spalte "reactions", 
+# in der die Werte aus favorites, replies und retweets
+# zusammengefasst werden.
+tweets <- tweets %>%  
+  mutate(retweets = replace_na(retweets, 0)) %>% 
+  mutate(reactions = favorites + replies + retweets)
+
+## Split-Apply-Combine:
+# Je Autor:in die duchschnittliche Anzahl 
+# der Favorites über alle Tweets hinweg bestimmen.
+favorites <- tweets %>% 
+  group_by(from) %>%  
+  summarize(favs=mean(favorites)) %>% 
+  ungroup()
+
+#
+# 7. Grafiken erstellen: Grafiken erstellen, gestalten und speichern 5.1.5] ---- 
+#
+
+# I. Basifunktionen zur Datenanalyse
+
+# Auszählen von Häufigkeiten: 
+# Wie viel hat wer getweetet?
+table(tweets$name)
+
+# Verteilung von Häufigkeiten:
+summary(tweets$retweets)
+
+# Ausgeben von Grafiken: 
+# Streudiagramm, in dem Favorites und Retweets abgetragen sind
+plot(tweets$favorites,tweets$retweets)
+
+# Ausgeben von Boxplots: 
+# Verteilung der Retweets
+boxplot(tweets$retweets)
+
+# Ausgeben der Fünf-Punkte-Zusammenfassung :
+# Verteilung der Favorites
+summary(tweets$favorites)

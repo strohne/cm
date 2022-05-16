@@ -2,29 +2,8 @@
 # Einführung in R
 #
 
-# - 1. Basisfunktionen und -operatoren [im Buch: Kapitel 5.1.1]
-#       - Einzelwerte ausgeben
-#       - Laden von Packages
-#       - Aufrufen der Hilfe
-# - 2. Funktionsaufrufe [im Buch Kapitel 5.1.2]
-#       - Einzelwerte
-#       - Bezeichnung von Elementen in Listen oder Vektoren
-#       - Grundrechenarten/Rechenoperatoren 
-#       - Funktionen 
-# - 3. Datentypen [im Buch: Kapitel 5.1.3]
-#       - Vektoren
-#       - Bezeichnen von Elementen in Listen oder Vektoren
-#       - Tabellen
-#       - Adressieren von Werten
-# - 4. Loops und Kontrollstrukturen [im Buch: Kapitel 5.1.3]
-#       -  Loop mit for
-#       -  Loop mit for ohne "item"
-#       -  if-Bedingung
-#       -  if-else-Bedingung
-#       - Vektorisierte Funktionen [im Buch: Kapitel 5.1.3]
-
 #
-# 1. Basisfunktionen und -operatoren [Kapitel 5.1.1] ---- 
+# 1. Basisfunktionen und -operatoren ---- 
 #
 
 # Um einzelne Zeilen auszuführen, klicken Sie auf "Run" oder 
@@ -33,8 +12,7 @@
 
 # Einzelwerte ausgeben
 # - Zuweisung von Werten ("Leo") zu Objekten (ich) durch den 
-# Zuweisungsoperator (<-). Der Wert erscheint rechts bei Ihren
-# aktuellen Datenobjekten. 
+#   Zuweisungsoperator (<-). 
 # - Zusammenfügen von Werten durch paste0()
 # - ausgeben von Werten unten in der Konsole durch print()
 ich <- "Leo"
@@ -70,7 +48,6 @@ name <- "Bea"
 name <- paste0("Inger","Engmann") 
 
 # III. Grundrechenarten/Rechenoperatoren 
-
 # Grundrechenarten in R, u.a. 
 # - Addieren über +
 # - Subtrahieren über - 
@@ -81,7 +58,6 @@ alter <- 2017-1989
 jahr <- 1989 + alter
 
 # IV. Funktionen
-
 # Funktion definieren über function()
 # - in den Klammern werden die benötigten Parameter angegeben 
 # - danach folgt eine geschweifte Klammer {} mit den Befehlen 
@@ -95,7 +71,7 @@ calculate_age <- function(year_now,year_birth) {
 alter <- calculate_age(2017, 1989)
 
 #
-# 3.Datentyen [Kapitel 5.1.3] ---- 
+# 3.Datentypen [Kapitel 5.1.3] ---- 
 #
 
 # I. Vektoren
@@ -185,7 +161,6 @@ for(name in personen$name) {
   print(message)
 }
 
-
 # III. if-Bedingung
 # - Bereich der Zeilennummern über 1:nrow() ermitteln 
 # - einzelne Zeilen über [i,] adressieren 
@@ -247,3 +222,4 @@ paste0(personen$name," is alive")
 
 # lapply()-Funktion: wendet auf Liste (1. Parameter) eine Funktion (2. Parameter) an.
 lapply(personen$name, paste0, " is a bot")
+
