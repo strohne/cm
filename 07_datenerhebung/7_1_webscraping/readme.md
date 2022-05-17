@@ -1,9 +1,6 @@
 # Übersicht über die Skripte 
 
-In diesem Kapitel werden unterschiedliche Varianten des Webscraping eingeführt, durch welches Inhalte von Webpages ausgelesen werden können. 
-Den größten Lerneffekt erzielen Sie dabei, wenn Sie selbst direkt Daten über Webscraping miterheben. Zum Einstieg lohnt sich zunächst ein Blick 
-in das Kapitel 5, in welchem in die Programmierung mit Python oder R eingeführt wird. Sie können Sie für eine Programmiersprache entscheiden und nachfolgend 
-die entsprechenden Skripte auswählen.
+Mithilfe von Webscraping könen Inhalte von Webseiten ausgelesen werden. Eine Einführung in Webscraping findet sich in Kapitel 7.1 im Lehrbuch. Den größten Lerneffekt erzielen Sie dabei, wenn Sie selbst direkt Daten über Webscraping miterheben. Zum Einstieg lohnt sich zunächst ein Blick in das Kapitel 5, in welchem in die Programmierung mit Python oder R eingeführt wird. Sie können Sie für eine Programmiersprache entscheiden und nachfolgend die entsprechenden Skripte auswählen.
 
 Um die Erhebungsprozesse beim Webscraping bzw. Webcrawling mitgehen zu können, sind in diesem Ordner vorbereitet: 
 - das Python-Skript **webscraping.py**  sowie das Pendant für R **webscraping.R**, für klassisches Webscraping (Kapitel 7.1.1),
