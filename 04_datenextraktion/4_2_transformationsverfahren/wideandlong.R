@@ -1,17 +1,19 @@
-# Libraries
+# Umformen von Datensätzen zwischen dem Wide- und Long-Format
+
+# Pakete laden
 library(tidyverse)
 
-# Datein einlesen
-tweets <- read_csv2("example-twitter.csv")
+# Datei einlesen
+tweets <- read_csv2("example-tweets.csv")
 print(tweets)
 
-# From wide to long (=gather)
+# Datensatz vom Wide- ins Long-Format umwandeln (=gather) 
 tweets.long <- tweets %>% 
   gather(key="variable","value"="value",favorites,replies,retweets)
 
 print(tweets.long)
 
-# From long back to wide (=spread)
+# Datensatz vom Long- ins Wide-Format umwandeln (=spread) 
 tweets.wide <- tweets.long %>% 
   spread(key="variable",value="value",sep="_")
 

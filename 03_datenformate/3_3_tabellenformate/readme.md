@@ -1,4 +1,6 @@
-Die drei CSV-Dateien sind in unterschiedlichen Dialekten abgespeichert:
+# Tabellenformate (CSV)
+
+Ein verbreitetes Format für tabellarische Daten ist das CSV-Format (Kapitel 3.3). Die drei CSV-Dateien in diesem Ordner sind in unterschiedlichen Dialekten abgespeichert:
 
 - Als Trennzeichen werden Kommata, Semikola und Tabulatoren verwendet.
 - Als Zeichenkodierung wird UTF8, UTF8-BOM und ANSI verwendet.

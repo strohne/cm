@@ -1,5 +1,5 @@
 # Datenselektion
-Oftmals müssen Daten zunächst aus unstrukturierten Datenquellen gewonnen werden oder Daten für Analysen speziell zugeschnitten oder 
+Oftmals müssen Daten zunächst aus unstrukturierten Datenquellen gewonnen, für Analysen speziell zugeschnitten oder 
 um irrelevante Informationen bereinigt werden. Für ebendiese Selektion von Daten gibt es je nach Datengrundlage unterschiedliche Strategien (Kapitel 4.1). 
 In diesem Repositorium finden Sie Beispiele, um Daten aus Texten mithilfe von regulären Ausdrücken zu extrahieren (Kapitel 4.1.1), 
 vorstrukturierte Daten in HTML-Quellcode durch CSS-Selektoren zu gewinnen (Kapitel 4.1.2), Daten im XML-Format über XPath herauszuziehen (Kapitel 4.1.3) und 
