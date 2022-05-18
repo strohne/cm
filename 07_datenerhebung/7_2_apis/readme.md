@@ -3,4 +3,4 @@ APIs (kurz für Application Programming Interfaces) sind Programmierschnittstell
 
 # Übersicht über Skripte und Dateien
 - **datenerhebung_telegram**: Wie Daten über die Twitter-API mithilfe von Facepager erhoben werden können, behandelt Kapitel 7.2.1 im Lehrbuch. Ergänzend dazu finden Sie in diesem Unterordner ein Beispiel, wie öffentliche Telegram-Daten über die Telegram-API mithilfe von Python erhoben werden können.  
-- **datenanalyse_cloudvision**: Ein Beispiel für die Nutzung von APIs zur Datenanalyse beschreibt Kapitel 7.2.6 im Lehrbuch. Die begleitenden Dateien und Skripte finden sich in diesem Unterordner. 
+- **datenanalyse_cloudvision**: Die Google Cloud Vision API kann für die automatisierte Bilderkennung - also nicht zur Datenerhebung, sondern zur Datenanalyse - verwendet werden (Kapitel 7.2.6). Die begleitenden Dateien und Skripte finden sich in diesem Unterordner. 
