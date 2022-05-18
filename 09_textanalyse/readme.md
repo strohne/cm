@@ -4,6 +4,7 @@ Die automatisierte Textanalyse hilft dabei, Sprache formal zu analysieren. Dabei
 - Wortfrequenzanalysen betrachten einzelne Wörter, deren Häufigkeiten, Kontexte und Kookkurrenzen (Kapitel 9.1), 
 - Diktionärsbasierte Inhaltsanalysen ziehen Wörterbücher für die Analyse heran, um die Wörter um Bedeutungen (beispielsweise eine Bewertung, wie positiv oder negativ ein Wort ist) zu ergänzen (Kapitel 9.2),
 - und wenn Texte geparsed werden, kann man deren Syntax und Semantik analysieren, etwa durch Part-Of-Speech-Tagging, Dependenzbäume oder Word-Embeddings (Kapitel 9.3). 
+
 Eine Einführung in die verschiedenen Techniken der automatisierten Textanalyse bietet Kapitel 9 im Lehrbuch. Damit Sie die einzelnen Schriterte bessern nachvollziehen können, finden Sie entsprechende Skripte und Dateien in diesem Ordner. 
 
 ## Übersicht über Ordner, Skripte und Dateien
