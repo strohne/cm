@@ -1,10 +1,13 @@
-# Google Cloud Vision API 
-Über APIs können nicht nur Daten erhoben werden - auch Funktionen zur automatisierten Bilderkennung, Sentimentanalyse oder Geokodierung können über APIs aufgerufen werden. Eine kurze Einführung in die Arbeit mit der Google Cloud Vision API in R zur automatisierten Erkennung von Objekten in Bildern findet sich in Kapitel 7.2.6 im Lehrbuch. Ergänzende Beispieldateien und Skripte befinden sich in diesem Repositoriumsordner.
+# Google Cloud Vision API
+
+![piano](piano.jpg) 
+
+Über APIs können nicht nur Daten erhoben werden - auch Funktionen zur automatisierten Bilderkennung, Sentimentanalyse oder Geokodierung können über APIs aufgerufen werden. So kann man beispielsweise die Google Cloud Vision API abfragen, um automatisiert zu bestimmen, welche Objekte in dem angezeigten Bild abgelichtet sind. Eine kurze Einführung in die Arbeit mit der Google Cloud Vision API in R zur automatisierten Erkennung von Objekten in Bildern findet sich in Kapitel 7.2.6 im Lehrbuch. Ergänzende Beispieldateien und Skripte befinden sich in diesem Repositoriumsordner.
 
 ## Übersicht über Skripte und Dateien
 - **cloudvision.Rproj**: Projektverzeichnis
 - **cloudvision.R**: R-Skript zur Bilderkennung 
-- **piano.jpg**: Beispielbild, Quelle: https://pixabay.com/de/photos/piano-klavier-musik-tasten-%C3%BCben-5353974/
+- **piano.jpg**: Beispielbild, Quelle: https://pixabay.com/de/photos/piano-klavier-musik-tasten-üben-5353974/
 - **schmetterling.jpg**: Beispielbild, Quelle: https://pixabay.com/de/photos/schmetterling-insekt-blatt-natur-4873368/
 
 ## Vorbereitung zur Nutzung der Google Cloud Vision API
