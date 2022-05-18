@@ -6,13 +6,13 @@ Dabei können die Daten in spezifischen *Datenformaten* erfasst sein - dazu zäh
 Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wird über das *Datenmodell* festgelegt, welche Bedeutung die Daten haben (Kapitel 3.7). 
 
 
-# Übersicht über Ordner und Dateien 
+## Übersicht über Ordner und Dateien 
 
 - **3_3_tabellenformate**: CSV-Dateien in unterschiedlichen Dialekten.
 - **3_7_datenmodelle**: Daten zu einem Film, in verschiedenen Formaten repräsentiert. 
 
 
-# Datenformate im Vergleich 
+## Datenformate im Vergleich 
 
 **Tabelle**
 <table style="width:100%">

@@ -25,7 +25,7 @@ Datenbanken mit SQL-Befehlen abzufragen (Kapitel 4.1.4).
 - Mit *XPath-Ausdrücken* können Sie außerdem bestimmen, dass nur der Text oder nur ein Attributwert angezeigt werden soll. Setzen Sie den XPath-Ausdruck hinter das Präfix `text|xpath:`. Zum Beispiel erhalten Sie mit dem Ausdruck `text|xpath://a/@href` die Links, genauer das href-Attribut aller a-Elemente. Der Ausdruck `text|xpath://a/text()` gibt den Linktext im a-Element zurück. Wenn weitere Elemente in das a-Element verschachtelt sind, hilft der Ausdruck `text|xpath:string(//a)` weiter.
 - Um die richtigen Ausdrücke zu finden, können Sie sich die ursprüngliche Seite im Browser ansehen und mit der Entwicklerkonsole (F12) einzelne Elemente des Quelltextes untersuchen.
 
-# SQL  mit DB Browser for SQLite üben
+## SQL  mit DB Browser for SQLite üben
 - Installieren Sie DB Browser for SQLite: https://sqlitebrowser.org/
 - Öffnen Sie die Datenbank example_imdb.db
 - Wechseln Sie in den Reiter "SQL ausführen"
