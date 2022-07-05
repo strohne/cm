@@ -1,5 +1,5 @@
 # Datenselektion
-Oftmals müssen Daten zunächst aus unstrukturierten Datenquellen gewonnen werden oder Daten für Analysen speziell zugeschnitten oder 
+Oftmals müssen Daten zunächst aus unstrukturierten Datenquellen gewonnen, für Analysen speziell zugeschnitten oder 
 um irrelevante Informationen bereinigt werden. Für ebendiese Selektion von Daten gibt es je nach Datengrundlage unterschiedliche Strategien (Kapitel 4.1). 
 In diesem Repositorium finden Sie Beispiele, um Daten aus Texten mithilfe von regulären Ausdrücken zu extrahieren (Kapitel 4.1.1), 
 vorstrukturierte Daten in HTML-Quellcode durch CSS-Selektoren zu gewinnen (Kapitel 4.1.2), Daten im XML-Format über XPath herauszuziehen (Kapitel 4.1.3) und 
@@ -25,7 +25,7 @@ Datenbanken mit SQL-Befehlen abzufragen (Kapitel 4.1.4).
 - Mit *XPath-Ausdrücken* können Sie außerdem bestimmen, dass nur der Text oder nur ein Attributwert angezeigt werden soll. Setzen Sie den XPath-Ausdruck hinter das Präfix `text|xpath:`. Zum Beispiel erhalten Sie mit dem Ausdruck `text|xpath://a/@href` die Links, genauer das href-Attribut aller a-Elemente. Der Ausdruck `text|xpath://a/text()` gibt den Linktext im a-Element zurück. Wenn weitere Elemente in das a-Element verschachtelt sind, hilft der Ausdruck `text|xpath:string(//a)` weiter.
 - Um die richtigen Ausdrücke zu finden, können Sie sich die ursprüngliche Seite im Browser ansehen und mit der Entwicklerkonsole (F12) einzelne Elemente des Quelltextes untersuchen.
 
-# SQL  mit DB Browser for SQLite üben
+## SQL  mit DB Browser for SQLite üben
 - Installieren Sie DB Browser for SQLite: https://sqlitebrowser.org/
 - Öffnen Sie die Datenbank example_imdb.db
 - Wechseln Sie in den Reiter "SQL ausführen"

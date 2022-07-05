@@ -1,11 +1,8 @@
 # Übersicht über die Skripte 
 
-In diesem Kapitel werden unterschiedliche Varianten des Webscraping eingeführt, durch welches Inhalte von Webpages ausgelesen werden können. 
-Den größten Lerneffekt erzielen Sie dabei, wenn Sie selbst direkt Daten über Webscraping miterheben. Zum Einstieg lohnt sich zunächst ein Blick 
-in das Kapitel 5, in welchem in die Programmierung mit Python oder R eingeführt wird. Sie können Sie für eine Programmiersprache entscheiden und nachfolgend 
-die entsprechenden Skripte auswählen.
+Mithilfe von Webscraping könen Inhalte von Webseiten ausgelesen werden. Eine Einführung in Webscraping findet sich in Kapitel 7.1 im Lehrbuch. Den größten Lerneffekt erzielen Sie dabei, wenn Sie selbst direkt Daten über Webscraping miterheben. Zum Einstieg lohnt sich zunächst ein Blick in das Kapitel 5, in welchem in die Programmierung mit Python oder R eingeführt wird. Sie können Sie für eine Programmiersprache entscheiden und nachfolgend die entsprechenden Skripte auswählen, um die Erhebungsprozesse beim Webscraping bzw- Webcrawling mitgehen zu können.
 
-Um die Erhebungsprozesse beim Webscraping bzw. Webcrawling mitgehen zu können, sind in diesem Ordner vorbereitet: 
+## Übersicht über Skripte
 - das Python-Skript **webscraping.py**  sowie das Pendant für R **webscraping.R**, für klassisches Webscraping (Kapitel 7.1.1),
 - das Python-Skript **webcrawling_selenium.py**  sowie das R-Skript **webcrawling_selenium.R** für Webscraping mittels Browserautomatisierung (Kapitel 7.1.2).
 
@@ -14,7 +11,7 @@ Wenn Sie Python über Jupyter Notebooks bedienen, können Sie für eine schrittw
 *Hinweis:* Betreiber von Webseiten verändern diese von Zeit zu Zeit. Deswegen kann es sein, dass die Beispiele in den Skripten 
 nicht mehr genauso funktionieren und es zu Fehlermeldungen kommt, wenn beispielsweise Elemente nicht gefunden werden. Sollten Sie deswegen irgendwo hängen, versuchen Sie den jeweiligen Schritt nachzuvollziehen und selbst anzupassen. 
 
-# Nützliche Techniken zum Boilerplate Removal
+## Nützliche Techniken zum Boilerplate Removal
 
 Beim Boilerplate Removal besteht das Ziel darin, die Inhalte vom Layout zu trennen. Dabei lassen sich grob drei Ansätze unterscheiden:
 
@@ -29,7 +26,7 @@ Die Techniken entwickeln sich stets weiter. Wenn Sie Boilerplate Removal benöti
 - Newspaper: https://github.com/codelucas/newspaper
 - Apache Tika: https://tika.apache.org/
 
-# Eine Alternative zum Installieren des GeckoDriver
+## Eine Alternative zum Installieren des GeckoDriver
 
 Als Schnittstelle zwischen Selenium und dem Browser wird der GeckoDriver verwendet. Gecko ist eine Software, auf die eine Reihe von Webbrowsern aufbauen, vor allem Firefox. Der GeckoDriver erlaubt den Zugriff auf Gecko-basierte Browser durch andere Programme. Laden Sie die neueste Version passend zu Ihrem Betriebssystem aus dem GitHub-Repositorium herunter: https://github.com/mozilla/geckodriver/releases. Die zip-Datei enthält nur eine einzige Datei, die Sie direkt in den Ordner legen, in dem Sie das Python-Skript entwickeln. 
 

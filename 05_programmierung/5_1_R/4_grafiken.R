@@ -1,41 +1,55 @@
 #
-# Dieses Skript erzeugt Grafiken mit ggplot2
+# Einführung in R
 #
 
-#
-# Pakete laden  ----
-#
+# - 7. Grafiken erstellen  [im Buch: Kapitel 5.1.5]
+#       - Vorab: Pakete zur Erstellung von Grafiken laden und Datensatz einlesen und aufbereiten
+#       - Streudiagramm
+#       - Boxplot
+#       - Balkendiagramm
+# - 8. Grafiken gestalten [im Buch: Kapitel 5.1.5]
+#       - Erstellen eines Streudiagramms mit Farben und Legende
+#       - Erstellen eines gestapelten Säulendiagramms (Nicht Bestandteil des Manuskripts)
+#       - Erstellen von facettierten Boxplots (Nicht Bestandteil des Manusskripts)
+# - 9. Grafiken speichern [im Buch: Kapitel 5.1.5]
+#       - Streudiagramm als Bilddatei speichern
 
+
+# Vorab: Pakete zur Erstellung von Grafiken laden und Datensatz einlesen und aufbereiten
+
+# Pakete laden
 library(tidyverse)
 library(ggplot2)
 theme_set(theme_bw())
 
-#
-# Daten einlesen und aufbereiten ----
-#
-
 # Daten einlesen
 tweets <- read_csv2("example-tweets.csv")
-
 
 # Aufbereiten der Daten: Leere Werte durch 0 ersetzen
 tweets <- tweets %>%
   mutate(retweets = replace_na(retweets, 0))
 
-
 #
-# Grafiken erstellen ----
+# 7. Grafiken erstellen 5.1.4] ---- 
 #
 
-# Erstellen eines Streudiagramms (Punktewolke)
+# I. Erstellen eines Streudiagramms (Punktewolke)
 # (geeignet für zwei metrische Variablen)
-ggplot(tweets, aes(x = retweets, y = favorites)) +
+ggplot(tweets, aes(x=favorites, y=retweets)) +
   geom_point()
 
 ggsave("streudiagramm.png", dpi = 300, width = 3, height = 3)
 
 
-# Erstellen eines einfachen Balkendiagramms
+# II. Erstellen eines Boxplots
+# (geeignet für den Gruppenvergleich eines metrischen Merkmals)
+ggplot(tweets, aes(x = name, y = favorites)) +
+  geom_boxplot()
+
+ggsave("boxplot.png", dpi = 300, width = 3, height = 3)
+
+
+# III. Erstellen eines einfachen Balkendiagramms
 # (geeignet für den Gruppenvergleich von Anzahlen)
 tweets %>%
   # Datensatz vorbereiten: Auszählen der häufigsten namen, durch:
@@ -46,18 +60,7 @@ tweets %>%
   geom_col()
 
 
-ggsave("saeulendiagramm.png", dpi = 300, width = 4, height = 4)
-
-
-# Erstellen eines Boxplots
-# (geeignet für den Gruppenvergleich eines metrischen Merkmals)
-ggplot(tweets, aes(x = name, y = favorites)) +
-  geom_boxplot()
-
-ggsave("boxplot.png", dpi = 300, width = 3, height = 3)
-
-
-# Mosaic-Plot
+# IV. Mosaic-Plot
 library(ggmosaic)
 tweets %>%
   ggplot() +
@@ -67,9 +70,10 @@ ggsave("mosaicplot.png", dpi = 300, width = 4, height = 4)
 
 
 #
-# Erstellen eines Streudiagramms mit Farben und Legende ----
+# 8. Grafiken gestalten ----
 #
 
+#I. Erstellen eines Streudiagramms mit Farben und Legende
 ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
   geom_point(position = "jitter") +
 
@@ -79,8 +83,8 @@ ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
 
   # Beschriftungen hinzufügen
   labs(
-    y = "Anzahl Favorites + 1",
-    x = "Anzahl Retweets + 1"
+    x = "Anzahl Favorites + 1",
+    y = "Anzahl Retweets + 1"
   ) +
   ggtitle("Verhältnis von Favorites zu Retweets") +
 
@@ -91,9 +95,7 @@ ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
 ggsave("streudiagramm_farbig.png", dpi = 300, width = 5, height = 4)
 
 
-#
-# Erstellen eines gestapelten Säulendiagramms ----
-#
+# II. Erstellen eines gestapelten Säulendiagramms (Nicht Bestandteil des Manuskripts)
 
 tweets %>%
   
@@ -131,9 +133,8 @@ tweets %>%
 
 ggsave("saeulendiagramm_gestapelt.png", dpi = 300, width = 3.2, height = 4)
 
-#
-# Erstellen von facettierten Boxplots ----
-#
+
+# III. Erstellen von facettierten Boxplots (Nicht Bestandteil des Manusskripts)
 
 tweets %>%
   # Datensatz vorbereiten
@@ -164,3 +165,11 @@ tweets %>%
   theme(legend.position = "none")
 
 ggsave("boxplot_facettiert.png", dpi = 300, width = 3.5, height = 3)
+
+#
+# 9. Grafiken speichern ----
+#
+
+# Streudiagramm als Bilddatei speichern
+ggsave("streudiagram.png", dpi=300, 
+       width = 5, height = 3)

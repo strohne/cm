@@ -1,20 +1,14 @@
-#
-# Packages ----
-#
+# Entschachteln von Datensätzen
 
+# Pakete laden
 library(tidyverse)
 
-#
 # Daten einlesen ----
-#
-
 tweets <- read_csv2("example-tweets.csv")
 print(tweets)
 
-#
-# Daten aufbereiten ----
-#
 
+# Daten aufbereiten ----
 # Hashtags vertikal entschachteln (separate_rows)
 hashtags_unnested <- tweets %>% 
   separate_rows(hashtags,sep=";")
@@ -32,9 +26,7 @@ hashtags_nested <- hashtags_unnested %>%
 print(hashtags_nested)
 
 
-#
 # Auszählen ----
-#
 
 #... mit summarize
 hashtags_unnested %>% 

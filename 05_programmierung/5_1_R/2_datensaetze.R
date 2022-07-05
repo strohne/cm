@@ -1,15 +1,26 @@
 #
-# Dieses Skript beinhaltet Funktionen zum Einlesen und Exportieren 
-# von Datensätzen 
+# Einführung in R
 #
 
-# Pakete laden ----
+# - 5. Datenanalyse: Datensätze einlesen und exportieren [im Buch: Kapitel 5.1.4]
+#       - Pakete zum Einlesen der Daten laden
+#       - Datensätze einlesen
+#       - Datensätze abspeichern
+#       - Datensätze in Zwischenablage kopieren
+#       - Datensätze einlesen und abspeichern für Excel
+#       - Einlesen und Abspeichern aus Unterverzeichnissen
+
+#
+# 5. Datenanalyse: Datensätze einlesen und exportieren [5.1.4] ----
+#
+
+# I. Pakete zum Einlesen der Daten laden
 library(tidyverse)
 library(readxl)
 library(writexl)
 
 
-# Datensätze einlesen  ---- 
+# II. Datensätze einlesen 
 
 # CSV-Daten einlesen, mit read_csv2, 
 # - da Daten mit Semikolon getrennt sind
@@ -21,7 +32,10 @@ tweets <- read_csv2("example-tweets.csv")
 tweets <- read_delim("example-tweets.csv", delim=";")
 
 
-# Datensätze abspeichern ----
+# III. Datensätze abspeichern
+
+#Abspeichern eines Datensatzes
+write_csv(tweets, "tweets.csv")
 
 # Erstellen eines neuen Datensatzes 
 tweets_jeautor <- tweets %>%
@@ -30,12 +44,11 @@ tweets_jeautor <- tweets %>%
 # Abspeichern des neuen Datensatzes
 write_csv(tweets_jeautor, "tweets_jeautor.csv")
 
-
 # Datensatz für Excel kopieren
 write_excel_csv2(tweets_jeautor, "tweets_jeautor.csv")
 
 
-# Einlesen und Abspeichern für Excel ----
+# V. Datensatz einlesen und abbspeichern für Excel
 
 # Datensätze für Excel abspeichern und 
 # aus Excel einlesen 
@@ -43,7 +56,7 @@ write_xlsx(tweets_jeautor, "tweets_jeautor.xlsx")
 tweets_jeautor <- read_xlsx("tweets_jeautor.xlsx")
 
 
-# Einlesen und Abspeichern aus Unterverzeichnissen ----
+# VI. Einlesen und Abspeichern aus Unterverzeichnissen
 
 # Abspeichern in das Unterverzeichnis "daten" 
 # - Unterverzeichnis muss zuvor erstellt sein 
