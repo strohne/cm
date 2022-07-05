@@ -88,7 +88,7 @@ ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
   theme_bw(base_size = 12)
 
 
-ggsave("streudiagramm_farbig.png", dpi = 300, width = 5, height = 3)
+ggsave("streudiagramm_farbig.png", dpi = 300, width = 5, height = 4)
 
 
 #

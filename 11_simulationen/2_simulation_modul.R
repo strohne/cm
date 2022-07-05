@@ -1,5 +1,5 @@
 #
-# Modularized simulation of artificial world
+# Modularized simulation of artificial worlds
 #
 
 
