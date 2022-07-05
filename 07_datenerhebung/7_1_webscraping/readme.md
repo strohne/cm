@@ -25,6 +25,7 @@ Die Techniken entwickeln sich stets weiter. Wenn Sie Boilerplate Removal benöti
 - Trafilature: https://github.com/adbar/trafilatura
 - Newspaper: https://github.com/codelucas/newspaper
 - Apache Tika: https://tika.apache.org/
+- jusText: https://corpus.tools/wiki/Justext
 
 ## Eine Alternative zum Installieren des GeckoDriver
 
