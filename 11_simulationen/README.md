@@ -1,3 +1,5 @@
+<img src="chapter_11_zentangle.png" width="150" alt="Abbildung für Kapitel 11" align="right">
+
 # Computersimulationen
 
 ![The diffusion model](diffusion.gif) ![The trace plot](trace.gif)

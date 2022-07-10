@@ -1,3 +1,5 @@
+<img src="chapter_02_zentangle.png" width="150" alt="Abbildung für Kapitel 2" align="right">
+
 # Datenquellen 
 
 Automatisierte Datenerhebungen (Kapitel 2) sind ein wesentlicher Bestandteil von Computational Methods. Besonders dann, 

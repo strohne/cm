@@ -1,3 +1,5 @@
+<img src="chapter_03_zentangle.png" width="150" alt="Abbildung für Kapitel 3" align="right">
+
 # Datenformate
 
 Daten können in verschiedenen Formatierungen vorliegen (Kapitel 3). Je nachdem, ob es sich um Zahlen, Zeichenketten oder Wahrheitswerte handelt, 
