@@ -15,14 +15,20 @@
 #       - Streudiagramm als Bilddatei speichern
 
 
-# Vorab: Pakete zur Erstellung von Grafiken laden und Datensatz einlesen und aufbereiten
+#
+# Pakete laden ----
+#
 
-# Pakete laden
 library(tidyverse)
 library(ggplot2)
+library(ggmosaic)
 theme_set(theme_bw())
 
-# Daten einlesen
+
+#
+# Daten einlesen und aufbereiten ----
+#
+
 tweets <- read_csv2("example-tweets.csv")
 
 # Aufbereiten der Daten: Leere Werte durch 0 ersetzen
@@ -30,7 +36,7 @@ tweets <- tweets %>%
   mutate(retweets = replace_na(retweets, 0))
 
 #
-# 7. Grafiken erstellen 5.1.4] ---- 
+# 7. Grafiken erstellen [5.1.4] ---- 
 #
 
 # I. Erstellen eines Streudiagramms (Punktewolke)
@@ -61,7 +67,6 @@ tweets %>%
 
 
 # IV. Mosaic-Plot
-library(ggmosaic)
 tweets %>%
   ggplot() +
   geom_mosaic(aes(product(media, name)))
