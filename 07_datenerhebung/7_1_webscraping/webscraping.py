@@ -1,3 +1,7 @@
+#
+# Webscraping mit Python 
+#
+
 # Bibliotheken einbinden
 import os
 import requests
@@ -20,18 +24,19 @@ if response.status_code == 200:
     with open(dateiname, 'wb') as datei:
         datei.write(response.content)    
 
-# Datei öffnen und Html mit Beautifulsoup parsen
+# Datei öffnen und HTML-Datei mit Beautifulsoup parsen
 soup = BeautifulSoup(open(dateiname,encoding="utf-8"),'lxml')
 
 # Alle Tabellen auslesen und die vierte Tabelle rausziehen 
+# (in Python beginnt die Zählung mit 0)
 tables = soup.select('table')
 table_de = tables[3]
 
 # Alle Zeilen in der Tabelle finden
-# Die erste Zeile (mit den Spaltennamen) entfernen
 rows = table_de.select('tr')
-rows = rows[1:]
 
+# Die erste Zeile (mit den Spaltennamen) entfernen
+rows = rows[1:]
 
 # Die Ergebnisse werden in der results-Liste abgelegt
 results = []
@@ -73,5 +78,5 @@ display(results)
 pd.set_option('display.max_rows', 10)
 display(results)
 
-# DataFrame als CSV-Datei abpseichern
+# Dataframe als CSV-Datei abpseichern
 results.to_csv('results.csv',sep=";",index=False)
