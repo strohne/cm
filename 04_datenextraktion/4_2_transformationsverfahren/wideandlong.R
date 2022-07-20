@@ -1,20 +1,36 @@
+#
 # Umformen von Datensätzen zwischen dem Wide- und Long-Format
+#
 
-# Pakete laden
+#
+# Pakete laden und Daten einlesen ----
+#
+
 library(tidyverse)
 
 # Datei einlesen
 tweets <- read_csv2("example-tweets.csv")
 print(tweets)
 
-# Datensatz vom Wide- ins Long-Format umwandeln (=gather) 
+#
+# Daten umformen ----
+#
+
+
+# Datensatz mit pivot_longer vom Wide- in das Long-Format umwandeln 
 tweets.long <- tweets %>% 
-  gather(key="variable","value"="value",favorites,replies,retweets)
+  pivot_longer(
+    c(favorites,replies,retweets),
+    names_to="variable", values_to="value"
+  )
+
 
 print(tweets.long)
 
-# Datensatz vom Long- ins Wide-Format umwandeln (=spread) 
+# Datensatz mit pivot_wider zurück vom Long- in das Wide-Format umwandeln
 tweets.wide <- tweets.long %>% 
-  spread(key="variable",value="value",sep="_")
+  pivot_wider(
+    names_from="variable",values_from ="value"
+  )
 
 print(tweets.wide)

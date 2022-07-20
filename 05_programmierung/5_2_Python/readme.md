@@ -7,7 +7,7 @@ Python kann über eine Entwicklungsumgebung wie JupyterLab bedient werden. Über
 ## Übersicht über Skripte und Dateien
 - **python_grundlagen.py**: Einführung in grundlegende Befehle in Python (Kapitel 5.2.2)
 - **python_datenanalyse.py** : Einführung in die Datenanalyse in Python mit pandas (Kapitel 5.2.3)
-- **example_twitter.csv**: Übungsdatensatz für das Datenanalyse-Skript 
+- **example-tweets.csv**: Übungsdatensatz für das Datenanalyse-Skript 
 
 ## Tipp 
 Über den Befehl ```%run python_grundlagen``` könnten Sie außerdem direkt das gesamte vorbereitete Python-Skript ausführen. 
