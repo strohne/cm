@@ -3,7 +3,7 @@
 # Computersimulationen
 
 Mit Computersimulationen kann man künstliche Welten erzeugen. Dabei lassen sich gezielt einzelne Faktoren manipulieren,
-um unterschiedliche Szenarien zu vergleichen. Die Skripte enthalten ein einfaches Diffusionsmodelle, mit dem etwa
+um unterschiedliche Szenarien zu vergleichen. Die Skripte enthalten ein einfaches Diffusionsmodell, mit dem etwa
 die Verbreitung von Desinformationen oder politischen Meinungen simuliert werden kann.
 
 ![The diffusion model](diffusion.gif) ![The trace plot](trace.gif)
