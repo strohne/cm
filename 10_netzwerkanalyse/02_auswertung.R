@@ -9,8 +9,8 @@ library(tidygraph)
 library(ggraph)
 
 # Ggf. Knoten- und Kantenliste einlesen 
-nodes <- read_csv("videos.nodes.csv", na="None")
-edges <- read_csv("videos.edges.csv", na="None")
+nodes <- read_csv2("videos.nodes.csv", na="None")
+edges <- read_csv2("videos.edges.csv", na="None")
 
 # Graph-Objekt erstellen
 graph <- tbl_graph(nodes,edges)
