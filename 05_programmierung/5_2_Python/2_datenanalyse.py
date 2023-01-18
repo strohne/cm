@@ -70,9 +70,9 @@ type(x)
 #
 
 # Zeilenindex setzen (statt Zeilennummern)
-df = df.set_index(['name'])
+df = df.set_index(['from'])
 
-# Auswählen aller Zeilen mit dem Wert "theeduni" aus der indexierten Spalte "name"
+# Auswählen aller Zeilen mit dem Wert "theeduni" aus der indexierten Spalte "from"
 df.loc['theeduni']
 
 # Einschränken des Datensatzes auf Zeilen und Spalten
