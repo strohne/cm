@@ -18,7 +18,7 @@ tweets <- read_csv2("example-tweets.csv")
 
 # Beispiel: Auswahl von Zeilen durch filter() 
 # und Spalten durch select()
-auswahl <- filter(tweets, name =="unialdera")
+auswahl <- filter(tweets, from =="unialdera")
 auswahl <- select(auswahl, hashtags)
 
 # Beispiel: Aneinanderkettung von Funktionen mit der Pipe %>%
@@ -29,7 +29,7 @@ auswahl <- select(auswahl, hashtags)
 reactions <- tweets %>% 
   filter(media == "image") %>% 
   mutate(react = favorites + replies + retweets) %>%
-  select(name, react) %>%
+  select(from, react) %>%
   arrange(-react)
 
 # Beispiel: Datensätze mit fehlenden Werten aussortieren
@@ -44,7 +44,7 @@ tweets %>%
 tweets_long <- tweets %>%  
   pivot_longer(
     cols = c(favorites, replies, retweets),
-    names_to = "reactions",
+    names_to = "metric",
     values_to = "value"
   ) 
 
@@ -118,7 +118,7 @@ tweets %>%
 # Mittelwert je Gruppe für mehrere Variablen, 
 # sofern sie vorher ins Long-Format umgeformt wurden
 tweets_long %>% 
-  group_by(reactions) %>% 
+  group_by(metric) %>% 
   summarize(m = mean(value, na.rm = T)) %>% 
   ungroup()
 
