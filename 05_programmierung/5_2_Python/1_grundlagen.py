@@ -43,7 +43,7 @@ for x in eigenschaften:
 # Bibliothek für reguläre Ausdrücke einbinden 
 # Alle Vokale ersetzen
 import re 
-eigenschaft = re.sub("[aoeiöäü]","_","schön")
+eigenschaft = re.sub("[aoueiöäü]","_","schön")
 
 # Funktionen definieren
 def superduper(eigenschaft):

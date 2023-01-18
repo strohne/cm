@@ -35,7 +35,7 @@ tweets <- tweets %>%
 
 # I. Erstellen eines Streudiagramms (Punktewolke)
 # (geeignet für zwei metrische Variablen)
-ggplot(tweets, aes(x=favorites, y=retweets)) +
+ggplot(tweets, aes(x=retweets, y=favorites)) +
   geom_point()
 
 ggsave("streudiagramm.png", dpi = 300, width = 3, height = 3)
@@ -59,6 +59,9 @@ tweets %>%
   ggplot(aes(y = n, x = name)) +
   geom_col()
 
+ggsave("balkendiagramm.png", dpi = 300, width = 3, height = 3)
+
+
 
 # IV. Mosaic-Plot
 library(ggmosaic)
@@ -66,7 +69,8 @@ tweets %>%
   ggplot() +
   geom_mosaic(aes(product(media, name)))
 
-ggsave("mosaicplot.png", dpi = 300, width = 4, height = 4)
+
+ggsave("mosaicplot.png", dpi = 300, width = 3.5, height = 3)
 
 
 #

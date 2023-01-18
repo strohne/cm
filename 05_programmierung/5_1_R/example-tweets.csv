@@ -1,76 +1,76 @@
-id;name;from;favorites;replies;retweets;hashtags;media
-1;eaduenergy;Forschungslabor Eadu;0;0;;;text
-2;eaduenergy;Forschungslabor Eadu;9;0;8;"superlaser;turbolaser";text
-3;eaduenergy;Forschungslabor Eadu;6;0;;;image
-4;eaduenergy;Forschungslabor Eadu;5;0;;;link
-5;eaduenergy;Forschungslabor Eadu;3;1;1;;link
-6;eaduenergy;Forschungslabor Eadu;64;0;1;"sternzerstörer;werft";text
-7;eaduenergy;Forschungslabor Eadu;3;0;;todesstern;image
-8;eaduenergy;Forschungslabor Eadu;30;0;6;kyber;text
-9;eaduenergy;Forschungslabor Eadu;29;0;3;;text
-10;eaduenergy;Forschungslabor Eadu;7;0;;superlaser;text
-11;eaduenergy;Forschungslabor Eadu;8;0;1;;text
-12;unialdera;Archipelago-Universität;1;0;;;link
-13;unialdera;Archipelago-Universität;12;0;;"rebellion;prinzessin";image
-14;unialdera;Archipelago-Universität;6;0;1;;text
-15;unialdera;Archipelago-Universität;8;0;1;;link
-16;unialdera;Archipelago-Universität;11;0;1;flüchtlingskonferenz;image
-17;unialdera;Archipelago-Universität;5;3;;;text
-18;unialdera;Archipelago-Universität;5;1;;;text
-19;unialdera;Archipelago-Universität;12;0;2;;text
-20;unialdera;Archipelago-Universität;16;0;2;schnee;image
-21;unialdera;Archipelago-Universität;11;0;;;link
-22;unialdera;Archipelago-Universität;7;0;1;;link
-23;unialdera;Archipelago-Universität;12;0;1;"wolkenfälle;wasser;wasserfall";text
-24;unialdera;Archipelago-Universität;0;0;;;image
-25;unialdera;Archipelago-Universität;4;0;1;"koniferenwald;tierwelt";image
-26;unialdera;Archipelago-Universität;2;0;4;;link
-27;unialdera;Archipelago-Universität;2;0;1;;text
-28;unialdera;Archipelago-Universität;1;0;;;link
-29;unialdera;Archipelago-Universität;23;0;2;"toniray;weinbau";text
-30;unialdera;Archipelago-Universität;6;1;2;;text
-31;galakad;Galaktische Forschungsakademie;15;0;;;text
-32;galakad;Galaktische Forschungsakademie;5;0;;;image
-33;galakad;Galaktische Forschungsakademie;45;3;10;"dagobah;sumpfschnecke";image
-34;galakad;Galaktische Forschungsakademie;6;1;4;;link
-35;galakad;Galaktische Forschungsakademie;6;0;3;;text
-36;galakad;Galaktische Forschungsakademie;4;2;;;link
-37;galakad;Galaktische Forschungsakademie;4;0;;;text
-38;galakad;Galaktische Forschungsakademie;9;0;3;;link
-39;galakad;Galaktische Forschungsakademie;2;1;;;text
-40;galakad;Galaktische Forschungsakademie;9;0;3;;image
-41;galakad;Galaktische Forschungsakademie;20;1;6;"ambria;reptilien";link
-42;galakad;Galaktische Forschungsakademie;6;0;;;link
-43;galakad;Galaktische Forschungsakademie;9;0;2;;image
-44;galakad;Galaktische Forschungsakademie;8;0;1;;text
-45;galakad;Galaktische Forschungsakademie;3;0;;;image
-46;galakad;Galaktische Forschungsakademie;3;0;;;link
-47;galakad;Galaktische Forschungsakademie;6;0;;;image
-48;galakad;Galaktische Forschungsakademie;0;0;3;;image
-49;galakad;Galaktische Forschungsakademie;4;0;;;image
-50;galakad;Galaktische Forschungsakademie;6;0;;;image
-51;theeduni;Theed-Universität;2;0;;;text
-52;theeduni;Theed-Universität;4;0;1;;image
-53;theeduni;Theed-Universität;3;1;1;;image
-54;theeduni;Theed-Universität;4;0;2;;link
-55;theeduni;Theed-Universität;6;0;1;;image
-56;theeduni;Theed-Universität;7;1;2;;text
-57;theeduni;Theed-Universität;3;0;2;;image
-58;theeduni;Theed-Universität;8;0;2;;link
-59;theeduni;Theed-Universität;10;1;1;umwelt;image
-60;theeduni;Theed-Universität;5;0;;;text
-61;theeduni;Theed-Universität;3;1;;;link
-62;theeduni;Theed-Universität;0;0;;;text
-63;theeduni;Theed-Universität;5;1;;;text
-64;theeduni;Theed-Universität;1;0;1;;text
-65;theeduni;Theed-Universität;7;0;1;;image
-66;theeduni;Theed-Universität;4;0;6;"plasma;generator";text
-67;theeduni;Theed-Universität;2;0;;;image
-68;theeduni;Theed-Universität;1;0;;;image
-69;theeduni;Theed-Universität;11;0;4;hydrostatik;image
-70;theeduni;Theed-Universität;0;0;;;text
-71;theeduni;Theed-Universität;1;0;;;image
-72;theeduni;Theed-Universität;0;0;;;link
-73;theeduni;Theed-Universität;3;1;;;text
-74;theeduni;Theed-Universität;4;0;2;;link
-75;theeduni;Theed-Universität;0;0;;;text
+id;from;favorites;replies;retweets;hashtags;media
+1;eaduenergy;0;0;;;text
+2;eaduenergy;9;0;8;"superlaser;turbolaser";text
+3;eaduenergy;6;0;;;image
+4;eaduenergy;5;0;;;link
+5;eaduenergy;3;1;1;;link
+6;eaduenergy;64;0;1;"sternzerstörer;werft";text
+7;eaduenergy;3;0;;todesstern;image
+8;eaduenergy;30;0;6;kyber;text
+9;eaduenergy;29;0;3;;text
+10;eaduenergy;7;0;;superlaser;text
+11;eaduenergy;8;0;1;;text
+12;unialdera;1;0;;;link
+13;unialdera;12;0;;"rebellion;prinzessin";image
+14;unialdera;6;0;1;;text
+15;unialdera;8;0;1;;link
+16;unialdera;11;0;1;flüchtlingskonferenz;image
+17;unialdera;5;3;;;text
+18;unialdera;5;1;;;text
+19;unialdera;12;0;2;;text
+20;unialdera;16;0;2;schnee;image
+21;unialdera;11;0;;;link
+22;unialdera;7;0;1;;link
+23;unialdera;12;0;1;"wolkenfälle;wasser;wasserfall";text
+24;unialdera;0;0;;;image
+25;unialdera;4;0;1;"koniferenwald;tierwelt";image
+26;unialdera;2;0;4;;link
+27;unialdera;2;0;1;;text
+28;unialdera;1;0;;;link
+29;unialdera;23;0;2;"toniray;weinbau";text
+30;unialdera;6;1;2;;text
+31;galakad;15;0;;;text
+32;galakad;5;0;;;image
+33;galakad;45;3;10;"dagobah;sumpfschnecke";image
+34;galakad;6;1;4;;link
+35;galakad;6;0;3;;text
+36;galakad;4;2;;;link
+37;galakad;4;0;;;text
+38;galakad;9;0;3;;link
+39;galakad;2;1;;;text
+40;galakad;9;0;3;;image
+41;galakad;20;1;6;"ambria;reptilien";link
+42;galakad;6;0;;;link
+43;galakad;9;0;2;;image
+44;galakad;8;0;1;;text
+45;galakad;3;0;;;image
+46;galakad;3;0;;;link
+47;galakad;6;0;;;image
+48;galakad;0;0;3;;image
+49;galakad;4;0;;;image
+50;galakad;6;0;;;image
+51;theeduni;2;0;;;text
+52;theeduni;4;0;1;;image
+53;theeduni;3;1;1;;image
+54;theeduni;4;0;2;;link
+55;theeduni;6;0;1;;image
+56;theeduni;7;1;2;;text
+57;theeduni;3;0;2;;image
+58;theeduni;8;0;2;;link
+59;theeduni;10;1;1;umwelt;image
+60;theeduni;5;0;;;text
+61;theeduni;3;1;;;link
+62;theeduni;0;0;;;text
+63;theeduni;5;1;;;text
+64;theeduni;1;0;1;;text
+65;theeduni;7;0;1;;image
+66;theeduni;4;0;6;"plasma;generator";text
+67;theeduni;2;0;;;image
+68;theeduni;1;0;;;image
+69;theeduni;11;0;4;hydrostatik;image
+70;theeduni;0;0;;;text
+71;theeduni;1;0;;;image
+72;theeduni;0;0;;;link
+73;theeduni;3;1;;;text
+74;theeduni;4;0;2;;link
+75;theeduni;0;0;;;text
