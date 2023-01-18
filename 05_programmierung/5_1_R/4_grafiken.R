@@ -55,7 +55,7 @@ ggsave("streudiagramm.png", dpi = 300, width = 3, height = 3)
 
 # Boxplot, 
 # um ein metrisches Merkmal zwischen Gruppen zu vergleichen
-ggplot(tweets, aes(x = name, y = favorites)) +
+ggplot(tweets, aes(x = from, y = favorites)) +
   geom_boxplot()
 
 # Letzte Grafik abspeichern
@@ -67,9 +67,9 @@ ggsave("boxplot.png", dpi = 300, width = 3, height = 3)
 # -  mit count() wird die Anzahl der Fälle je Gruppe ausgezählt
 # - mit geom_col() wird daraus ein Säulendiagramm erstellt
 tweets %>%
-  count(name) %>%
+  count(from) %>%
 
-  ggplot(aes(x = name, y = n)) +
+  ggplot(aes(x = from, y = n)) +
   geom_col()
 
 ggsave("balkendiagramm.png", dpi = 300, width = 3, height = 3)
@@ -80,7 +80,7 @@ ggsave("balkendiagramm.png", dpi = 300, width = 3, height = 3)
 # um mehrere Kategorien miteinander zu vergleichen
 tweets %>%
   ggplot() +
-  geom_mosaic(aes(product(media, name)))
+  geom_mosaic(aes(product(media, from)))
 
 ggsave("mosaicplot.png", dpi = 300, width = 3.5, height = 3)
 
@@ -91,7 +91,7 @@ ggsave("mosaicplot.png", dpi = 300, width = 3.5, height = 3)
 #
 
 # Streudiagramms mit Farben und Legende
-ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = name)) +
+ggplot(tweets, aes(x = retweets + 1, y = favorites + 1, color = from)) +
   geom_point(position = "jitter") +
 
   # Logarithmieren
@@ -116,20 +116,20 @@ ggsave("streudiagramm_farbig.png", dpi = 300, width = 5, height = 4)
 tweets %>%
   
   # Datensatz vorbereiten:
-  # - alle Reaktionen in einer Spalte ("type") zusammenziehen
+  # - alle Reaktionen in einer Spalte "metric" zusammenziehen
   # - die Anzahl der Reaktionen ist anschließend in der Spalte "value" enthalten
   # - fehlende Werte durch "0" ersetzen
   
   pivot_longer(
     cols = c(favorites, replies, retweets),
-    names_to = "type",
+    names_to = "metric",
     values_to = "value"
   ) %>%
   
   mutate(value = replace_na(value, 0)) %>%
   
   # Grafik erstellen: Gestapeltes Balkendiagramm
-  ggplot(aes(x = name, y = value, fill = type)) +
+  ggplot(aes(x = from, y = value, fill = metric)) +
   geom_col(position = "stack") +
 
   # Beschriftungen hinzufügen
@@ -155,23 +155,23 @@ ggsave("saeulendiagramm_gestapelt.png", dpi = 300, width = 3.2, height = 4)
 tweets %>%
   
   # Datensatz vorbereiten
-  # - Alle Reaktionen in einer Spalte ("type") zusammenziehen
+  # - Alle Reaktionen in einer Spalte "metric" zusammenziehen
   # - die Anzahl der Reaktionen ist anschließend in der Spalte "value" enthalten
   # - fehlende Werte durch "0" ersetzen
   pivot_longer(
     cols = c(favorites, replies, retweets), 
-    names_to = "type",
+    names_to = "metric",
     values_to = "value"
   ) %>%
   mutate(value = replace_na(value, 0)) %>%
   
   # Grafik erstellen: Boxplot
-  ggplot(aes(x = type, y = value + 1, color = name)) +
+  ggplot(aes(x = metric, y = value + 1, color = from)) +
   geom_boxplot() +
 
   # Skala logarithmieren (Vergleich wird sichtbarer)
   scale_y_log10() +
-  facet_wrap(~name) +
+  facet_wrap(~from) +
 
   # Beschriftungen hinzufügen
   labs(y = "Anzahl + 1", x = "Reaktion") +
