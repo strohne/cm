@@ -8,7 +8,7 @@ Weitere 21% sprechen mehr als 2 Sprachen und lediglich 8,4% sprechen drei oder m
 So können wir Sätze beliebig kombinieren, stilistisch gegen die Regeln der Grammatik verstoßen oder auch mal neue Wörter entstehen lassen. 
 
 Teile aus unserer natürlichen Sprache können über reguläre Ausdrücke gefunden und extrahiert werden.
-Reguläre Ausdrücke wurden erstmals in den 1950er Jahren durch den Mathematikre Stephen Kleene eingeführt. 
+Reguläre Ausdrücke wurden erstmals in den 1950er Jahren durch den Mathematiker Stephen Kleene eingeführt. 
 Sie sind eine Form von formaler Sprache, die im Gegensatz zur natürlichen Sprache in ihrer Flexibilität stärker eingeschränkt ist. 
 Die grammatikalischen Regeln von regulären Ausdrücken folgen der Chompsky-Hierarchie. 
 Wenngleich sie dadurch weniger frei in ihrer Gestaltung ist, ist sie dadurch genau reproduzierbar und analysierbar.

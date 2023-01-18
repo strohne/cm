@@ -1,24 +1,24 @@
 #
-# Simulation of an artificial world
+# Simulation einer künstlichen Welt 
 #
 
 #
-# Packages ----
+# Packages laden ----
 #
 library(tidyverse)
 
 #
-# 1. Setup world ----
+# 1. Welt errichten ----
 #
 
-# Initialize global variables
+# Rahmenbedingungen der Welt festlegen 
 world_width <- 50
 world_height <- 50
 world_epochs <- 100
 world_agents <- 100
 
 
-# Create tibble and place agent into world
+# Tibble erstellen und Agenten in der Welt verteilen
 agents <- tibble(    
   no  = c(1:world_agents),    
   x   = sample(world_width, world_agents ,replace=T),
@@ -27,32 +27,31 @@ agents <- tibble(
   state = FALSE
 )
 
-# Set state of first agent to true
+# Status des ersten Agenten auf TRUE setzen 
 agents$state[1] <-  TRUE
 
-# Create tibble for history
+# Datframe für das Loggen der Epochen erstellen
 history <- data.frame()
 
-
 #
-# 2. Functions for the actions in each epoch ----
+# 2. Funktionen für die Aktionen in jeder Epoche ----
 #
 
-# Move agent
+# Agenten bewegen 
 agentsMove <- function(agents) {
   
-  # Rotate between -25 and +25 degrees
+  # Zufällig zwischen -25 und +25 Grad rotieren
   rotate <- sample(c(-25:25),world_agents,replace=T)
   
   agents$dir <- agents$dir + rotate
   agents$dir <- agents$dir %% 360
   
-  # Move horizontally
+  # Horizontal bewegen 
   dir_x = round(sin((agents$dir * pi) / 180))
   agents$x <- agents$x - dir_x
   agents$x <- (agents$x - 1) %% world_width + 1
   
-  # Move vertically
+  # Vertikal bewegen 
   dir_y = round(cos((agents$dir * pi) / 180))
   agents$y <- agents$y + dir_y
   agents$y <- (agents$y - 1) %% world_height + 1
@@ -60,7 +59,7 @@ agentsMove <- function(agents) {
   return (agents)
 }
 
-# Let agents chat
+# Agenten kommunizieren lassen
 agentsChat <- function(agents) {
   
   informants <- agents[agents$state == TRUE,]
@@ -74,7 +73,7 @@ agentsChat <- function(agents) {
 
 
 #
-# Start simulation: Iterate over epochs ---
+# Simulation starten: über die Epochen iterieren ----
 #
 
 history <- data.frame()
@@ -96,16 +95,16 @@ for (epoch in c(1:world_epochs)) {
 
 
 #
-# Analyze results ---- 
+# Ergebnisse analysieren ---- 
 #
 
-# Diffusion per epoch
+# Diffusion pro Epoche
 trace <- history %>% 
   group_by(epoch) %>% 
   summarise(diffusion = mean(state)) %>% 
   ungroup()
 
-# Trace plot with diffusion 
+# Traceplot 
 trace %>% 
   ggplot(aes(epoch, diffusion)) +
   geom_line(color="maroon")

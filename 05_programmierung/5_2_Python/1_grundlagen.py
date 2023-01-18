@@ -1,3 +1,7 @@
+#
+# Umgang mit Werten und Listen ----
+#
+
 # Text ausgeben
 print ("Hello world!")
 
@@ -11,12 +15,23 @@ meinname = "Eliza"
 print("Mein Name ist " + meinname)
 
 # Listen erstellen
-eigenschaften = ["schön","reich","intelligent"]
+eigenschaften = ["schön", "reich", "intelligent"]
 
 # Das erste Element einer Liste ausgeben
 print(eigenschaften[0])
 
-# For-in-loop: alle Elemente einer Liste abarbeiten
+# Bibliothek für reguläre Ausdrücke einbinden 
+# Alle Vokale ersetzen
+import re 
+eigenschaft = re.sub("[aoueiöäü]","_","schön")
+
+
+#
+# Kontrollstrukturen ----
+#
+
+# For-in-Schleife: Alle Elemente einer Liste abarbeiten
+meinname = "Eliza"
 for eigenschaft in eigenschaften:
     satz = meinname + " ist " + eigenschaft
     print (satz)
@@ -27,7 +42,7 @@ saetze = ["Eliza ist " + x for x in eigenschaften]
 # If-Bedingungen
 for x in eigenschaften:
     if x != "schön":
-    	print ("Eliza ist " + x)
+        print ("Eliza ist " + x)
 
 
 # If-elif-else-Bedingungen
@@ -40,23 +55,23 @@ for x in eigenschaften:
         print ("Eliza ist " + x)
 
 
-# Bibliothek für reguläre Ausdrücke einbinden 
-# Alle Vokale ersetzen
-import re 
-eigenschaft = re.sub("[aoueiöäü]","_","schön")
+#
+# Funktionen ----
+#
 
-# Funktionen definieren
+# Funktion definieren
 def superduper(eigenschaft):
     x = "sehr " + eigenschaft
     return (x)
 
-# Funktionen verwenden
+# Funktion verwenden
 for x in eigenschaften:
     print("Eliza ist " + superduper(x))
 
 for x in eigenschaften:
     print("Eliza ist " + superduper(eigenschaft=x))
 
+    
 # Fehler abfangen über try-except-finally
 eigenschaften = ["schön", "reich", 0, "intelligent"]
 for x in eigenschaften:
@@ -77,14 +92,18 @@ for x in eigenschaften:
     
     print(x)
 
+#
+# Dictionaries und Klassen
+#
     
 # Dictionary definieren
+meinname = "Eliza"
 ich = {'name': meinname, 'eigenschaft': 'verwirrt'}
 
 # Dictionary verwenden
 print(ich['name'] + " ist " + ich['eigenschaft'])
 
-# Klassen
+# Klasse definieren
 class Jedi(object):
     name = None
     staerke = 0
@@ -93,20 +112,22 @@ class Jedi(object):
         self.name = name
         self.staerke = 10
 
-    def vorstellen(self):
+    def talk(self):
         print (self.name + "mein Name ist.")
         
         if self.staerke < 5:
             print("Mich schwach ich fühle.")
 
-
+# Klasse instanziieren
 j1 = Jedi("Yoda")
 j2 = Jedi("Rey")
 
+# Klasseneigenschaft verändern
 j1.staerke = 2
 
-j1.vorstellen()
-j2.vorstellen()
+# Klassenmethoden nutzen
+j1.talk()
+j2.talk()
 
-# String-Objekte
+# Auch Zeichenketten sind Objekte mit Methoden
 "Yoda".lower().replace("y","J").capitalize()

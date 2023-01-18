@@ -1,3 +1,5 @@
+<img src="chapter_09_zentangle.png" width="150" alt="Abbildung für Kapitel 9" align="right">
+
 # Textanalyse
 
 Die automatisierte Textanalyse hilft dabei, Sprache formal zu analysieren. Dabei gibt es unterschiedliche Techniken:

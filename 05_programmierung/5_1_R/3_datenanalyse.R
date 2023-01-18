@@ -1,140 +1,164 @@
 #
-# Einführung in R
+# Datenanalyse mit R
 #
 
-# - 6. Datenanalyse: Funktionen für die Datenanalyse [im Buch: Kapitel 5.1.4]
-#       - Vorab: Pakete für tidyverse-Funktionen und skimr-Funktionen laden und Datensatz einlesen
-#       - Lineares Modell (Regression)
-#       - Datenanalyse mit Skim
-#       - Datenanalyse mit Tidyverse
-#       - Zusätzliche Befehle
-# - 7. Grafiken: Grafiken erstellen, gestalten und speichern [im Buch: Kapitel 5.1.5]  [im Buch: Kapitel 5.1.5]
-#       - Basisfunktionen, die nicht im Manuskript stehen
 
-
-# Vorab
-# Pakete für tidyverse-Funktionen laden
+#
+# Pakete laden ----
+#
 library(tidyverse)
 library(skimr)
 
-# Datensatz einlesen
-tweets<- read_csv2("example-tweets.csv")
-
-## Aufruf der Hilfe
-?table
-
 #
-# 6. Datenanalyse: Funktionen für die Datenanalyse [Kapitel 5.1.4] ---- 
+# Datensatz einlesen und aufbereiten ----
 #
 
-# I. Lineares Modell (Regression) mit lm(): 
-# - erster Parameter: abhängige Variable, 
-#   gefolgt von einer Tilde ~ und den unabhängigen Variablen 
-# - data-Parameter nimmt den Datensatz entgegen 
-# - Ergebnisse in Objekt abspeichern (hier: fit)
-# - über summary(fit) die Kennwerte der Regressionsanalyse anzeigen 
-fit <- lm(favorites ~ retweets, data=tweets)
-summary(fit)
+tweets <- read_csv2("example-tweets.csv")
 
 
-# II. Datenanalyse mit Skim
-skim(tweets)
-
-# III. Datenanalyse mit Tidyverse
-
-# Auswahl durch Filter- und Select-Bedingung mit Pipe
-# Filter= Auswählen von Zeilen
-# Select= Auswählen von Spalten
-auswahl <- tweets %>% 
-  filter(name == "unialdera") %>% 
-  select(hashtags)
-
-# Auswahl durch Filter- und Select-Bedingung ohne Pipe
+# Beispiel: Auswahl von Zeilen durch filter() 
+# und Spalten durch select()
 auswahl <- filter(tweets, name =="unialdera")
 auswahl <- select(auswahl, hashtags)
 
-# Split-Apply-Combine:
-# Je Autor:in die duchschnittliche Anzahl 
-# der Favorites über alle Tweets hinweg bestimmen.
-favorites <- tweets %>% 
-  group_by(from) %>%  
-  summarize(favs=mean(favorites)) %>% 
-  ungroup()
+# Beispiel: Aneinanderkettung von Funktionen mit der Pipe %>%
+# - filter: Zeilen auswählen
+# - mutate: Spalten erstellen
+# - select: Spalten auswählen
+# - arrange: Sortieren nach einer ausgewählten Spalte
+reactions <- tweets %>% 
+  filter(media == "image") %>% 
+  mutate(react = favorites + replies + retweets) %>%
+  select(name, react) %>%
+  arrange(-react)
+
+# Beispiel: Datensätze mit fehlenden Werten aussortieren
+tweets %>% 
+  filter(!is.na(retweets))
+
+# Beispiel: Fehlende Werte (NA) durch einen Wert (0) ersetzen
+tweets %>% 
+  mutate(retweets = replace_na(retweets, 0))
+
+# Beispiel: In das Long-Format umwandeln
+tweets_long <- tweets %>%  
+  pivot_longer(
+    cols = c(favorites, replies, retweets),
+    names_to = "reactions",
+    values_to = "value"
+  ) 
+
+
+#
+# Deskriptive Datenenanalyse: Auszählen von Kategorien ----
+#
+
 
 # Zählen der Zeilen eines Datensatzes
 tweets %>%
   count()
 
-# Zählen der Zeilen nach Gruppen 
-# - die Gruppe wird in der Funktion count angegeben
+# Zählen der Zeilen je Gruppe
+# - die Gruppe wird als Parameter in der count()-Funktion angegeben
 # - hier: wie viele Tweets gibt es je Verfasser:in?
 tweets %>%  
   count(from)
 
-# Alternative zu Count
-tweets %>%
-  group_by(from) %>%
-  summarize(n=n()) %>%
-  ungroup()
 
-# Umwandeln vom Wide- ins Long-Format
-# - Alle Reaktionen in eine Spalte "metric" zusammenziehen,
-# - die Anzahl der Reaktionen ist in der neu erstellen Spalte "value" enthalten
-tweets_long <- tweets %>%  
-  pivot_longer(
-    c(favorites, replies, retweets),
-    names_to="metric",
-    values_to="value"
-  ) 
-
-# IV. Zusätzliche Befehle, die im Manuskript nicht stehen, aber für das Verständnis nützlich sind
-
-# Sortieren der Reihenfolge der Zeilen 
-# mithilfe von arrange
-# Über das "-" vor der Variable 
-# kann absteigend sortiert werden
+# Zählen der Zeilen je Gruppe
+# ...mit dem gleichen Ergebnis wie count(from)
 tweets %>% 
-  arrange(-favorites)
-
-# Erstellen und Überschreiben von Spalten mit mutate
-# Zunächst: Überschreibend der Spalte retweets, indem 
-# alle NAs mit 0en ersetzt werden 
-# Anschließend: Erstellen der Spalte "reactions", 
-# in der die Werte aus favorites, replies und retweets
-# zusammengefasst werden.
-tweets <- tweets %>%  
-  mutate(retweets = replace_na(retweets, 0)) %>% 
-  mutate(reactions = favorites + replies + retweets)
-
-## Split-Apply-Combine:
-# Je Autor:in die duchschnittliche Anzahl 
-# der Favorites über alle Tweets hinweg bestimmen.
-favorites <- tweets %>% 
   group_by(from) %>%  
-  summarize(favs=mean(favorites)) %>% 
+  summarize(n=n()) %>% 
   ungroup()
 
+# Zählen der Zeilen je Gruppe
+# ...mit dem gleichen Ergebnis wie count(from)
+# table() ist eine R-Basisfunktion
+# und eine Alternative zu count()
+table(tweets$from)
+
+# Mehrere Gruppierungsvariablen
+tweets %>% 
+  count(from, media)
+
+# Mit pivot_wider eine Kreuztabelle erstellen
+tweets %>% 
+  count(from, media) %>%
+  
+  pivot_wider(
+    names_from=media,
+    values_from=n
+  )
+
+
+
 #
-# 7. Grafiken erstellen: Grafiken erstellen, gestalten und speichern 5.1.5] ---- 
+# Deskriptive Datenenanalyse: Metrische Variablen ----
 #
 
-# I. Basifunktionen zur Datenanalyse
 
-# Auszählen von Häufigkeiten: 
-# Wie viel hat wer getweetet?
-table(tweets$name)
+# Mittelwert
+mean(tweets$favorites)
 
-# Verteilung von Häufigkeiten:
-summary(tweets$retweets)
+# Bei fehlenden Werten wird NA ausgegeben...
+mean(tweets$retweets)
 
-# Ausgeben von Grafiken: 
-# Streudiagramm, in dem Favorites und Retweets abgetragen sind
-plot(tweets$favorites,tweets$retweets)
+# ...wenn diese nicht mit dem Parameter na.rm=T ausgefiltert werden
+mean(tweets$retweets, na.rm=T)
 
-# Ausgeben von Boxplots: 
-# Verteilung der Retweets
-boxplot(tweets$retweets)
 
-# Ausgeben der Fünf-Punkte-Zusammenfassung :
-# Verteilung der Favorites
-summary(tweets$favorites)
+# Mittelwert je Gruppe
+tweets %>% 
+  group_by(from) %>%
+  summarize(favs = mean(favorites)) %>% 
+  ungroup()
+
+
+# Mittelwert je Gruppe für mehrere Variablen, 
+# sofern sie vorher ins Long-Format umgeformt wurden
+tweets_long %>% 
+  group_by(reactions) %>% 
+  summarize(m = mean(value, na.rm =T)) %>% 
+  ungroup()
+
+# Alle Variablen auf einmal zusammenfassen
+skim(tweets)
+
+
+# Mittelwerte und weitere Verteilungsparameter je Gruppe
+tweets %>%
+  group_by(media) %>%
+  skim(favorites, replies, retweets) %>%
+  ungroup() 
+
+# Verteilung von Kennwerten
+# summary() ist eine R-Basisfunktion
+# und eine Alternative zu skim()
+summary(tweets$replies)
+
+
+#
+# Zusammenhänge zwischen metrischen Variablen ----
+#
+
+
+# Korrelation
+cor(tweets$favorites, tweets$replies)
+
+# Korrelation mit Signifikanztest
+cor.test(tweets$favorites, tweets$replies)
+
+
+# Regression: lineares Modell mit lm().
+#
+# Der erste Parameter enthält eine Modellformel mit 
+# der abhängige Variable vor und unabhängigen Variablen nach der Tilde.
+# Im data-Parameter wird der Datensatz angegeben.
+# 
+# Wenn das Ergebnis in einem Objekt abgelegt wird (hier: fit),
+# können die wichtigsten Kennwerte mit summary() ausgegeben werden
+fit <- lm(favorites ~ retweets, data=tweets)
+summary(fit)
+
+

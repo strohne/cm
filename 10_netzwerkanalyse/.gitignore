@@ -1,2 +1,3 @@
 *.csv
 *.png
+!chapter_10_zentangle.png

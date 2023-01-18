@@ -38,7 +38,7 @@ nodes <- videos %>%
 
 
 # Knoten- und Kantenliste abspeichern 
-write_csv(edges,"videos.edges.csv",na = "")
-write_csv(nodes,"videos.nodes.csv",na = "")
+write_csv2(edges,"videos.edges.csv",na = "")
+write_csv2(nodes,"videos.nodes.csv",na = "")
 
 

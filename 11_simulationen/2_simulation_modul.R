@@ -1,7 +1,6 @@
 #
-# Modularized simulation of artificial world
+# Modularisiertes Skript zur Simulation künstlicher Welten
 #
-
 
 #
 # Packages ----
@@ -14,12 +13,10 @@ theme_set(theme_bw())
 
 
 #
-# 1. Simulation functions ----
+# 1. Simulationsfunktionen ----
 #
 
-
-
-# Create dataset with agents
+# Datensatz mit Agenten erstellen 
 agentsSpawn <- function(agents_count) {
   agents <- tibble(
     
@@ -35,21 +32,21 @@ agentsSpawn <- function(agents_count) {
 }
 
 
-# Move agents
+# Agenten bewegen 
 agentsMove <- function(agents) {
   
-  # Rotate between -25 and +25 degrees
+  # Zufällig zwischen -25 und +25 Grad rotieren
   rotate <- sample(c(-25:25),nrow(agents), replace=T)
   
   agents$dir <- agents$dir + rotate
   agents$dir <- agents$dir %% 360
   
-  # Move horizontally
+  # Horizontal bewegen 
   dir_x = round(sin(deg2rad(agents$dir)))
   agents$x <-  agents$x - dir_x
   agents$x <- (agents$x - 1) %% world_width + 1
   
-  # Move vertically
+  # Vertikal bewegen 
   dir_y = round(cos(deg2rad(agents$dir)))
   agents$y <-  agents$y + dir_y
   agents$y <- (agents$y - 1) %% world_height + 1
@@ -57,7 +54,7 @@ agentsMove <- function(agents) {
   return (agents)
 }
 
-# Disseminate information
+# Informationen verbreiten
 agentsChat <- function(agents) {
   
   informants <- agents[agents$state == TRUE,]
@@ -67,7 +64,7 @@ agentsChat <- function(agents) {
 }
 
 
-# Log the current state
+# Protokollieren des aktuellen Zustands
 worldLog <- function(history, agents, epoch) {
   
   agents$epoch <- epoch
@@ -77,13 +74,13 @@ worldLog <- function(history, agents, epoch) {
 } 
 
 
-# Calculate diffusion reate
+# Diffusionsrate berechnen 
 worldStats <- function(agents) {
   diffusion <- mean(agents$state)
   return (diffusion)
 }
 
-# Plot agents
+# Grafik erstellen 
 worldPlot <- function(agents) {
   
   pl <- agents %>% 
@@ -102,7 +99,7 @@ worldPlot <- function(agents) {
   return(pl)
 }
 
-# Plot the diffusion rate over time
+# Traceplot für die Diffusionsrate erstellen 
 historyTracePlot <- function(history) {
   
   trace <- history %>% 
@@ -136,7 +133,7 @@ historyTraceAnimate <- function(history, secs) {
 }
 
 
-# Create an animation of the world
+# Animation der Welt erstellen 
 historyWorldAnimate <- function(history, secs) {
   
   pl <- history %>% 
@@ -161,18 +158,17 @@ historyWorldAnimate <- function(history, secs) {
 }
 
 
-# Helper function to convert degree to radians
+# Hilfsfunktion zur Umrechnung von Grad in Bogenmaß
 deg2rad <- function(deg) {
   return ((deg * pi) / 180)
 }
 
 
-
 #
-# 2. Create a world ----
+# 2. Welt erstellen  ----
 #
 
-# Initialize global variables
+# Rahmenbedingungen festlegen 
 world_width <- 50
 world_height <- 50
 world_epochs <- 100
@@ -180,19 +176,19 @@ world_agents <- 100
 
 history <- data.frame()
 
-# Initialize agents 
+# Agenten erzeugen 
 set.seed(1852)
 agents <- agentsSpawn(world_agents)
 agents$state[1] <-  TRUE
 
 
-# Starting conditions
+# Startbedingungen ausgeben
 worldStats(agents)
 worldPlot(agents)
 
 
 #
-# 3. Move world ----
+# 3. Welt ablaufen lassen ----
 #
 
 for (epoch in c(1:world_epochs)) {
@@ -209,10 +205,10 @@ for (epoch in c(1:world_epochs)) {
 }
 
 #
-# 4. Analyze world ----
+# 4. Welt analysieren ----
 #
 
-# Last state
+# Letzter Zustand
 worldStats(agents)
 worldPlot(agents)
 
@@ -223,7 +219,6 @@ historyTraceAnimate(history,10)
 anim_save("trace.gif")
 
 
-# Epoch animations
+# Animation über die Epochen
 historyWorldAnimate(history,10)
 anim_save("diffusion.gif")
-

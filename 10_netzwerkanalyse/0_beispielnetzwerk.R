@@ -37,7 +37,9 @@ graph <- graph %>%
 
 print(graph)
 
-# Visualisierung: 
+#
+# Visualisierung ----
+#
 
 # 1. Simulation physikalischer Kräfte
 ggraph(graph, layout='stress') + 
@@ -49,7 +51,7 @@ ggraph(graph, layout='stress') +
 
 ggsave("forcedirected.png", dpi=300)
 
-# 2. Systematische Darstellung
+# 2. Lineares Layout
 ggraph(graph, layout = 'linear') + 
   geom_edge_arc() +
   geom_node_point(aes(color=type), size=8) +

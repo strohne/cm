@@ -3,10 +3,11 @@
 #
 
 
-# Packete laden  ----
+# Pakete laden  ----
 
 # Package für die Anmeldung bei der Google Cloud Console
 library(googleAuthR)
+
 # Package für die Bilderkennung über die API
 library(googleCloudVisionR)
 
