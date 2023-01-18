@@ -119,7 +119,7 @@ tweets %>%
 # sofern sie vorher ins Long-Format umgeformt wurden
 tweets_long %>% 
   group_by(reactions) %>% 
-  summarize(m = mean(value, na.rm =T)) %>% 
+  summarize(m = mean(value, na.rm = T)) %>% 
   ungroup()
 
 # Alle Variablen auf einmal zusammenfassen
