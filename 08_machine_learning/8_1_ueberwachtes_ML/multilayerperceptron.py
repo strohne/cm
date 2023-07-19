@@ -6,6 +6,7 @@
 #%% Bibliotheken
 
 import os
+import random
 
 import numpy as np
 import pandas as pd
@@ -89,7 +90,7 @@ mlp.fit(X_train, y_train)
 #%% Loss curve auf allen Daten: y=Loss, x=Epoch. Sollte gegen 0 gehen.
 
 # - Grafik erstellen durch plot()
-# - Achsenbeschriftung hinzufügen durch .xlavel sowie .ylabel
+# - Achsenbeschriftung hinzufügen durch .xlabel sowie .ylabel
 
 plt.plot(mlp.loss_curve_)
 plt.xlabel("epoch")
@@ -120,7 +121,7 @@ print(report)
 
 #%% Validierung des Modells nach abgeschlossenem Training
 
-# siehe vorherigen Codeblock: X_train durch X_val ausgetauscht
+# Siehe vorherigen Codeblock: X_train durch X_val ausgetauscht,
 # um zu sehen, ob das Modell auch für neue Daten geeignet ist
 
 # y vorhersagen
@@ -135,30 +136,6 @@ report = classification_report(y_val, y_pred)
 print(report)
 
 
-#%% # Weitere Bilder klassifizieren
-
-# - Ordner "eigenes_foto" erstellen und dort ein eigenes Bild ablegen
-# - rows und cols gegebenfalls anpassen: Nur so viele Kacheln angeben, wie eigene Bilder vorhanden
-
-workingdir = os.getcwd()
-X_new = load_images(workingdir + '/eigenes_foto/')
-X_new = np.asarray(X_new)
-
-y_new = mlp.predict(X_new)
-print(y_new)
-
-
-
-#%%  Modell abspeichern und neu laden
-
-# zusätzlich benötigte Bibliothek einlesen
-from joblib import dump, load
-
-# Modell abspeichern
-dump(mlp,'mlp.joblib')
-
-# Modell laden
-mlp = load('mlp.joblib')
 
 #%% Visualisierung von Einzelfällen
 
@@ -186,4 +163,30 @@ def visualize_pred(X, y, ncol=5, nrow=5):
     plt.show()
 
 # Beispielaufruf der Funktion
-visualize_pred(X_train, y_pred)
+visualize_pred(X_val, y_pred)
+
+
+#%% # Weitere Bilder klassifizieren
+
+# - Ordner "eigenes_foto" erstellen und dort ein eigenes Bild ablegen
+# - rows und cols gegebenfalls anpassen: Nur so viele Kacheln angeben, wie eigene Bilder vorhanden
+
+workingdir = os.getcwd()
+X_new = load_images(workingdir + '/eigenes_foto/')
+X_new = np.asarray(X_new)
+
+y_new = mlp.predict(X_new)
+print(y_new)
+
+
+
+#%%  Modell abspeichern und neu laden
+
+# zusätzlich benötigte Bibliothek einlesen
+from joblib import dump, load
+
+# Modell abspeichern
+dump(mlp,'mlp.joblib')
+
+# Modell laden
+mlp = load('mlp.joblib')
