@@ -21,14 +21,14 @@ world_agents <- 100
 # Tibble erstellen und Agenten in der Welt verteilen
 agents <- tibble(    
   no  = c(1:world_agents),    
-  x   = sample(world_width, world_agents ,replace=T),
-  y   = sample(world_height, world_agents, replace=T),
-  dir = sample(360, world_agents,replace=T) - 1,
+  x   = sample(world_width, world_agents, replace = T),
+  y   = sample(world_height, world_agents, replace = T),
+  dir = sample(360, world_agents, replace = T) - 1,
   state = FALSE
 )
 
 # Status des ersten Agenten auf TRUE setzen 
-agents$state[1] <-  TRUE
+agents$state[1] <- TRUE
 
 # Datframe für das Loggen der Epochen erstellen
 history <- data.frame()
@@ -41,7 +41,7 @@ history <- data.frame()
 agentsMove <- function(agents) {
   
   # Zufällig zwischen -25 und +25 Grad rotieren
-  rotate <- sample(c(-25:25),world_agents,replace=T)
+  rotate <- sample(c(-25 : 25), world_agents, replace = T)
   
   agents$dir <- agents$dir + rotate
   agents$dir <- agents$dir %% 360
@@ -78,7 +78,7 @@ agentsChat <- function(agents) {
 
 history <- data.frame()
 
-for (epoch in c(1:world_epochs)) {
+for (epoch in c(1 : world_epochs)) {
   
   print(epoch)  
   
@@ -107,7 +107,6 @@ trace <- history %>%
 # Traceplot 
 trace %>% 
   ggplot(aes(epoch, diffusion)) +
-  geom_line(color="maroon")
-
+  geom_line(color = "maroon")
 
 

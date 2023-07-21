@@ -2,8 +2,6 @@
 # Beispiele zur Aufbereitung und Analyse von Texten
 #
 
-
-
 #
 # Packages laden ----
 #
@@ -22,7 +20,7 @@ library(ggwordcloud)
 #
 
 # Dateien aus dem Ordner korpus laden
-texte <- readtext("korpus",encoding="UTF-8") 
+texte <- readtext("korpus", encoding = "UTF-8") 
 
 
 #
@@ -30,32 +28,29 @@ texte <- readtext("korpus",encoding="UTF-8")
 #
 
 # Tokenisieren
-woerter <- unnest_tokens(texte,wort,text,to_lower = F)
+woerter <- unnest_tokens(texte, wort, text, to_lower = F)
 
 # In Kleinschreibung umwandeln
 woerter <- woerter %>% 
-  mutate(wort =  str_to_lower(wort,locale = "de"))
-
+  mutate(wort = str_to_lower(wort, locale = "de"))
 
 # Nur Wörter ohne Sonderzeichen behalten
 # (=nur die erlaubten Zeichen sind erlaubt)
 woerter <- woerter %>% 
   filter(str_detect(wort, "^[a-zäüöß]+$"))
 
-
 # Stoppwörter im Package stopwords anzeigen
 # und in einem Tibble ablegen
 stopwords("de")
-stoppwoerter <- tibble(wort=stopwords("de"))
+stoppwoerter <- tibble(wort = stopwords("de"))
 
 # Stoppwörter aus dem Korpus entfernen
 woerter <- woerter %>% 
-  anti_join(stoppwoerter,by="wort")
-
+  anti_join(stoppwoerter, by = "wort")
 
 # Stemming mit dem Package SnowballC
 woerter <- woerter %>% 
-  mutate(stem =  wordStem(wort,language = "de"))
+  mutate(stem =  wordStem(wort, language = "de"))
 
 #
 # Wörter zählen ----
@@ -66,18 +61,16 @@ woerter %>%
   count(wort, sort = T) %>% 
   head(10)
 
-
 # Abspeichern der 50 häufigsten Wörter in einem neuen Tibble
 topterms <- woerter %>% 
   count(wort, sort = T) %>% 
   slice_head(n = 50)
 
-
 # Topterms in einer Wordcloud visualiseren
 topterms %>% 
   
   # Erstellen der Wordcloud 
-  ggplot(aes(label = wort, size=n, color=n)) +
+  ggplot(aes(label = wort, size = n, color = n)) +
   geom_text_wordcloud() +
   
   # Formatieren der Wordcloud
@@ -85,12 +78,11 @@ topterms %>%
   scale_size_area(max_size = 15) 
 
 # Abspeichern der Wordcloud
-ggsave("wordcloud.png",units="cm",width=20,height=10,dpi = 300)
-
+ggsave("wordcloud.png", units = "cm", width = 20, height = 10, dpi = 300)
 
 # Kookkurrenz im gleichen Text auszählen (package widyr)
 kookkurrenz <- woerter %>% 
-  pairwise_count(wort,doc_id) 
+  pairwise_count(wort, doc_id) 
 
   
 #
@@ -105,8 +97,8 @@ kookkurrenz <- woerter %>%
 #      umso höher, umso spezifischer ist das Wort für das Dokument    
 
 tfidf <- woerter %>% 
-  count(wort,doc_id) %>%
-  bind_tf_idf(wort,doc_id,n) 
+  count(wort, doc_id) %>%
+  bind_tf_idf(wort, doc_id, n) 
 
 
 #
@@ -114,32 +106,30 @@ tfidf <- woerter %>%
 #
 
 pmi <- woerter %>% 
-  pairwise_count(wort,doc_id) %>% 
+  pairwise_count(wort, doc_id) %>% 
   
   # Auftretenswahrscheinlichkeit der Kombination
   mutate(p = n / sum(n)) %>%
   
   # Auftretenswahrscheinlichkeit für Wort 1
   group_by(item1) %>% 
-  mutate(n1=sum(n)) %>% 
+  mutate(n1 = sum(n)) %>% 
   ungroup() %>% 
-  mutate(p1=n1/sum(n)) %>% 
+  mutate(p1 = n1 / sum(n)) %>% 
   
   # Auftretenswahrscheinlichkeit für Wort 2
   group_by(item2) %>% 
-  mutate(n2=sum(n)) %>% 
+  mutate(n2 = sum(n)) %>% 
   ungroup() %>% 
-  mutate(p2=n2/sum(n)) %>% 
+  mutate(p2 = n2 / sum(n)) %>% 
   
   # Berechnung von pmi 
   mutate(pmi = log(p / (p1 * p2)))
 
-    
 
 #
 # N-Gramme und Skip-Gramme analysieren ----
 #
-
 
 # Bigramme tokenisieren 
 bigrams <- texte %>% 
@@ -183,14 +173,14 @@ bigrams %>%
 # Tokenisieren
 # (Wörter mit einem Abstand zwischen 2 und 5 Wörtern)
 skipgrams <- texte %>% 
-  unnest_tokens(skipgram,text,token="skip_ngrams",n=2,n_min=2,k=5)
+  unnest_tokens(skipgram, text, token = "skip_ngrams", n = 2, n_min = 2, k = 5)
 
 # Kookkurrenz zählen (pairwise_count)
 skipgrams  <- skipgrams %>%
   mutate(no = row_number()) %>% 
   unnest_tokens(wort, skipgram) %>% 
   anti_join(stoppwoerter) %>% 
-  pairwise_count(wort, no, diag = F, upper=T,sort = TRUE)
+  pairwise_count(wort, no, diag = F, upper = T, sort = T)
 
 # Pointwise Mutial Information berechnen (PMI)
 skipgrams <- skipgrams %>%
@@ -200,22 +190,18 @@ skipgrams <- skipgrams %>%
   
   # Auftretenswahrscheinlichkeit für Wort 1
   group_by(item1) %>% 
-  mutate(n1=sum(n)) %>% 
+  mutate(n1 = sum(n)) %>% 
   ungroup() %>% 
-  mutate(p1=n1/sum(n)) %>% 
+  mutate(p1 = n1 / sum(n)) %>% 
   
   # Auftretenswahrscheinlichkeit für Wort 2
   group_by(item2) %>% 
-  mutate(n2=sum(n)) %>% 
+  mutate(n2 = sum(n)) %>% 
   ungroup() %>% 
-  mutate(p2=n2/sum(n)) %>% 
+  mutate(p2 = n2 / sum(n)) %>% 
   
   # Berechnung von pmi
   mutate(pmi = log(p / (p1 * p2)))
-
-
-
-
 
 
 #
@@ -229,7 +215,7 @@ skipgrams <- skipgrams %>%
 # k = Vektor mit Ereignisanzahlen
 entropy <- function(k) {
   N = sum(k)
-  return (sum(k/N * log(k/N + (k==0))))
+  return (sum(k / N * log(k / N + (k == 0))))
 }
 
 # Wesentliche Grundlage der Berechnung ist für immer zwei Wörter:
@@ -240,16 +226,16 @@ entropy <- function(k) {
 llr <- woerter %>% 
 
   # Anzahl der Kombination = n
-  pairwise_count(wort,doc_id) %>% 
+  pairwise_count(wort, doc_id) %>% 
   
   # Anzahl für Wort 1 = n1
   group_by(item1) %>% 
-  mutate(n1=sum(n)) %>% 
+  mutate(n1 = sum(n)) %>% 
   ungroup() %>% 
   
   # Anzahl  für Wort 2 = n2
   group_by(item2) %>% 
-  mutate(n2=sum(n)) %>% 
+  mutate(n2 = sum(n)) %>% 
   ungroup() %>% 
   
   # Anzahl Wort 1 ohne Wort 2 = n1not2
@@ -262,8 +248,9 @@ llr <- woerter %>%
   mutate(not12 = sum(n) - n1 - n2not1) %>% 
   
   # Log-Likelihood-Ratio (G^2)
-  mutate(llr= 2 * n * (
-    entropy(c(n, n2not1, n1not2, not12)) -
+  mutate(llr= 2 * n * 
+    (
+      entropy(c(n, n2not1, n1not2, not12)) -
       entropy(c(n2, n1not2) ) - 
       entropy(c(n1, n2not1))
     )

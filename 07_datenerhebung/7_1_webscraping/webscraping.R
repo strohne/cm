@@ -13,7 +13,6 @@ html <- read_html(url)
 html
 
 
-
 # Das geparste Dokument kann bei Bedarf mit der Bibliothek
 # xml2 abgespeichert werden
 #library(xml2)
@@ -78,10 +77,10 @@ for (el_row in el_rows) {
   )
   
   # ... und zu den Ergebnissen hinzufügen
-  results <-  bind_rows(results,magazine)
+  results <-  bind_rows(results, magazine)
   
 }
 
 
 # Ergebnis als Excel-Datei abspeichern
-write_xlsx(results,"zeitschriften.xlsx")
+write_xlsx(results, "zeitschriften.xlsx")

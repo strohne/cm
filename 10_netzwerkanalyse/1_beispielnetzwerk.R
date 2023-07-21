@@ -42,38 +42,40 @@ print(graph)
 #
 
 # 1. Simulation physikalischer Kräfte
-ggraph(graph, layout='stress') + 
+ggraph(graph, layout = 'stress') + 
   geom_edge_link() + 
   geom_node_point(aes(color = type), size = 8) +
   geom_node_text(aes(label = name)) + 
   coord_fixed(1.5) +
   theme_void()
 
-ggsave("forcedirected.png", dpi=300)
+ggsave("forcedirected.png", dpi = 300)
 
 # 2. Lineares Layout
 ggraph(graph, layout = 'linear') + 
   geom_edge_arc() +
-  geom_node_point(aes(color=type), size=8) +
-  geom_node_text(aes(label=name)) +
+  geom_node_point(aes(color = type), size = 8) +
+  geom_node_text(aes(label = name)) +
   coord_fixed(3) +
   theme_void()
 
-ggsave("systematic.png", dpi=300)
+ggsave("systematic.png", dpi = 300)
 
 
 # 3. Heatmap 
 
-ggplot(edges, aes(y=source, x=target))+
-  geom_tile(color = "lightgray", fill="gray") +
+ggplot(edges, aes(y = source, x = target))+
+  geom_tile(color = "lightgray", fill = "gray") +
   scale_x_discrete(limits =  c("A", "B", "C", "D", "E", "F", "G", "H", "I")) +
   scale_y_discrete(limits = c("A", "B", "C", "D", "E", "F", "G", "H", "I")) +
   theme_bw(base_size = 30) + 
   coord_fixed() +
-  theme(axis.title.x = element_blank(),
-        axis.title.y = element_blank())
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank()
+  )
 
-ggsave("heatmap.png", dpi=300)
+ggsave("heatmap.png", dpi = 300)
 
 # 4. Hive-Plot
 ggraph(graph, layout = 'hive', axis = type) + 
@@ -83,5 +85,5 @@ ggraph(graph, layout = 'hive', axis = type) +
   coord_fixed(1) +
   theme_void()
 
-ggsave("hive.png", dpi=300)
+ggsave("hive.png", dpi = 300)
 

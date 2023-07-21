@@ -10,7 +10,6 @@ library(topicmodels)
 library(ldatuning)
 
 
-
 #
 # Document-Feature-Matrix einlesen ----
 #
@@ -22,14 +21,13 @@ dfm
 # Liste der Dokumente aus dem DFM auslesen
 # (wird später für die Validierung benötigt)
 docs <- tibble(
-  document=docid(dfm),
-  docvars(dfm,c("title","media_name","url"))
+  document = docid(dfm),
+  docvars(dfm, c("title", "media_name", "url"))
 )
 
 # Anzahl der Dokumente je Medium
 docs %>% 
   count(media_name)
-
 
 #
 # Grid Search ---- 
@@ -62,14 +60,14 @@ FindTopicsNumber_plot(gridsearch_k)
 # - der Seed stellt sicher, dass trotz des 
 #   zufallsbasierten Verfahrens immer das
 #   gleiche Ergebnis entsteht
-fit <- LDA(dfm, k=10, control=list(seed=48))
+fit <- LDA(dfm, k = 10, control = list(seed = 48))
 
 
 # Wahrscheinlichkeit, mit der ein Term zu einem Topic gehört
-lda_woerter <- tidy(fit, matrix="beta")
+lda_woerter <- tidy(fit, matrix = "beta")
 
 # Wahrscheinlichkeit, mit der ein Dokument ein Topic enthält
-lda_docs <- tidy(fit, matrix="gamma")
+lda_docs <- tidy(fit, matrix = "gamma")
 
 
 #
@@ -79,7 +77,7 @@ lda_docs <- tidy(fit, matrix="gamma")
 # Top-Wörter auswerten
 top_woerter <- lda_woerter %>% 
   group_by(topic) %>%
-  slice_max(beta,n=15)%>%
+  slice_max(beta, n = 15)%>%
   ungroup() 
 
 # Top-Wörter visualisieren
@@ -93,17 +91,17 @@ top_woerter %>%
   scale_x_reordered() +
   facet_wrap(facets = vars(thema), scales = "free", ncol = 2) +
   coord_flip() + 
-  theme_bw(base_size=10)
+  theme_bw(base_size = 10)
 
 
 # Top-Dokumente zusammenstellen
 top_docs <- lda_docs %>%  
   group_by(topic) %>%
-  slice_max(gamma,n=5) %>%
+  slice_max(gamma, n = 5) %>%
   ungroup()
 
 
 # Liste der Dokumente aus dem DFM an die Top-Dokumente anfügen
-top_docs <- left_join(top_docs, docs, by="document")
+top_docs <- left_join(top_docs, docs, by = "document")
 
 

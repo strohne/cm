@@ -69,7 +69,7 @@ tweets %>%
 # ...mit dem gleichen Ergebnis wie count(from)
 tweets %>% 
   group_by(from) %>%  
-  summarize(n=n()) %>% 
+  summarize(n = n()) %>% 
   ungroup()
 
 # Zählen der Zeilen je Gruppe
@@ -87,8 +87,8 @@ tweets %>%
   count(from, media) %>%
   
   pivot_wider(
-    names_from=media,
-    values_from=n
+    names_from = media,
+    values_from = n
   )
 
 
@@ -158,7 +158,7 @@ cor.test(tweets$favorites, tweets$replies)
 # 
 # Wenn das Ergebnis in einem Objekt abgelegt wird (hier: fit),
 # können die wichtigsten Kennwerte mit summary() ausgegeben werden
-fit <- lm(favorites ~ retweets, data=tweets)
+fit <- lm(favorites ~ retweets, data = tweets)
 summary(fit)
 
 

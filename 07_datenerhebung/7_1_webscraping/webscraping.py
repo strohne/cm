@@ -25,7 +25,7 @@ if response.status_code == 200:
         datei.write(response.content)    
 
 # Datei öffnen und HTML-Datei mit Beautifulsoup parsen
-soup = BeautifulSoup(open(dateiname,encoding="utf-8"),'lxml')
+soup = BeautifulSoup(open(dateiname, encoding="utf-8"), 'lxml')
 
 # Alle Tabellen auslesen und die vierte Tabelle rausziehen 
 # (in Python beginnt die Zählung mit 0)
@@ -79,4 +79,4 @@ pd.set_option('display.max_rows', 10)
 display(results)
 
 # Dataframe als CSV-Datei abpseichern
-results.to_csv('results.csv',sep=";",index=False)
+results.to_csv('results.csv', sep=";", index=False)

@@ -10,9 +10,9 @@ die Verbreitung von Desinformationen oder politischen Meinungen simuliert werden
  
 
 ## Übersicht über Daten und Skripte: 
-- **1_simulation_basic.R**: R-Skript mit den Befehlen aus dem Lehrbuch, um eine künstliche Welt aufzubauen und ein Ereignis durchzusimulieren 
+- **simulation.Rproj**: R-Projektdatei für das Beispiel
+- **1_simulation_basic.R**: R-Skript mit den Befehlen aus dem Lehrbuch, um eine künstliche Welt aufzubauen
 - **2_simulation_modul.R**: Modularisierte Version des Skripts 1_simulation_basic.R mit zusätzlichen Funktionen - beispielsweise zur Animation der Simulation
-- **simulation.Rproj**: R-Projektdatei
 - **diffusion.gif**: Animation von Agenten, die sich in einer künstlichen Welt bewegen
 - **trace.gif**: Animation eines Traceplots der Diffusionsrate
 

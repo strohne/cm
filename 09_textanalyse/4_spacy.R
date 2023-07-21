@@ -24,12 +24,12 @@ spacy_install()
 # Deutsches Sprachmodell herunterladen 
 spacy_download_langmodel("de")
 
-
 #
 # Modell initialisieren ----
 #
 
-
+# Weitere Modelle siehe https://spacy.io/models/de
+spacy_initialize(model = "de_core_news_sm")
 
 
 #
@@ -38,19 +38,13 @@ spacy_download_langmodel("de")
 
 
 # Einlesen
-texte <- readtext("korpus",encoding="UTF-8")
-
-
-# Modell initialisieren
-# Weitere Modelle siehe https://spacy.io/models/de
-spacy_initialize(model = "de_core_news_sm")
+texte <- readtext("korpus", encoding = "UTF-8")
 
 # Parsen
 # - tokenisiert Texte und ermittelt POS-Tags
 # - durch den Parameter dependency = TRUE werden gleichzeitig 
 #   die Dependenzen ermittelt
 txt_parsed <- spacy_parse(texte, dependency = TRUE)
-
 
 #
 # POS-Tagging ----
@@ -59,7 +53,7 @@ txt_parsed <- spacy_parse(texte, dependency = TRUE)
 # Anzahl der Wortarten ermitteln
 txt_parsed %>% 
   count(pos) %>%
-  ggplot(aes(x=n, y=pos))+
+  ggplot(aes(x = n, y = pos))+
   geom_col()
 
 # Nur Nomen beibehalten
@@ -92,8 +86,7 @@ txt_noun <- txt_parsed %>%
 #
 
 ex_sentence <- txt_parsed %>% 
-  filter(doc_id=="RF29.txt",sentence_id==9)
-
+  filter(doc_id == "RF29.txt", sentence_id == 9)
 
 #
 # 2. Als Baum darstellen
@@ -102,41 +95,40 @@ ex_sentence <- txt_parsed %>%
 # Kantenliste
 g_edges <-   ex_sentence %>% 
   filter(dep_rel != "ROOT") %>% 
-  select(from=head_token_id,to=token_id,label=dep_rel) 
+  select(from = head_token_id, to = token_id, label = dep_rel) 
 
 # Knotenliste
 g_nodes <- ex_sentence %>% 
-  select(id=token_id,label=token,pos) %>% 
+  select(id = token_id, label = token, pos) %>% 
   distinct() 
 
 # Graph
-g_tree <- tbl_graph(g_nodes,g_edges,directed=T)
+g_tree <- tbl_graph(g_nodes, g_edges, directed = T)
 
 # ...um Hintergrund unten einzufärben
 g_tree <- g_tree %>% 
-  mutate(pos_main = pos %in% c("NOUN","VERB"))
+  mutate(pos_main = pos %in% c("NOUN", "VERB"))
 
 # Plot als Baum
-ggraph(g_tree,layout="tree") +
-  geom_edge_diagonal(aes(label=label,color=label),show.legend=F) +
-  geom_node_label(aes(label=label,color=pos,fill=pos_main)) +
-  scale_fill_manual(values=c("white","black")) +
-  guides(fill="none") +
+ggraph(g_tree, layout = "tree") +
+  geom_edge_diagonal(aes(label = label, color = label), show.legend = F) +
+  geom_node_label(aes(label = label, color = pos, fill = pos_main)) +
+  scale_fill_manual(values = c("white", "black")) +
+  guides(fill = "none") +
   theme_void() +
-  theme(plot.margin = unit(c(2,2,2,2), "cm"),legend.position = "bottom") +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "cm"), legend.position = "bottom") +
   coord_cartesian(clip = "off")
   
 # Grafik abspeichern
-ggsave("parsing.png",width = 18,height=15,unit="cm")
+ggsave("parsing.png", width = 18, height = 15, unit = "cm")
 
 # Plot als Line Graph
-ggraph(g_tree,layout="linear") +
+ggraph(g_tree, layout = "linear") +
   geom_edge_arc(
-    aes(label=label,color=label),
-    position=position_nudge(y=0.05),fold=T,
-    angle_calc = "along",label_dodge = unit(-0.5,"cm"),
-    arrow=arrow(type="closed",length=unit(0.3,"cm"))
+    aes(label = label, color = label),
+    position = position_nudge(y = 0.05), fold = T,
+    angle_calc = "along", label_dodge = unit(-0.5, "cm"),
+    arrow = arrow(type = "closed", length = unit(0.3, "cm"))
   ) +
-  geom_node_label(aes(label=label,color=pos)) +
+  geom_node_label(aes(label = label, color = pos)) +
   theme_void() 
-

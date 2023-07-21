@@ -15,10 +15,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import confusion_matrix,\
-                            classification_report
-from sklearn.model_selection import\
-                             train_test_split
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
 
 #%% Funktionen
 
@@ -37,9 +35,9 @@ def load_images(folder):
 
 #%%  Bilder X und Label y einlesen
 
-# - In folders die Unterordner angeben, in denen die Bilder liegen
-# - Durch for-Schleife nacheinander Bilder einlesen
-# - Konvertieren der Bilder in Numpy-Arrays
+# - In folders werden die Unterordner angegeben, in denen die Bilder liegen
+# - Durch die for-Schleife werden nacheinander die Bilder eingelesen
+# - Die Bilder werden anschließend in Numpy-Arrays konvertiert
 
 X = []
 y = []
@@ -57,14 +55,13 @@ for folder in folders:
 X = np.asarray(X)
 y = np.asarray(y)
 
-
 #%% Trainings- und Validierungssets
 
 # - test_size legt den Anteil der Validierungsdaten fest
 # - stratify, um Verteilung der Kategorien beizubehalten
 # - random_state, damit die Funktion auch bei mehrmaligem Ausführen die gleiche Aufteilung vornimmt
 
-X_train, X_val, y_train, y_val = train_test_split(X ,y, test_size=0.2, stratify=y, random_state=180)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, stratify=y, random_state=180)
 
 #%% Modell trainieren
 
@@ -97,9 +94,6 @@ plt.xlabel("epoch")
 plt.ylabel("loss")
 plt.savefig("8_1_losscurve.png", dpi=300)
 plt.show()
-
-
-
 
 #%% Validierung des trainierten Modells
 
@@ -135,8 +129,6 @@ print(pd.DataFrame(conf))
 report = classification_report(y_val, y_pred)
 print(report)
 
-
-
 #%% Visualisierung von Einzelfällen
 
 # Die folgende Funktion wählt zufällig Bilder aus dem Trainingsdatensatz (Parameter X) aus,
@@ -144,15 +136,15 @@ print(report)
 def visualize_pred(X, y, ncol=5, nrow=5):
     selected = random.sample(range(len(X)), ncol * nrow)
 
-    plt.figure(figsize=(10,10))
+    plt.figure(figsize=(10, 10))
 
     for i, num in enumerate(selected):
         some_pixels = X[num]
-        some_image = some_pixels.reshape(48,48)
+        some_image = some_pixels.reshape(48, 48)
 
         some_label = y[num]
 
-        plt.subplot(ncol, nrow ,i+1)
+        plt.subplot(ncol, nrow , i+1)
         plt.xticks([])
         plt.yticks([])
         plt.grid(False)
@@ -165,7 +157,6 @@ def visualize_pred(X, y, ncol=5, nrow=5):
 # Beispielaufruf der Funktion
 visualize_pred(X_val, y_pred)
 
-
 #%% # Weitere Bilder klassifizieren
 
 # - Ordner "eigenes_foto" erstellen und dort ein eigenes Bild ablegen
@@ -177,8 +168,6 @@ X_new = np.asarray(X_new)
 
 y_new = mlp.predict(X_new)
 print(y_new)
-
-
 
 #%%  Modell abspeichern und neu laden
 

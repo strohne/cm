@@ -1,5 +1,7 @@
 #
-# Modularisiertes Skript zur Simulation künstlicher Welten
+# Modularisiertes Skript zur Simulation künstlicher Welten:
+# Die einzelnen Schritte sind in Funktionen verpackt, 
+# damit sie leichter angepasst werden können.
 #
 
 #
@@ -22,9 +24,9 @@ agentsSpawn <- function(agents_count) {
     
     no =  c(1:agents_count),
     
-    x =   sample(world_width, agents_count, replace=T),
-    y =   sample(world_height, agents_count,replace=T),
-    dir = sample(360,agents_count,replace=T) - 1,
+    x =   sample(world_width, agents_count, replace = T),
+    y =   sample(world_height, agents_count, replace = T),
+    dir = sample(360, agents_count, replace = T) - 1,
     state = FALSE
   )
   
@@ -36,7 +38,7 @@ agentsSpawn <- function(agents_count) {
 agentsMove <- function(agents) {
   
   # Zufällig zwischen -25 und +25 Grad rotieren
-  rotate <- sample(c(-25:25),nrow(agents), replace=T)
+  rotate <- sample(c(-25 : 25), nrow(agents), replace = T)
   
   agents$dir <- agents$dir + rotate
   agents$dir <- agents$dir %% 360
@@ -68,7 +70,7 @@ agentsChat <- function(agents) {
 worldLog <- function(history, agents, epoch) {
   
   agents$epoch <- epoch
-  history <- rbind(history,agents)
+  history <- rbind(history, agents)
   
   return (history)
 } 
@@ -84,15 +86,15 @@ worldStats <- function(agents) {
 worldPlot <- function(agents) {
   
   pl <- agents %>% 
-    ggplot(aes(x,y,angle=dir,color=state)) +
+    ggplot(aes(x, y, angle = dir, color = state)) +
     
     
-    geom_text(label="⮝",alpha=0.8, size=10,vjust=0.5,hjust=0.5)+
-    geom_text(aes(label=no, angle = dir),color="black",size=2, hjust=0.5,vjust=0.7) +
+    geom_text(label = "⮝", alpha = 0.8, size = 10, vjust = 0.5, hjust = 0.5)+
+    geom_text(aes(label = no, angle = dir), color = "black", size = 2, hjust = 0.5, vjust = 0.7) +
     
-    scale_color_manual(breaks=c(F,T),, values=c("grey","maroon")) +
-    scale_x_continuous(limits = c(1,world_width), name = NULL) +
-    scale_y_continuous(limits = c(1,world_height), name= NULL) +
+    scale_color_manual(breaks = c(F, T), values = c("grey", "maroon")) +
+    scale_x_continuous(limits = c(1, world_width), name = NULL) +
+    scale_y_continuous(limits = c(1, world_height), name= NULL) +
     
     coord_fixed()
 
@@ -108,8 +110,8 @@ historyTracePlot <- function(history) {
     ungroup()
   
   pl <- trace %>% 
-    ggplot(aes(epoch,diffusion)) +
-    geom_line(color="maroon")
+    ggplot(aes(epoch, diffusion)) +
+    geom_line(color = "maroon")
   
   return (pl)
 }
@@ -122,12 +124,12 @@ historyTraceAnimate <- function(history, secs) {
     ungroup()
   
   pl <- trace %>% 
-    ggplot(aes(epoch,diffusion)) +
-    geom_line(color="maroon") +
+    ggplot(aes(epoch, diffusion)) +
+    geom_line(color = "maroon") +
     geom_point() +
     transition_reveal(epoch)
   
-  pl <- animate(pl,nframes=n_distinct(history$epoch),duration=secs)
+  pl <- animate(pl, nframes = n_distinct(history$epoch), duration = secs)
   
   pl
 }
@@ -137,22 +139,22 @@ historyTraceAnimate <- function(history, secs) {
 historyWorldAnimate <- function(history, secs) {
   
   pl <- history %>% 
-    ggplot(aes(x,y,angle=dir,color=state,group=no)) +
+    ggplot(aes(x, y, angle = dir, color = state, group = no)) +
     
     
-    geom_text(label="⮝",alpha=0.8, size=10,vjust=0.5,hjust=0.5)+
-    geom_text(aes(label=no, angle = dir),color="black",size=2, hjust=0.5,vjust=0.7) +
+    geom_text(label = "⮝", alpha = 0.8, size = 10, vjust = 0.5, hjust = 0.5)+
+    geom_text(aes(label = no, angle = dir), color = "black", size = 2, hjust = 0.5, vjust = 0.7) +
     
-    scale_color_manual(breaks=c(F,T),values=c("grey","maroon")) +
-    scale_x_continuous(limits = c(1,world_width), name = NULL) +
-    scale_y_continuous(limits = c(1,world_height), name= NULL) +
+    scale_color_manual(breaks = c(F, T), values = c("grey", "maroon")) +
+    scale_x_continuous(limits = c(1, world_width), name = NULL) +
+    scale_y_continuous(limits = c(1, world_height), name= NULL) +
     
     coord_fixed() +
     
     transition_time(epoch) +  
     ggtitle('Epoch {frame} of {nframes}')
   
-  pl <- animate(pl,nframes=n_distinct(history$epoch),duration=secs)
+  pl <- animate(pl, nframes = n_distinct(history$epoch), duration = secs)
   return (pl)
   
 }
@@ -191,7 +193,7 @@ worldPlot(agents)
 # 3. Welt ablaufen lassen ----
 #
 
-for (epoch in c(1:world_epochs)) {
+for (epoch in c(1 : world_epochs)) {
 
   print(epoch)
   print(worldStats(agents))
@@ -215,10 +217,10 @@ worldPlot(agents)
 # Traceplot
 historyTracePlot(history)
 
-historyTraceAnimate(history,10)
+historyTraceAnimate(history, 10)
 anim_save("trace.gif")
 
 
 # Animation über die Epochen
-historyWorldAnimate(history,10)
+historyWorldAnimate(history, 10)
 anim_save("diffusion.gif")

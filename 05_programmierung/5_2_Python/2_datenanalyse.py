@@ -12,8 +12,9 @@ import pandas as pd
 # Datensatz laden
 df = pd.read_csv("example-tweets.csv", sep=';')
 
-# Die Hilfe aufrufen
-pd.read_csv?
+# In Jupyter Notebooks kann die Hilfe zu einzelnen Funktionen
+# mit ? aufgerufen werden (entfernen Sie vorher die Raute):
+# pd.read_csv?
 
 # Datensatz anzeigen
 display(df)
@@ -24,8 +25,16 @@ df_small = pd.DataFrame()
 
 # Liste mit Dictionaries definieren, 
 # um sie dem Datensatz hinzuzufügen
-data = [{'id': 1, 'name': 'rey'}, {'id': 2,'name': 'han'}]
-df_small = df_small.append(data, sort=False, ignore_index=True)
+data = [
+    {'id': 1, 'name': 'rey'}, 
+    {'id': 2, 'name': 'han'}
+]
+
+# Die Liste in einen DataFrame umwandeln
+data = pd.DataFrame(data)
+
+# Den neuen Datensatz anhängen
+df_small = pd.concat([data, df_small], ignore_index=True, sort=False)
 
 # Datensatz als CSV-Datei speichern
 df_small.to_csv("example.csv", index=False)

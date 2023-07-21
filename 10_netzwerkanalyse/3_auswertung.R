@@ -9,12 +9,11 @@ library(tidygraph)
 library(ggraph)
 
 # Ggf. Knoten- und Kantenliste einlesen 
-nodes <- read_csv2("videos.nodes.csv", na="None")
-edges <- read_csv2("videos.edges.csv", na="None")
+nodes <- read_csv2("videos.nodes.csv", na = "None")
+edges <- read_csv2("videos.edges.csv", na = "None")
 
 # Graph-Objekt erstellen
-graph <- tbl_graph(nodes,edges)
-
+graph <- tbl_graph(nodes, edges)
 
 #
 # Netzwerkmaße bestimmen ----
@@ -35,8 +34,8 @@ average.path.length(graph)
 mean_distance(graph)
 
 # cliquen aus mindestens 5 Knoten 
-cliques(graph, min=5)
-max_cliques(graph, min=5)
+cliques(graph, min = 5)
+max_cliques(graph, min = 5)
 
 # Übersicht über Anzahl der Beziehungen 
 # - asymetric: einseitig
@@ -91,12 +90,9 @@ graph_vis <- graph_vis %>%
 
 # Graph visualisieren
 graph_vis %>% 
-  ggraph(layout="stress") +
+  ggraph(layout = "stress") +
   geom_edge_link() +
   geom_node_point() +
-  geom_node_label(aes(
-    label = label
-    
-  )) +
+  geom_node_label(aes(label = label)) +
   theme_void()
 

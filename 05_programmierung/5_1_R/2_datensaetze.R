@@ -57,7 +57,8 @@ tweets_jeautor <- read_xlsx("tweets_jeautor.xlsx")
 #
 
 # Der Dateipfad bezieht sich immer auf das aktuelle Arbeits- bzw. Projektverzeichnis.
-# Es kann deshalb ein Unterverzeichnis wie "daten" angegeben werden.
+# Wenn Sie ein Unterverzeichnis "daten" erstellen, können Sie Dateien
+# anschließend darin abspeichern.
 write_xlsx(tweets, "daten/example-tweets.xlsx")
 tweets <- read_xlsx("daten/example-tweets.xlsx")
 

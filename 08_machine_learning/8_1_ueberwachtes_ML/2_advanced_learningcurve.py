@@ -1,6 +1,6 @@
 #%%
 
-# Dieses Skript stellt eine Erweiterung zum Multilayerperceptron-Skript dar.
+# Dieses Skript stellt eine Erweiterung zum Multilayer-Perceptron-Skript dar.
 # Es wird eine Kreuzvalidierung durchgeführt. Das Ergebnis wird mittels Lernkurven visualisiert.
 
 
@@ -14,9 +14,7 @@ from PIL import Image
 
 from sklearn.neural_network import MLPClassifier
 
-from sklearn.model_selection import\
-                             train_test_split,\
-                             learning_curve
+from sklearn.model_selection import train_test_split, learning_curve
 
 #%%
 
@@ -54,15 +52,13 @@ for folder in folders:
 X = np.asarray(X)
 y = np.asarray(y)
 
-
 #%% Trainings- und Validierungssets
 
 # - test_size legt den Anteil der Validierungsdaten fest
 # - stratify, um Verteilung der Kategorien beizubehalten
 # - random_state, damit die Funktion auch bei mehrmaligem Ausführen die gleiche Aufteilung vornimmt
 
-X_train, X_val, y_train, y_val = train_test_split(X ,y, test_size=0.2, stratify=y, random_state=180)
-
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, stratify=y, random_state=180)
 
 #%% Modell trainieren
 
@@ -93,7 +89,7 @@ train_sizes, train_scores, val_scores = learning_curve(
     mlp, X, y,
     cv=5,
     shuffle=True,
-    train_sizes=np.linspace(0.1,1.0,10),
+    train_sizes=np.linspace(0.1, 1.0, 10),
     scoring="neg_log_loss",
     n_jobs=6,
     verbose=100

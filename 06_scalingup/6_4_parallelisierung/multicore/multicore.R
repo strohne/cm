@@ -29,11 +29,11 @@ dfm
 
 
 # Chunks erstellen
-chunks <- sample(30, nrow(dfm), replace=TRUE)
-chunks <- split( c(1:nrow(dfm)) , chunks)
+chunks <- sample(30, nrow(dfm), replace = TRUE)
+chunks <- split(c(1:nrow(dfm)), chunks)
 
 # Vier Worker initialisieren
-plan(multicore,workers=4)
+plan(multicore, workers = 4)
 
 # Startzeit merken
 tic()
@@ -49,7 +49,8 @@ sim <- future_map_dfr(
       margin="documents",
       method="cosine", 
       min_simil = 0.8
-    ) %>% as_tibble()
+    ) %>% 
+    as_tibble()
   },
   .progress = T
 )
@@ -63,9 +64,18 @@ toc()
 #
 
 # Titel, URL und Datum an die Liste Ã¤hnlicher Dokumente joinen
-docs <- tibble(docname=docnames(dfm),docvars(dfm))
-sim <- sim %>% 
-  left_join(select(docs,document1=docname,doc1_title=title,doc1_url=url,doc1_date=publish_date), by="document1") %>%
-  left_join(select(docs,document2=docname,doc2_title=title,doc2_url=url,doc2_date=publish_date), by="document2")
+docs <- tibble(
+  docname = docnames(dfm),
+  docvars(dfm)
+)
 
+sim <- sim %>% 
+  left_join(
+    select(docs, document1 = docname, doc1_title = title, doc1_url = url, doc1_date = publish_date),
+     by="document1"
+  ) %>%
+  left_join(
+    select(docs, document2 = docname, doc2_title = title, doc2_url = url, doc2_date = publish_date), 
+    by="document2"
+  )
 

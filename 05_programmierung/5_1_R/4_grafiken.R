@@ -35,7 +35,7 @@ boxplot(tweets$retweets)
 
 # Streudiagramm (Punktewolke),
 # um den Zusammenhang von zwei Variablen zu zeigen
-plot(tweets$favorites,tweets$retweets)
+plot(tweets$favorites, tweets$retweets)
 
 
 
@@ -46,7 +46,7 @@ plot(tweets$favorites,tweets$retweets)
 
 # Streudiagramms (Punktewolke), 
 # um den Zusammenhang von zwei metrischen Variablen zu zeigen
-ggplot(tweets, aes(x=retweets, y=favorites)) +
+ggplot(tweets, aes(x = retweets, y = favorites)) +
   geom_point()
 
 # Letzte Grafik abspeichern
