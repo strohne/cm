@@ -197,7 +197,7 @@ for (i in 1:nrow(personen)) {
   print(message)
 }
 
-# Mehrere Bedingungen
+# Kombination mehrerer Bedingungen
 for (i in 1:nrow(personen)) {
   row = personen[i,]
   
@@ -218,6 +218,8 @@ for (i in 1:nrow(personen)) {
 paste0(personen$name, " is alive")
 
 # Mit der lapply()-Funktion können beliebige Funktionen
-# auf eine Liste wie personen$name angewendet werden
+# auf eine Liste wie personen$name angewendet werden.
+# Da paste0 bereits vektorisiert ist, ist das Ergebnis
+# inhaltlich gleich
 lapply(personen$name, paste0, " is a bot")
 

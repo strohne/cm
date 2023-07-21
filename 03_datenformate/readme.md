@@ -2,19 +2,22 @@
 
 # Datenformate
 
-Daten können in verschiedenen Formatierungen vorliegen (Kapitel 3). Je nachdem, ob es sich um Zahlen, Zeichenketten oder Wahrheitswerte handelt, 
-können die Daten durch unterschiedliche *Datentypen* repräsentiert werden (Kapitel 3.1). 
-Dabei können die Daten in spezifischen *Datenformaten* erfasst sein - dazu zählen Textformate (Kapitel 3.2), Tabellenformate (Kapitel 3.3), Auszeichnungssprachen (Kapitel 3.4), 
-Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Letztendlich wird über das *Datenmodell* festgelegt, welche Bedeutung die Daten haben (Kapitel 3.7). 
+Daten sind nicht gleich Daten - sie liegen in ganz unterschiedlichen Formen vor (Kapitel 3). Je nachdem, ob es sich um Zahlen, Zeichenketten oder Wahrheitswerte handelt, 
+werden Daten durch unterschiedliche *Datentypen* repräsentiert  (Kapitel 3.1). 
+Zusammenestellungen von Daten in der Form von Datensätzen werden in spezifischen *Datenformaten* erfasst - dazu zählen Textformate (Kapitel 3.2), Tabellenformate (Kapitel 3.3), Auszeichnungssprachen (Kapitel 3.4), 
+Objektdatenformate (Kapitel 3.5) oder Datenbanken (Kapitel 3.6). Welche Bedeutung diese Daten haben, wird schließlich über das *Datenmodell* festgelegt (Kapitel 3.7). 
 
+## Dateien in diesem Ordner
 
-## Übersicht über Ordner und Dateien 
+Bestimmen Sie die Datenformate in den Unterordnern und prüfen Sie so Ihr Wissen!
 
 - **3_3_tabellenformate**: CSV-Dateien in unterschiedlichen Dialekten.
-- **3_7_datenmodelle**: Daten zu einem Film, in verschiedenen Formaten repräsentiert. 
+- **3_7_datenmodelle**: Unterschiedliche Varianten, ein und den gleichen Film zu erfassen. 
 
 
 ## Datenformate im Vergleich 
+
+Die folgenden Beispiele enthalten immer die gleichen Daten, allerdings in unterschiedlichen Formaten. Überlegen Sie: für welchen Anwendungsfall ist welches Format geeignet?
 
 **Tabelle**
 <table style="width:100%">

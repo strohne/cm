@@ -18,7 +18,7 @@ library(googleCloudVisionR)
 
 # Geben Sie den Pfad zu Ihrem zuvor heruntergeladenen JSON-Schlüssel an und führen Sie die
 # folgende Zeile aus, um sich anzumelden. Der Schlüssel sollte
-# geheim gehalten werden, er ist wie ein Passwort.
+# geheim gehalten werden, er ist ein Passwort.
 gar_auth_service(json_file="E:/Credentials/googleservicekey.json")
 
 
