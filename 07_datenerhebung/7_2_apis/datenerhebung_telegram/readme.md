@@ -79,7 +79,7 @@ print(me)
 Richten Sie Pyrogram zum ersten Mal ein, öffnet sich ein Dialogfenster und Sie müssen Ihre Telefonnummer eingeben und bestätigen. Anschließend bekommen Sie auf Ihr Smartphone einen Authentifizierungs-Code zugeschickt, den Sie nun wiederum im Dialog-Fenster eingeben.  Hat die Authentifizierung geklappt, startet nun die Session und alles ist  fertig für die Datenerhebung eingerichtet.
 
 Der Befehl `await app.start()` startet eine neue Session. Am Ende jeder Session, also bevor Sie Jupyter Lab wieder verlassen, beenden Sie diese mit:
- 
+
 ```
 await app.stop()
 ```
@@ -242,8 +242,8 @@ Achten Sie darauf, nicht endlos Fehler zu produzieren. Denn Sie riskieren  eine 
 
 ## Hilfe und Unterstützung im Lehrbuch
 Das beschriebene Tutorial bietet einen Schnelleinstieg in die Datenerhebung über die Telegram-API. An der einen oder anderen Stelle kann es hilfreich sein, sich mit einigen Grundlagen zu beschäftigen. Dabei könnten Ihnen folgende Kapitel im Lehrbuch behilflich sein:
-- **Kapitel 2** gibt einen Überblick über APIs als **Datenquellen**.
-- In **Kapitel 3** wird in unterschiedliche **Datenformate** eingeführt.
-- **Kapitel 5.2** gibt eine Einführung in **Python** mit Jupyter Notebooks. Sollten Sie Probleme mit dem Einrichten des Programms oder dem Ausführen der Codeschnipsel haben, lesen Sie dort nach.
-- **Kapitel 7.2** beschreibt grundlegend die Vorgehensweise bei der **Datenerhebung über APIs**.
-- **Kapitel 8** bietet einen praktischen Einstieg in **Analyseverfahren**, wie beispielsweise der Textanalyse, um die erhobenen Daten auszuwerten.
+- **[Kapitel 2](02_datenquellen)** gibt einen Überblick über APIs als **Datenquellen**.
+- In **[Kapitel 3](03_datenformate)** wird in unterschiedliche **Datenformate** eingeführt.
+- **[Kapitel 5.2](5_2_Python)** gibt eine Einführung in **Python** mit Jupyter Notebooks. Sollten Sie Probleme mit dem Einrichten des Programms oder dem Ausführen der Codeschnipsel haben, lesen Sie dort nach.
+- **[Kapitel 7.2](7_2_apis)** beschreibt grundlegend die Vorgehensweise bei der **Datenerhebung über APIs**.
+- **[Kapitel 8](08_machine_learning)** bietet einen praktischen Einstieg in **Analyseverfahren**, wie beispielsweise der Textanalyse, um die erhobenen Daten auszuwerten.
