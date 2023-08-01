@@ -25,7 +25,7 @@ git clone https://github.com/strohne/cm
 ``` 
 
 Dadurch laden Sie alle Dateien in Ihr Verzeichnis herunter. Wenn Inhalte zu einem späteren Zeitpunkt 
-aktualisiert wirden, können Sie das lokale Repositorium einfach über den Befehl `git pull` auf den neuesten Stand bringen. 
+aktualisiert werden, können Sie das lokale Repositorium einfach über den Befehl `git pull` auf den neuesten Stand bringen. 
 
 Alternativ können Sie auf den grünen Button `Code` oben rechts auf dieser Seite klicken und "Download ZIP" auswählen. 
 
