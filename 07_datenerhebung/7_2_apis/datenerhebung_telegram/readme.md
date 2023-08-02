@@ -245,5 +245,5 @@ Das beschriebene Tutorial bietet einen Schnelleinstieg in die Datenerhebung übe
 - **[Kapitel 2](/02_datenquellen)** gibt einen Überblick über APIs als **Datenquellen**.
 - In **[Kapitel 3](/03_datenformate)** wird in unterschiedliche **Datenformate** eingeführt.
 - **[Kapitel 5.2](/05_programmierung/5_2_Python)** gibt eine Einführung in **Python** mit Jupyter Notebooks. Sollten Sie Probleme mit dem Einrichten des Programms oder dem Ausführen der Codeschnipsel haben, lesen Sie dort nach.
-- **[Kapitel 7.2](07_datenerhebung/7_2_apis)** beschreibt grundlegend die Vorgehensweise bei der **Datenerhebung über APIs**.
+- **[Kapitel 7.2](/07_datenerhebung/7_2_apis)** beschreibt grundlegend die Vorgehensweise bei der **Datenerhebung über APIs**.
 - **[Kapitel 8](/08_machine_learning)** bietet einen praktischen Einstieg in **Analyseverfahren**, wie beispielsweise der Textanalyse, um die erhobenen Daten auszuwerten.
