@@ -10,8 +10,8 @@ Datenbanken mit SQL-Befehlen abzufragen (Kapitel 4.1.4).
 Die folgenden Dateien dienen als Beispielmaterial, um die in Kapitel 4.1.1 besprochenen regulären Ausdrücke einzuüben:
 
 - **example_text.txt** enthält eine Textdatei, die Sie mit einem Texteditor öffnen können, um mit regulären Ausdrücken Suchmuster zu formulieren. Suchen Sie nach: Jahreszahlen, Prozentzahlen, geschützten Leerzeichen!
-- **example_li.html** enthält HTML-Quelltext für eine Liste von Serien mit dem Anfangsbuchstaben N.  (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
-- **example_table.html** enthält eine HTML-Tabelle mit den längsten Fernsehserien. (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020).
+- **example_li.html** enthält HTML-Quelltext für eine Liste von Serien mit dem Anfangsbuchstaben N, als Beispielmaterial für das Einüben von regulären Ausdrücken.  (Quelle: https://www.fernsehserien.de/serien-a-z/n; 2.2.2020)  
+- **example_table.html** enthält eine HTML-Tabelle mit den längsten Fernsehserien - dieses Beispiel können Sie verwenden, um Tabellen mit XPath zu extrahieren. (Quelle: https://de.wikipedia.org/wiki/Liste_der_l%C3%A4ngsten_Fernsehserien; 2.2.2020).
 - **golem.har enthält** eine Liste aller Abfragen, die beim Aufruf von golem.de ausgeführt werden (aufgerufen am 26.11.2019). Stellen Sie die unterschiedlichen Domains zusammen und finden Sie so heraus, mit welchen Drittanbietern die Seite verbunden ist! 
 
 Um SQL-Ausdrücke zu üben, können Sie folgende Datei verwenden (Kapitel 4.1.4):
