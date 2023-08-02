@@ -7,12 +7,11 @@ um unterschiedliche Szenarien zu vergleichen. Die Skripte enthalten ein einfache
 die Verbreitung von Desinformationen oder politischen Meinungen simuliert werden kann.
 
 ![The diffusion model](diffusion.gif) ![The trace plot](trace.gif)
- 
 
-## Übersicht über Daten und Skripte: 
-- **simulation.Rproj**: R-Projektdatei für das Beispiel
-- **1_simulation_basic.R**: R-Skript mit den Befehlen aus dem Lehrbuch, um eine künstliche Welt aufzubauen
-- **2_simulation_modul.R**: Modularisierte Version des Skripts 1_simulation_basic.R mit zusätzlichen Funktionen - beispielsweise zur Animation der Simulation
-- **diffusion.gif**: Animation von Agenten, die sich in einer künstlichen Welt bewegen
-- **trace.gif**: Animation eines Traceplots der Diffusionsrate
 
+## Übersicht über Daten und Skripte:
+- **[simulation.Rproj](simulation.Rproj)**: R-Projektdatei für das Beispiel
+- **[1_simulation_basic.R](1_simulation_basic.R)**: R-Skript mit den Befehlen aus dem Lehrbuch, um eine künstliche Welt aufzubauen
+- **[2_simulation_modul.R](2_simulation_modul.R)**: Modularisierte Version des Skripts 1_simulation_basic.R mit zusätzlichen Funktionen - beispielsweise zur Animation der Simulation
+- **[diffusion.gif](diffusion.gif)**: Animation von Agenten, die sich in einer künstlichen Welt bewegen
+- **[trace.gif](trace.gif)**: Animation eines Traceplots der Diffusionsrate
