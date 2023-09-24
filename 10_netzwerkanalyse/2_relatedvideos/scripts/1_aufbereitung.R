@@ -1,12 +1,15 @@
 #
 # Facepager-Datei für die Netzwerkanalyse aufbereiten
 #
+# Dies ist ein Beispiel zum Einlesen von Facepager-Exporten, 
+# das Sie an eigene Fälle anpassen können.
+#
 
 # Package laden
 library(tidyverse)
 
 # Daten laden
-videos <- read_csv2("videos.export.csv", na = "None")
+videos <- read_csv2("data/videos.export.csv", na = "None")
 
 
 # Relevante Zeilen (filter) und Spalten (select) behalten

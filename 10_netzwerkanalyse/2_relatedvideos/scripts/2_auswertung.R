@@ -1,6 +1,9 @@
 #
 # Netzwerk aus ähnlichen YouTube-Videos analysieren
 #
+# Dies ist ein Beispiel mit typischen Netzwerkanalysebefehlen,
+# das Sie an eigene Fälle anpassen können.
+#
 
 # Bibliotheken laden
 library(tidyverse)
@@ -9,8 +12,8 @@ library(tidygraph)
 library(ggraph)
 
 # Ggf. Knoten- und Kantenliste einlesen 
-nodes <- read_csv2("videos.nodes.csv", na = "None")
-edges <- read_csv2("videos.edges.csv", na = "None")
+nodes <- read_csv2("data/videos.nodes.csv", na = "None")
+edges <- read_csv2("data/videos.edges.csv", na = "None")
 
 # Graph-Objekt erstellen
 graph <- tbl_graph(nodes, edges)
@@ -83,7 +86,7 @@ nodes %>%
 
 # Graph-Objekt auf Knoten mit Degree > 1 einschränken
 # und die Label kürzen
-graph_vis <- graph_vis %>% 
+graph_vis <- graph %>% 
   filter(degree > 1) %>% 
   mutate(label = str_trunc(label, 15)) 
 

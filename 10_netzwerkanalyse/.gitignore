@@ -1,3 +1,6 @@
-*.csv
-*.png
+videos.edges.csv
+videos.nodes.csv
+citations_edges.csv
+citations_nodes.csv
+
 !chapter_10_zentangle.png
