@@ -13,7 +13,7 @@ Bei Zitationsnetzwerken handelt es sich um gerichtete Netzwerke, es wird betrach
 
 ## Datenerhebung mit Facepager 
 
-*Hinweis:* Eine Beispieldatei mit den Ergebnissen der Facepager-Erhebung finden Sie unter [data/citations_export.csv](data/citations_export.csv). Sie können damit bei Bedarf den Erhebungsschritt überspringen und den Datensatz mit den R-Skripten aufbereiten bzw. analysieren.
+*Hinweis:* Eine Beispieldatei mit den Ergebnissen der Facepager-Erhebung finden Sie unter [data/citations_export.csv](data/citations_export.csv). Sie können damit bei Bedarf den Erhebungsschritt überspringen und den Datensatz mit den R-Skripten aufbereiten bzw. analysieren. Öffnen Sie dazu mit RStudio das R-Projekt "citations.Rproj".
 
 ### Kanten: Crawlen von Zitationen 
 <img src="images/1_setup.png" alt="Setup in Facepager">
